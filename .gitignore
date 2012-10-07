@@ -1,5 +1,6 @@
 *.class
 .project
+.DS_Store
 
 # Package Files #
 *.war
