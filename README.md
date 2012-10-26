@@ -5,5 +5,4 @@ This is a game project that is being developed in the UMD Game Development club.
 
 Prerequisites
 -------------
-* Java 7
-* LWJGL 2.8.4
+* Java 7 
