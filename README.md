@@ -1,7 +1,9 @@
-Convergence: Singularity
+Blackbeard's Redemption
 ======================
 
-This is a game project that is being developed in the UMD Game Development club. Soon this README will be more awesome as the project grows.
+A 2D platformer featuring Blackbeard as he fights his way back to civilization.
+
+Wiki: www.wiki.zamn.net
 
 Prerequisites
 -------------
