@@ -2,6 +2,7 @@
 .project
 .DS_Store
 .classpath
+.notes
 
 # Package Files #
 *.war
