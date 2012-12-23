@@ -2,6 +2,7 @@ package menu;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,6 +18,8 @@ public class SaveFile {
 	}
 	public static void set(String key, String data) throws IOException{
 		if(filename==null)
+			throw new IOException();
+		if(key.indexOf("=") != -1 || data.indexOf("=") != -1 )
 			throw new IOException();
 		localData.put(key, data);
 	}
@@ -34,7 +37,6 @@ public class SaveFile {
 		if(filename==null)
 			throw new IOException();
 		try {
-			System.out.println("Saving "+filename);
 			BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
 			Iterator<String> keys = localData.keySet().iterator();		
 			while(keys.hasNext()){
@@ -58,13 +60,15 @@ public class SaveFile {
 				String currentLine=reader.readLine();
 				int equalsSign=currentLine.indexOf("=");
 				String key=currentLine.substring(0, equalsSign);
-				String data = currentLine.substring(equalsSign+1, currentLine.length());
-				System.out.println(key+":"+data);
+				int endLine=currentLine.length();
+				String data = currentLine.substring(equalsSign+1, endLine);
 				localData.put(key, data);
 			}
 			reader.close();
-		} catch (Exception e) {
-			System.out.println("Reading: "+filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("Tried getting a save file that doesn't exist");
+		} catch (IOException e) {
+			System.out.println("Error Reading: "+filename);
 			System.out.println("Error Thrown: "+e.toString());
 			e.printStackTrace();
 		}
