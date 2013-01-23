@@ -45,7 +45,7 @@ Attacks:
 - Upgradable? 
 – Can we change its color?
 
-### Arck Widow snake. We're an invader of his territory therefore he hates you. They've owned this island since they crashed from a plane many years ago.
+### Arcbok Widow snake. We're an invader of his territory therefore he hates you. They've owned this island since they crashed from a plane many years ago.
 
 Attacks: 
 * Shoots venom at you. (part 1)) 
@@ -73,4 +73,51 @@ Multiple levels, not a single level
 
 #Tasks
 
-TABLE GOES HERE
+<table>
+	<tr>
+		<th >Name </th><th >Difficulty </th><th >Assigned To </th>
+	</tr>
+	<tr>
+		<td >Title Screen (+Menus/Buttons) </td><td > Easy-Medium </td><td > Sean </td>
+	</tr>
+	<tr>
+		<td >Music/Sound Effects loader + player</td><td >Medium</td><td >Adam</td>
+	</tr>
+	<tr>
+		<td >Animations </td><td > Super easy </td><td > Nobody</td>
+	</tr>
+	<tr>
+		<td >Load/Save Settings </td><td > Medium </td><td > Sean</td>
+	</tr>
+	<tr>
+		<td >Choose/Apply Settings </td><td > Super Hard </td><td > Nobody</td>
+	</tr>
+	<tr>
+		<td >Load/Save Map </td><td > Medium </td><td > Nobody</td>
+	</tr>
+	<tr>
+		<td >Scroll Map </td><td > Super Easy </td><td > Nobody</td>
+	</tr>
+	<tr>
+		<td >Map Editor </td><td > Super Hard </td><td > Nobody</td>
+	</tr>
+	<tr>
+		<td >Game Clock </td><td > Easy-Medium </td><td > Nobody</td>
+	</tr>
+	<tr>
+		<td >Character Movement </td><td > Easy </td><td > Nobody</td>
+	</tr>
+	<tr>
+		<td >Entity Class </td><td > Easy </td><td > Bryan, Adam</td>
+	</tr>
+	<tr>
+		<td >Monster Class </td><td > ? </td><td > Bryan, Adam</td>
+	</tr>
+	<tr>
+		<td >Player Class </td><td > ? </td><td > Bryan, Adam</td>
+	</tr>
+	<tr>
+		<td >Weapons </td><td > ? </td><td > Bryan, Adam </td>
+	</tr>
+</table>
+
