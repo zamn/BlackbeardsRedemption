@@ -98,7 +98,21 @@ public abstract int getHealth();
 public abstract void setHealth(int newHealth);
 public abstract void setWeapon(Weapon w);
 ```
-[Level](about:blank)
+
+## Level
+
+This class is going to be the interface for each level.
+
+### Instance Variables
+
+```Java
+// fill in
+```
+
+### Member Functions
+``Java
+//fill in
+```
 
 
 #Tasks
