@@ -45,7 +45,7 @@ Attacks:
 - Upgradable? 
 – Can we change its color?
 
-### Arcbok Widow snake. We're an invader of his territory therefore he hates you. They've owned this island since they crashed from a plane many years ago.
+### Arbok Widow snake. We're an invader of his territory therefore he hates you. They've owned this island since they crashed from a plane many years ago.
 
 Attacks: 
 * Shoots venom at you. (part 1)) 
