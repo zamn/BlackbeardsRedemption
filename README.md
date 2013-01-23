@@ -66,8 +66,38 @@ Attacks:
 # Game Design
 Multiple levels, not a single level
 
-[Entity](about:blank)
+##Entity
 
+This class is going to be the superclass for all objects with humanoid properties in the game. Such as:
+
+* Enemies
+* Environment Obstacles (Spikes, lava)
+
+### Instance Variables
+```Java
+String name; // for debugging purposes 
+int health; // could possibly be double if attacks are possible of doing partial damage.
+boolean dead; // maybe?
+boolean attackable; // if its a spike then you can't really attack this (OR CAN YOU!?)
+```
+
+###Member Functions
+```Java
+/**
+* Decreases enemies hitpoints using weapon.
+*/
+public abstract void attack(Entity e);
+/**
+* Not sure how we'll lay out each level and such so this needs to be refined.
+*/
+public abstract void move(int steps);
+public abstract boolean isAttackable();
+public abstract boolean isDead();
+public abstract String getName();
+public abstract int getHealth();
+public abstract void setHealth(int newHealth);
+public abstract void setWeapon(Weapon w);
+```
 [Level](about:blank)
 
 
