@@ -2,8 +2,6 @@ import org.newdawn.slick.*;
 
 public class HelloWorld extends BasicGame {
 
-	public static void main(String[] args) {
-		System.out.println("Hey there guy!");
 	public HelloWorld() {
 		super("Hello World");
 	}
