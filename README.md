@@ -29,6 +29,7 @@ The game will be a straightforward level-based action-platformer.
 ## Characters
 
 ### Blackbeard
+
 Bad ass mother fucker with a parrot.
 
 Weapons:
@@ -37,6 +38,7 @@ Weapons:
 * Sword → upgradeable?
 
 ### Dat
+
 Bad ass parrot companion to Blackbeard.
 
 Attacks: 
@@ -45,7 +47,7 @@ Attacks:
 - Upgradable? 
 – Can we change its color?
 
-### Arbok
+### Arboc
 
 Widow snake. We're an invader of his territory therefore he hates you. They've owned this island since they crashed from a plane many years ago.
 
