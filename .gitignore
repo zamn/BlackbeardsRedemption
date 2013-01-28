@@ -1,5 +1,7 @@
 *.class
-
+# Adding classpath to gitignore in order to
+# allow multiple os's to use this project
+.classpath
 # Package Files #
 *.war
 *.ear
