@@ -145,7 +145,7 @@ This class is going to be the interface for each level.
 		<td >Scroll Map </td><td > Super Easy </td><td > Nobody</td>
 	</tr>
 	<tr>
-		<td >Map Editor </td><td > Super Hard </td><td > Nobody</td>
+		<td >Map Editor </td><td > Super Hard </td><td > KRS</td>
 	</tr>
 	<tr>
 		<td >Game Clock </td><td > Easy-Medium </td><td > Nobody</td>
