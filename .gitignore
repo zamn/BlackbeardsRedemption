@@ -5,3 +5,5 @@
 # Package Files #
 *.war
 *.ear
+*.sav
+Tests/
