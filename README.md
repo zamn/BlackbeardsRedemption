@@ -16,6 +16,11 @@ Prerequisites
 -------------
 * Java 7 
 
+Setup
+------------
+1) Make a copy operating-system.classpath and name it .classpath for your appropriate operating system.
+2) Import project into eclipse and code!
+
 # Game Story
 
 You're a pirate captain who was overthrown by his crew and thrown overboard with nothing but your clothes and your (overly intelligent) talking parrot. You wake up washed up on a remote island in the middle of the ocean, but LUCKILY, on the island is the entrance to a tunnel that goes under the ocean and (hopefully) leads back to civilization. Platforming adventure ensues.
