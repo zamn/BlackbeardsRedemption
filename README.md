@@ -18,8 +18,8 @@ Prerequisites
 
 Setup
 ------------
-1) Make a copy operating-system.classpath and name it .classpath for your appropriate operating system.
-2) Import project into eclipse and code!
+1. Make a copy operating-system.classpath and name it .classpath for your appropriate operating system.
+2. Import project into eclipse and code!
 
 # Game Story
 
