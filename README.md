@@ -7,10 +7,6 @@ Wiki: www.wiki.zamn.net
 
 =======================
 
-My goals: 
-
-1. Implement Menu data structure
-2. Implement save file structure and saving functionality
 
 Prerequisites
 -------------
