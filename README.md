@@ -7,14 +7,15 @@ Wiki: www.wiki.zamn.net
 
 =======================
 
-My goals: 
-
-1. Implement Menu data structure
-2. Implement save file structure and saving functionality
 
 Prerequisites
 -------------
 * Java 7 
+
+Setup
+------------
+1. Make a copy operating-system.classpath and name it .classpath for your appropriate operating system.
+2. Import project into eclipse and code!
 
 # Game Story
 
