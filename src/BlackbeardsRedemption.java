@@ -1,8 +1,8 @@
 import org.newdawn.slick.*;
 
-public class HelloWorld extends BasicGame {
+public class BlackbeardsRedemption extends BasicGame {
 
-	public HelloWorld() {
+	public BlackbeardsRedemption() {
 		super("Hello World");
 	}
 
@@ -22,9 +22,8 @@ public class HelloWorld extends BasicGame {
 	}
 
 	public static void main(String[] args) throws SlickException {
-		AppGameContainer app = new AppGameContainer(new HelloWorld());
-
-		app.setDisplayMode(800, 600, false);
+		AppGameContainer app = new AppGameContainer(new BlackbeardsRedemption());
+		app.setDisplayMode(1280, 720, false);
 		app.start();
 	}
 }
