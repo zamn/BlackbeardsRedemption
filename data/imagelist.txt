@@ -1,0 +1,3 @@
+
+Pirate
+res/red-pirate-small.png
