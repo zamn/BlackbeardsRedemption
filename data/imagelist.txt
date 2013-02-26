@@ -1,3 +1,6 @@
 
 Pirate
 res/red-pirate-small.png
+
+Missile
+res/red-pirate-small.png

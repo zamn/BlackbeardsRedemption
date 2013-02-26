@@ -3,6 +3,8 @@ package com.bbr.core;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import org.newdawn.slick.Input;
+
 import com.bbr.resource.Settings;
 
 public abstract class Player extends Unit {
@@ -23,11 +25,11 @@ public abstract class Player extends Unit {
 	protected int snareDuration = 0;
 	
 	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, ACT_SPECIAL};
-	public static final int[] DEFAULT_KEYS = {KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_X, KeyEvent.VK_Z};
+	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT, Input.KEY_X, Input.KEY_Z};
 	// Controls
-	private ArrayList<Action> control_action = new ArrayList<Action>();
-	private ArrayList<Integer> control_key = new ArrayList<Integer>();
-	private ArrayList<Boolean> control_held = new ArrayList<Boolean>();
+	private ArrayList<Action> controlAction = new ArrayList<Action>();
+	private ArrayList<Integer> controlKey = new ArrayList<Integer>();
+	private ArrayList<Boolean> controlHeld = new ArrayList<Boolean>();
 	// Controls Modification
 	protected boolean preventMovement = false; // Prevents player from controlling movement
 	protected boolean preventFiring = false; // Prevents player from controlling firing
@@ -36,21 +38,21 @@ public abstract class Player extends Unit {
 		super(container, xpos, ypos);
 		health = 100;
 		for (int i = 0; i < Action.values().length; i++) {
-			control_action.add(Action.values()[i]);
-			control_key.add(DEFAULT_KEYS[i]);
-			control_held.add(false);
+			controlAction.add(Action.values()[i]);
+			controlKey.add(DEFAULT_KEYS[i]);
+			controlHeld.add(false);
 		}
 	}
 	////////////////////////////////////////////////
 	//               Keyboard Input               //
 	////////////////////////////////////////////////
-	public void keyPressed(KeyEvent ke) {
-		Action action = actionOf(ke.getKeyCode());
+	public void keyPressed(int key) {
+		Action action = actionOf(key);
 		if (action == null) return;
 		holdKey(action);
 	}
-	public void keyReleased(KeyEvent ke) {
-		Action action = actionOf(ke.getKeyCode());
+	public void keyReleased(int key) {
+		Action action = actionOf(key);
 		if (action == null) return;
 		releaseKey(action);
 		//
@@ -76,18 +78,18 @@ public abstract class Player extends Unit {
 	public void keyTyped(KeyEvent ke) { }
 
 	protected void holdKey(Action action) {
-		control_held.set(action.ordinal(), true);
+		controlHeld.set(action.ordinal(), true);
 	}
 	protected void releaseKey(Action action) {
-		control_held.set(action.ordinal(), false);
+		controlHeld.set(action.ordinal(), false);
 	}
 	protected boolean keyHeld(Action action) {
-		return control_held.get(action.ordinal());
+		return controlHeld.get(action.ordinal());
 	}
 	protected Action actionOf(int keyCode) {
-		int index = control_key.indexOf(keyCode);
+		int index = controlKey.indexOf(keyCode);
 		if (index != -1) {
-			return control_action.get(index);
+			return controlAction.get(index);
 		}
 		return null;
 	}

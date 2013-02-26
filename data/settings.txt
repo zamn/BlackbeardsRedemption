@@ -1,0 +1,13 @@
+// Welcome to the settings file!
+//
+// Format: key = value, keys are case-insensitive, values are case-sensitive
+// All text after a "//" is ignored, blank lines are ignored, line order does not matter
+//
+// If a setting is missing, it will be set to its default value 
+
+
+
+fps=50
+
+window_width=800
+window_height=600

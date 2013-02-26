@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import com.bbr.core.Flyer;
+import com.bbr.core.Entity;
 
 // TODO: load fonts
 public final class Art {
@@ -52,7 +52,7 @@ public final class Art {
 		return loaded;
 	}
 	//
-	public static Image getImage(Flyer flyer) {
+	public static Image getImage(Entity flyer) {
 		return images.get(flyer.getClass().getSimpleName());
 	}
 	public static Image getImage(String imageName) {

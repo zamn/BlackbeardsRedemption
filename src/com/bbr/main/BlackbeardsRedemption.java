@@ -5,7 +5,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import com.bbr.state.GameplayState;
-import com.bbr.state.MainMenuState;
 
 public class BlackbeardsRedemption extends StateBasedGame {
 	public static final int SCREEN_WIDTH = 600;

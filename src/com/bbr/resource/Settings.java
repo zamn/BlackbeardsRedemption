@@ -71,14 +71,7 @@ public final class Settings {
 	}
 	// helper of loadSettings(), verify type of settings, ex: boolean, int
 	private static void verifySettings() {
-		verify("startingLevel", "string", "CentralAirspace");
-		verify("fps", "integer", "40");
-		verify("background_red", "integer", "200");
-		verify("background_blue", "integer", "255");
-		verify("background_green", "integer", "255");
-		verify("debug", "boolean", "false");
-		verify("undying", "boolean", "false");
-		verify("font", "string", "fp_font.txt");
+		verify("fps", "integer", "50");
 		verify("screen_width", "integer", "800");
 		verify("screen_height", "integer", "600");
 	}

@@ -10,7 +10,7 @@ import com.bbr.resource.Art;
 import com.bbr.resource.Utility;
 
 // represents a game entity with position and image
-public abstract class Flyer {
+public abstract class Entity {
 	private static final String MISSING_IMAGE = ".noimage";
 	protected static final Random rand = new Random(System.currentTimeMillis());
 	//
@@ -23,7 +23,7 @@ public abstract class Flyer {
 	protected boolean flipHorizontal = false;
 	protected boolean tiledHorizontally = false, tiledVertically = false;
 	//
-	public Flyer(Zone container, float xpos, float ypos) {
+	public Entity(Zone container, float xpos, float ypos) {
 		this.container = container;
 		px = xpos;
 		py = ypos;
@@ -49,8 +49,7 @@ public abstract class Flyer {
 	}
 	public void draw(Graphics g) {
 		Image toDraw = getFrameToDraw();
-		g.drawImage(toDraw, (px-this.container.getXscroll()+(flipHorizontal?sx:0)),
-				(py-this.container.getYscroll()));
+		g.drawImage(toDraw, (px-this.container.getXscroll()), (py-this.container.getYscroll()));
 	}
 	protected void preDt() { }
 	public void dt() {
@@ -61,7 +60,7 @@ public abstract class Flyer {
 	}
 	protected void postDt() { }
 
-	public boolean collidesWith(Flyer other) {
+	public boolean collidesWith(Entity other) {
 		if (((other.px<=this.px+this.sx&&other.px+other.sx>=this.px+this.sx)||
 				(other.px<=this.px&&other.px+other.sx>=this.px)||
 				(other.px>=this.px&&other.px+other.sx<=this.px+this.sx))&&
@@ -71,7 +70,7 @@ public abstract class Flyer {
 		}
 		return false;
 	}
-	public void hitBy(Flyer attacker, int damage) { }
+	public void hitBy(Entity attacker, int damage) { }
 
 	public Zone getZone() { return container; }
 	public int getXsize() { return sx; }
