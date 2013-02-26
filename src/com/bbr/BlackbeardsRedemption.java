@@ -1,3 +1,4 @@
+package com.bbr;
 import org.newdawn.slick.*;
 
 public class BlackbeardsRedemption extends BasicGame {
