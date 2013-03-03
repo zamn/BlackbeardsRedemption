@@ -8,3 +8,5 @@
 *.sav
 Tests/
 bin/
+
+Thumbs.db

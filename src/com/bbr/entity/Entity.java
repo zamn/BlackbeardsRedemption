@@ -70,10 +70,10 @@ public abstract class Entity {
 	public Zone getZone() { return container; }
 	public int getXsize() { return sx; }
 	public int getYsize() { return sy; }
-	public double getXpos() { return px; }
-	public double getYpos() { return py; }
-	public double getXvel() { return vx; }
-	public double getYvel() { return vy; }
+	public float getXpos() { return px; }
+	public float getYpos() { return py; }
+	public float getXvel() { return vx; }
+	public float getYvel() { return vy; }
 
 	public void setZone(Zone zone) { container = zone; }
 	public void setXsize(int newxsize) { sx = newxsize; }

@@ -1,12 +1,21 @@
 
+// Gui
+
 TitleImage
-res/red-pirate-small.png
+res/red-pirate.png
 
 StartButton
-res/red-pirate-small.png
+res/red-pirate.png
+
+// Player
 
 Pirate
-res/red-pirate-small.png
+res/red-pirate.png
 
 Missile
-res/red-pirate-small.png
+res/red-pirate.png
+
+// Enemies
+
+GhostPirate
+res/ghost-pirate.png

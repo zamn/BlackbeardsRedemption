@@ -7,6 +7,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import com.bbr.core.Zone;
+import com.bbr.enemy.GhostPirate;
+import com.bbr.entity.Entity;
 import com.bbr.gui.BbrGameState;
 import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.player.Pirate;
@@ -25,8 +27,13 @@ public class GameplayState extends BbrGameState {
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		gc.getGraphics().setBackground(new Color(128,128,128));
 		zone = new Zone();
-		p = new Pirate(zone, 400, 400);
+		// Player
+		p = new Pirate(zone, 300, 300);
 		zone.addEntity(p);
+		zone.follow(p);
+		// Enemy test
+		Entity e = new GhostPirate(zone, 200, 200);
+		zone.addEntity(e);
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {

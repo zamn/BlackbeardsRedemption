@@ -9,6 +9,7 @@ import com.bbr.entity.Enemy;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 import com.bbr.gui.Drawable;
+import com.bbr.resource.Settings;
 
 public class Zone implements Drawable {
 	// Lists of Fliers
@@ -17,6 +18,7 @@ public class Zone implements Drawable {
 	protected List<Entity> entitiesToRemove = new ArrayList<Entity>();
 	// Scrolling
 	// TODO implement and use scrolling
+	protected Entity followed;
 	protected int xScroll = 0, yScroll = 0;
 
 	public Zone() { }
@@ -69,6 +71,7 @@ public class Zone implements Drawable {
 	}
 
 	public void draw(Graphics g) {
+		updateScrolling();
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).draw(g);
 		}
@@ -92,6 +95,17 @@ public class Zone implements Drawable {
 		entitiesToRemove.clear();
 	}
 
-	public float getXscroll() { return xScroll; }
-	public float getYscroll() { return yScroll; }
+	public void follow(Entity entity) {
+		followed = entity;
+	}
+	private void updateScrolling() {
+		if (followed != null) {
+			float xCenter = followed.getXpos() + followed.getXsize() / 2;
+			float yCenter = followed.getYpos() + followed.getYsize() / 2;
+			xScroll = (int)(xCenter - Settings.valueInt("windowWidth")/2);
+			yScroll = (int)(yCenter - Settings.valueInt("windowHeight")/2);
+		}
+	}
+	public int getXscroll() { return xScroll; }
+	public int getYscroll() { return yScroll; }
 }
