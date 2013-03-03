@@ -29,8 +29,8 @@ public class BlackbeardsRedemption extends StateBasedGame {
 
 	public void initStatesList(GameContainer gameContainer) throws SlickException {
 		Art.load();
-		this.addState(new MainMenuState(MAINMENUSTATE));
-		this.addState(new GameplayState(GAMEPLAYSTATE));
+		this.addState(new MainMenuState());
+		this.addState(new GameplayState());
 		this.enterState(GAMEPLAYSTATE);
 	}
 }

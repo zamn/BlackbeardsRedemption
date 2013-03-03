@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.newdawn.slick.Graphics;
 
+import com.bbr.entity.Enemy;
+import com.bbr.entity.Entity;
+import com.bbr.entity.Unit;
 import com.bbr.gui.Drawable;
 
 public class Zone implements Drawable {
@@ -13,15 +16,12 @@ public class Zone implements Drawable {
 	protected List<Entity> entitiesToAdd = new ArrayList<Entity>();
 	protected List<Entity> entitiesToRemove = new ArrayList<Entity>();
 	// Scrolling
+	// TODO implement and use scrolling
 	protected int xScroll = 0, yScroll = 0;
 
-	public Zone() {
-	}
-	///////////////////////////////////////////////////
-	//               Add/Remove Fliers               //
-	///////////////////////////////////////////////////
+	public Zone() { }
+
 	public void addEntity(Entity entity) {
-		//flyer.container = this;
 		entitiesToAdd.add(entity);
 	}
 	public void removeEntity(Entity entity) {
@@ -31,9 +31,6 @@ public class Zone implements Drawable {
 		return entities.contains(entity);
 	}
 
-	/////////////////////////////////////////////////////
-	//               Collision Detection               //
-	/////////////////////////////////////////////////////
 	public Entity getCollided(Entity collider) {
 		Entity entity;
 		for (int i = 0; i < entities.size(); i++) {
@@ -70,6 +67,7 @@ public class Zone implements Drawable {
 		}
 		return null;
 	}
+
 	public void draw(Graphics g) {
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).draw(g);
@@ -84,7 +82,6 @@ public class Zone implements Drawable {
 			flyer.dt();
 		}
 
-		// TODO tick
 		updateEntities();
 	}
 
@@ -94,12 +91,7 @@ public class Zone implements Drawable {
 		entities.removeAll(entitiesToRemove);
 		entitiesToRemove.clear();
 	}
-	public float getXscroll() {
-		// TODO Auto-generated method stub
-		return xScroll;
-	}
-	public float getYscroll() {
-		// TODO Auto-generated method stub
-		return yScroll;
-	}
+
+	public float getXscroll() { return xScroll; }
+	public float getYscroll() { return yScroll; }
 }

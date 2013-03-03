@@ -7,7 +7,7 @@ import java.util.HashMap;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import com.bbr.core.Entity;
+import com.bbr.entity.Entity;
 
 public final class Art {
 	private static final File IMAGE_LIST = new File("data/imagelist.txt");

@@ -4,26 +4,22 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import com.bbr.core.Pirate;
-import com.bbr.core.Player;
 import com.bbr.core.Zone;
-import com.bbr.gui.Button;
-import com.bbr.resource.Art;
+import com.bbr.gui.BbrGameState;
+import com.bbr.main.BlackbeardsRedemption;
+import com.bbr.player.Pirate;
+import com.bbr.player.Player;
 
-public class GameplayState extends BasicGameState {
-	protected int stateID = -1;
-
+public class GameplayState extends BbrGameState {
 	protected boolean lost = false;
 
 	protected Zone zone;
 	protected Player p;
 
-	public int getID() { return stateID; }
-	public GameplayState(int stateID) throws SlickException {
-		this.stateID = stateID;
+	public GameplayState() throws SlickException {
+		super(BlackbeardsRedemption.GAMEPLAYSTATE);
 	}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -35,9 +31,7 @@ public class GameplayState extends BasicGameState {
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		zone.draw(g);
-		p.draw(g);
 	}
-
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		zone.dt();
 	}
@@ -45,14 +39,7 @@ public class GameplayState extends BasicGameState {
 	public void keyPressed(int key, char c) {
 		p.keyPressed(key);
 	}
-
 	public void keyReleased(int key, char c) {
 		p.keyReleased(key);
-	}
-
-	public void mousePressed(int button, int mouseX, int mouseY) {
-	}
-
-	public void buttonClicked(Button b) throws SlickException {
 	}
 }
