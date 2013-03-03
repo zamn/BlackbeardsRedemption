@@ -1,21 +1,14 @@
 package com.bbr.resource;
 
-
-import java.awt.Component;
-import java.awt.MediaTracker;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
-
-import javax.swing.JOptionPane;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import com.bbr.core.Entity;
 
-// TODO: load fonts
 public final class Art {
 	private static final File IMAGE_LIST = new File("data/imagelist.txt");
 	private static HashMap<String, Image> images = new HashMap<String, Image>();
@@ -32,7 +25,7 @@ public final class Art {
 	//			runningInJar = false;
 	//		}
 	//	}
-	public static void load() { // Not in a static block due to use of MediaTracker 
+	public static void load() { // Not in a static block due to Slick 
 		if (loaded) {
 			Utility.printWarning("Loading art files after already having loaded art files.");
 		}
@@ -51,9 +44,9 @@ public final class Art {
 		Image loaded = new Image(imagename);
 		return loaded;
 	}
-	//
-	public static Image getImage(Entity flyer) {
-		return images.get(flyer.getClass().getSimpleName());
+
+	public static Image getImage(Entity entity) {
+		return images.get(entity.getClass().getSimpleName());
 	}
 	public static Image getImage(String imageName) {
 		return images.get(imageName);
@@ -66,7 +59,7 @@ public final class Art {
 			cleanLines = true;
 			ignoreBlankLines = true;
 		}
-		//
+
 		protected void processLine(String curLine, int lineNumber) {
 			if (curLine.indexOf('.') > 0) { // has delim and text before the delim, is file name
 				if (curCategory == null) {
@@ -78,7 +71,6 @@ public final class Art {
 					try {
 						images.put(curCategory, loadImage(curLine));
 					} catch (SlickException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

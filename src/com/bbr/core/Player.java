@@ -130,9 +130,9 @@ public abstract class Player extends Unit {
 	}
 	protected void postDt() { // prevent moving out of bounds
 		if (px < 0) px = 0;
-		if (px + sx > Settings.valueInt("screen_width")) px = Settings.valueInt("screen_width") - sx;
+		if (px + sx > Settings.valueInt("windowWidth")) px = Settings.valueInt("windowWidth") - sx;
 		if (py < 0) py = 0;
-		if (py + sy > Settings.valueInt("screen_height")) py = Settings.valueInt("screen_height") - sy;
+		if (py + sy > Settings.valueInt("windowHeight")) py = Settings.valueInt("windowHeight") - sy;
 		// haste/slow/snare decay
 		if (hasteDuration > 0) hasteDuration--;
 		if (slowDuration > 0) slowDuration--;

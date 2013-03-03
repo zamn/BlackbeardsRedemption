@@ -1,6 +1,5 @@
 package com.bbr.state;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,27 +7,24 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.bbr.gui.BbrGameState;
 import com.bbr.gui.Button;
 import com.bbr.main.BlackbeardsRedemption;
+import com.bbr.resource.Art;
 
-public class MainMenuState extends BasicGameState {
-	protected int stateID = -1;
-
+public class MainMenuState extends BbrGameState {
 	protected List<Button> buttons = new ArrayList<Button>();
 
 	protected Image imageTitle;
 	protected Button buttonStart;
 	protected boolean goingToStart = false;
 
-	public int getID() { return stateID; }
-	public MainMenuState(int stateID) throws SlickException {
-		this.stateID = stateID;
-		imageTitle = new Image("res/red-pirate-small.png");
-		buttonStart = new Button(new Image("res/red-pirate-small.png"), 100,
-				400);
+	public MainMenuState(int stateId) throws SlickException {
+		super(stateId);
+		imageTitle = Art.getImage("TitleImage");
+		buttonStart = new Button(Art.getImage("StartButton"), 100, 400);
 		buttons.add(buttonStart);
 	}
 

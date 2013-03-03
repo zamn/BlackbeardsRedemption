@@ -1,4 +1,10 @@
 
+TitleImage
+res/red-pirate-small.png
+
+StartButton
+res/red-pirate-small.png
+
 Pirate
 res/red-pirate-small.png
 

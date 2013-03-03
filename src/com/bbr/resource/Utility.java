@@ -1,9 +1,8 @@
 package com.bbr.resource;
 
-
 public final class Utility {
 	private Utility() { }
-	//
+
 	public static void printWarning(Object warning) {
 		System.out.println("[WAR] " + warning);
 	}

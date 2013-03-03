@@ -2,18 +2,15 @@ package com.bbr.core;
 
 import java.util.Random;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 import com.bbr.resource.Art;
-import com.bbr.resource.Utility;
 
 // represents a game entity with position and image
 public abstract class Entity {
-	private static final String MISSING_IMAGE = ".noimage";
 	protected static final Random rand = new Random(System.currentTimeMillis());
-	//
+	// Spatial
 	protected Zone container;
 	protected int sx, sy;
 	protected float px, py;
@@ -22,7 +19,7 @@ public abstract class Entity {
 	protected Image image;
 	protected boolean flipHorizontal = false;
 	protected boolean tiledHorizontally = false, tiledVertically = false;
-	//
+
 	public Entity(Zone container, float xpos, float ypos) {
 		this.container = container;
 		px = xpos;
@@ -30,9 +27,7 @@ public abstract class Entity {
 		loadSprite();
 		autoResize();
 	}
-	////////////////////////////////////////
-	//               Sprite               //
-	////////////////////////////////////////
+
 	private void loadSprite() {
 		image = Art.getImage(this);
 	}
@@ -41,9 +36,7 @@ public abstract class Entity {
 		sx = image.getWidth();
 		sy = image.getHeight();
 	}
-	///////////////////////////////////////////////
-	//               Vital Methods               //
-	///////////////////////////////////////////////
+
 	protected Image getFrameToDraw() { // override to draw different frames
 		return image;
 	}
@@ -60,6 +53,7 @@ public abstract class Entity {
 	}
 	protected void postDt() { }
 
+	// Rectangle collision check
 	public boolean collidesWith(Entity other) {
 		if (((other.px<=this.px+this.sx&&other.px+other.sx>=this.px+this.sx)||
 				(other.px<=this.px&&other.px+other.sx>=this.px)||

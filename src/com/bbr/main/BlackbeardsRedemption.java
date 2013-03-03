@@ -1,17 +1,17 @@
 package com.bbr.main;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.bbr.resource.Art;
+import com.bbr.resource.Settings;
 import com.bbr.state.GameplayState;
+import com.bbr.state.MainMenuState;
 
+// Runner
 public class BlackbeardsRedemption extends StateBasedGame {
-	public static final int SCREEN_WIDTH = 600;
-	public static final int SCREEN_HEIGHT = 600;
-	public static final boolean FULL_SCREEN = false;
-	public static final int MAX_FPS = 30;
-
 	public static final int MAINMENUSTATE = 0;
 	public static final int GAMEPLAYSTATE = 1;
 
@@ -21,14 +21,16 @@ public class BlackbeardsRedemption extends StateBasedGame {
 
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new BlackbeardsRedemption());
-		app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, FULL_SCREEN);
-		app.setTargetFrameRate(MAX_FPS);
+		app.setDisplayMode(Settings.valueInt("windowWidth"), Settings.valueInt("windowHeight"), Settings.valueBoolean("fullScreen"));
+		app.setTargetFrameRate(Settings.valueInt("fps"));
 		app.setShowFPS(false);
 		app.start();
 	}
 
 	public void initStatesList(GameContainer gameContainer) throws SlickException {
-		//this.addState(new MainMenuState(MAINMENUSTATE));
+		Art.load();
+		this.addState(new MainMenuState(MAINMENUSTATE));
 		this.addState(new GameplayState(GAMEPLAYSTATE));
+		this.enterState(GAMEPLAYSTATE);
 	}
 }
