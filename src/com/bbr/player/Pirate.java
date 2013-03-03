@@ -14,7 +14,7 @@ public class Pirate extends Player {
 	protected static final int CONTROL_LOCK_DURATION = 20; // minimum charge time before controls unlocked
 	protected int chargeTime = 0;
 	protected boolean charging = false;
-	//
+
 	public Pirate(Zone container, float xpos, float ypos) {
 		super(container, xpos, ypos);
 		health = BASE_HEALTH;
@@ -22,7 +22,7 @@ public class Pirate extends Player {
 		specialDelay = BASE_SPECIALDELAY;
 		moveSpeed = BASE_MOVESPEED;
 	}
-	//
+
 	protected void fireProjectile() { // fire the missile!
 		stopCharging(); // firing cancels charge
 		Projectile fired = new Missile(this, px+sx/2 - 5, py - 20);
@@ -49,7 +49,6 @@ public class Pirate extends Player {
 		}
 	}
 	protected void useSpecial() { // Rush: charges forward, cannot attack/move for short time, afterwards keys cancel charge
-		// TODO make sure rush charge respects hastes/slows/snares
 		chargeTime = 0;
 		if (vy != 0 || (vx == 0 && vy == 0)) {
 			vy = moveSpeed * CHARGE_FACTOR * (vy <= 0 ? -1 : 1); // charge backwards if moving backwards

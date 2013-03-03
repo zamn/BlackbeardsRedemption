@@ -18,7 +18,7 @@ public abstract class Entity {
 	protected float vx=0, vy=0;
 	// Graphical
 	protected Image image;
-	protected boolean flipHorizontal = false;
+	protected boolean flipHorizontal = false; // facing right by default
 	protected boolean tiledHorizontally = false, tiledVertically = false;
 
 	public Entity(Zone container, float xpos, float ypos) {
@@ -43,11 +43,18 @@ public abstract class Entity {
 	}
 	public void draw(Graphics g) {
 		Image toDraw = getFrameToDraw();
-		g.drawImage(toDraw, (px-this.container.getXscroll()), (py-this.container.getYscroll()));
+		//toDraw.draw(px-this.container.getXscroll(), py-this.container.getYscroll(), sx, sy);
+		toDraw.draw(px-this.container.getXscroll()+(flipHorizontal?sx:0),
+				py-this.container.getYscroll(), (flipHorizontal?-sx:sx), sy);
 	}
 	protected void preDt() { }
 	public void dt() {
 		preDt();
+		if (vx < 0) {
+			flipHorizontal = true;
+		} else if (vx > 0) {
+			flipHorizontal = false;
+		}
 		px += vx;
 		py += vy;
 		postDt();

@@ -11,13 +11,13 @@ import com.bbr.entity.Unit;
 import com.bbr.gui.Drawable;
 import com.bbr.resource.Settings;
 
+// TODO add zone boundaries where entities are destroyed/paused
 public class Zone implements Drawable {
 	// Lists of Fliers
 	protected List<Entity> entities = new ArrayList<Entity>();
 	protected List<Entity> entitiesToAdd = new ArrayList<Entity>();
 	protected List<Entity> entitiesToRemove = new ArrayList<Entity>();
 	// Scrolling
-	// TODO implement and use scrolling
 	protected Entity followed;
 	protected int xScroll = 0, yScroll = 0;
 

@@ -15,6 +15,9 @@ res/red-pirate.png
 Missile
 res/red-pirate.png
 
+Explosion
+res/red-pirate.png
+
 // Enemies
 
 GhostPirate

@@ -9,14 +9,14 @@ public class Unit extends Entity {
 	public Unit(Zone zone, float x, float y) {
 		super(zone, x, y);
 	}
-	//
+
 	public void hitBy(Entity attacker, int damage) {
 		health -= damage;
 	}
-	//
+
 	public int getHealth() { return health; }
 	public int getCollisionDamage() { return collisionDamage; }
-	//
+
 	public void setHealth(int newHealth) { health = newHealth; }
 	public void setCollisionDamage(int newDamage) { collisionDamage = newDamage; }
 }

@@ -11,6 +11,6 @@ public class Missile extends ExplosiveProjectile {
 		vy = -8;
 
 		explosionDamage = damage;
-		explosionSize = (sx + sy)*5;
+		explosionSize = (sx + sy)*3;
 	}
 }
