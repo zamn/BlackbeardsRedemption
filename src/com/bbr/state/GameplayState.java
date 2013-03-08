@@ -3,6 +3,7 @@ package com.bbr.state;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -19,6 +20,7 @@ public class GameplayState extends BbrGameState {
 
 	protected Zone zone;
 	protected Player p;
+	protected Image backgroundTest;
 
 	public GameplayState() throws SlickException {
 		super(BlackbeardsRedemption.GAMEPLAYSTATE);
@@ -32,11 +34,15 @@ public class GameplayState extends BbrGameState {
 		zone.addEntity(p);
 		zone.follow(p);
 		// Enemy test
-		Entity e = new GhostPirate(zone, 200, 200);
+		Entity e = new GhostPirate(zone, 200, 150);
 		zone.addEntity(e);
+		//
+		backgroundTest = new Image("res/desert-background.png");
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
+		//backgroundTest.draw();
 		zone.draw(g);
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
