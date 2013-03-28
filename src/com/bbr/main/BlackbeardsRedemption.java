@@ -31,6 +31,6 @@ public class BlackbeardsRedemption extends StateBasedGame {
 		Art.load();
 		this.addState(new MainMenuState());
 		this.addState(new GameplayState());
-		this.enterState(GAMEPLAYSTATE);
+		this.enterState(GAMEPLAYSTATE); // skip main menu for now
 	}
 }

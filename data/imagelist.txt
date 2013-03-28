@@ -18,6 +18,11 @@ res/red-pirate.png
 Explosion
 res/red-pirate.png
 
+// Terrain
+
+Platform
+res/dirt-platform.png
+
 // Enemies
 
 GhostPirate

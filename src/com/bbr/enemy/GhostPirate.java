@@ -10,6 +10,7 @@ public class GhostPirate extends Enemy {
 	public GhostPirate(Zone zone, float x, float y) {
 		super(zone, x, y);
 		vx = 1;
+		terrainCollidable = false;
 	}
 
 	public void preDt() {

@@ -33,6 +33,19 @@ public class Zone implements Drawable {
 		return entities.contains(entity);
 	}
 
+	public List<Entity> getTerrainCollided(Entity collider) {
+		List<Entity> entitiesCollided = new ArrayList<Entity>();
+		Entity collided;
+		for (int i = 0; i < entities.size(); i++) {
+			collided = entities.get(i);
+			if (collided != collider) {
+				if (collided.isTerrainCollidable() && collided.collidesWith(collider)) {
+					entitiesCollided.add(collided);
+				}
+			}
+		}
+		return entitiesCollided;
+	}
 	public Entity getCollided(Entity collider) {
 		Entity entity;
 		for (int i = 0; i < entities.size(); i++) {

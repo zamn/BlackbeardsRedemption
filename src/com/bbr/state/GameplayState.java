@@ -10,6 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import com.bbr.core.Zone;
 import com.bbr.enemy.GhostPirate;
 import com.bbr.entity.Entity;
+import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.BbrGameState;
 import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.player.Pirate;
@@ -36,7 +37,10 @@ public class GameplayState extends BbrGameState {
 		// Enemy test
 		Entity e = new GhostPirate(zone, 200, 150);
 		zone.addEntity(e);
-		//
+		// Terrain test
+		e = new Platform(zone, 400, 400);
+		zone.addEntity(e);
+
 		backgroundTest = new Image("res/desert-background.png");
 	}
 

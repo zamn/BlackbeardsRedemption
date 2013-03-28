@@ -16,6 +16,7 @@ public abstract class Entity {
 	protected int sx, sy;
 	protected float px, py;
 	protected float vx=0, vy=0;
+	protected boolean terrainCollidable = true;
 	// Graphical
 	protected Image image;
 	protected boolean flipHorizontal = false; // facing right by default
@@ -81,6 +82,7 @@ public abstract class Entity {
 	public float getYpos() { return py; }
 	public float getXvel() { return vx; }
 	public float getYvel() { return vy; }
+	public boolean isTerrainCollidable() { return terrainCollidable; }
 
 	public void setZone(Zone zone) { container = zone; }
 	public void setXsize(int newxsize) { sx = newxsize; }
@@ -89,6 +91,7 @@ public abstract class Entity {
 	public void setYpos(float newypos) { py = newypos; }
 	public void setXvel(float newxvel) { vx = newxvel; }
 	public void setYvel(float newyvel) { vy = newyvel; }
+	public void setTerrainCollidable(boolean collidability) { terrainCollidable = collidability; }
 
 	public String toString() {
 		return this.getClass().getSimpleName();
