@@ -38,7 +38,8 @@ public class GameplayState extends BbrGameState {
 		Entity e = new GhostPirate(zone, 200, 150);
 		zone.addEntity(e);
 		// Terrain test
-		e = new Platform(zone, 400, 400);
+		e = new Platform(zone, 300, 400);
+		e.setXsize(e.getXsize() * 10);
 		zone.addEntity(e);
 
 		backgroundTest = new Image("res/desert-background.png");

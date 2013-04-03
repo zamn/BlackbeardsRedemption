@@ -22,6 +22,7 @@ public final class Settings {
 		verify("windowWidth", "integer", "600");
 		verify("windowHeight", "integer", "600");
 		verify("fullScreen", "boolean", "false");
+		verify("showHitbox", "boolean", "false");
 	}
 
 	static {

@@ -8,6 +8,7 @@ import org.newdawn.slick.Graphics;
 import com.bbr.entity.Enemy;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
+import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.Drawable;
 import com.bbr.resource.Settings;
 
@@ -33,6 +34,22 @@ public class Zone implements Drawable {
 		return entities.contains(entity);
 	}
 
+	public Platform getPlatformBelow(Entity mover) {
+		Entity collided;
+		for (int i = 0; i < entities.size(); i++) {
+			collided = entities.get(i);
+			if (collided != mover) {
+				// TODO allows feet to be buried in platform due to no check for distance
+				if (collided instanceof Platform && collided.collidesWith(mover)) {
+//					System.out.println(mover.getYpos() + mover.getYsize() - collided.getYpos());
+//					if (mover.getYpos() + mover.getYsize() - collided.getYpos() < 0.001) {
+						return (Platform)collided;
+//					}
+				}
+			}
+		}
+		return null;
+	}
 	public List<Entity> getTerrainCollided(Entity collider) {
 		List<Entity> entitiesCollided = new ArrayList<Entity>();
 		Entity collided;

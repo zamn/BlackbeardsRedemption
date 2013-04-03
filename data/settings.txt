@@ -12,3 +12,5 @@ fps=30
 windowWidth=600
 windowHeight=600
 fullScreen=false
+
+showHitbox=true
