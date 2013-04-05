@@ -2,6 +2,7 @@ package com.bbr.entity.projectile;
 
 import com.bbr.entity.Entity;
 import com.bbr.entity.projectile.Projectile.ExplosiveProjectile;
+import com.bbr.resource.Settings;
 
 public class Missile extends ExplosiveProjectile {
 	public Missile(Entity owner, float xpos, float ypos) {
@@ -12,5 +13,6 @@ public class Missile extends ExplosiveProjectile {
 
 		explosionDamage = damage;
 		explosionSize = (sx + sy)*3;
+		duration = Settings.valueInt("fps");
 	}
 }

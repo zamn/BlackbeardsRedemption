@@ -14,6 +14,7 @@ public abstract class Projectile extends Entity {
 	protected static final short ATT_PIERCE = 1 << 0; // hits multiple targets
 	protected static final short ATT_LASER = 1 << 1; // hits first target
 	protected short attributes = 0; // bit set
+	protected int duration = -1; // -1 = never decays
 
 	protected int damage;
 
@@ -37,6 +38,11 @@ public abstract class Projectile extends Entity {
 		px += vx;
 		py += vy;
 		checkCollision();
+		if (duration == 0) {
+			container.removeEntity(this);
+		} else if (duration > 0) {
+			duration--;
+		}
 		postDt();
 	}
 	// Collision
