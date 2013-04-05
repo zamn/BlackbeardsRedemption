@@ -34,15 +34,16 @@ public abstract class Projectile extends Entity {
 	}
 
 	public void dt() {
+		if (duration == 0) {
+			container.removeEntity(this);
+			return;
+		} else if (duration > 0) {
+			duration--;
+		}
 		preDt();
 		px += vx;
 		py += vy;
 		checkCollision();
-		if (duration == 0) {
-			container.removeEntity(this);
-		} else if (duration > 0) {
-			duration--;
-		}
 		postDt();
 	}
 	// Collision
