@@ -8,7 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import com.bbr.core.Zone;
-import com.bbr.enemy.GhostPirate;
+import com.bbr.enemy.Snake;
 import com.bbr.entity.Entity;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.BbrGameState;
@@ -35,11 +35,14 @@ public class GameplayState extends BbrGameState {
 		zone.addEntity(p);
 		zone.follow(p);
 		// Enemy test
-		Entity e = new GhostPirate(zone, 200, 150);
+		Entity e = new Snake(zone, 400, 150);
 		zone.addEntity(e);
 		// Terrain test
 		e = new Platform(zone, 300, 400);
-		e.setXsize(e.getXsize() * 10);
+		e.setXsize(e.getXsize() * 90);
+		zone.addEntity(e);
+		e = new Platform(zone, 500, (400 - e.getYsize()));
+		e.setXsize(e.getXsize() * 3);
 		zone.addEntity(e);
 
 		backgroundTest = new Image("res/desert-background.png");
