@@ -1,4 +1,4 @@
 // List of levels
 
-level1.txt
-level2.txt
+level/level1.txt
+level/level2.txt
