@@ -55,6 +55,7 @@ public class GameplayState extends BbrGameState {
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		zone.dt();
+		p.drawHealth();
 	}
 
 	public void keyPressed(int key, char c) {

@@ -1,14 +1,20 @@
 package com.bbr.entity;
 
 import com.bbr.core.Zone;
-
+import com.bbr.health.*;
 public class Unit extends Entity {
 	public static final int BASE_COLLISION_DAMAGE = 25;
 	protected int health = 0; 
 	protected int collisionDamage = BASE_COLLISION_DAMAGE;
+	private HealthController healthBar;
 	public Unit(Zone zone, float x, float y, int defaultHealth) {
 		super(zone, x, y);
 		health = defaultHealth;
+	}
+	public Unit(Zone zone, float x, float y, int defaultHealth, String HealthIcon){
+		super(zone, x, y);
+		health = defaultHealth;
+		healthBar = new HealthController(HealthIcon);
 	}
 	public void hitBy(Entity attacker, int damage) {
 		if(damage > 0)
@@ -33,5 +39,8 @@ public class Unit extends Entity {
 	}
 	public void setCollisionDamage(int newDamage) {
 		collisionDamage = newDamage;
+	}
+	public void drawHealth(){
+		healthBar.draw();
 	}
 }
