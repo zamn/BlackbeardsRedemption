@@ -10,6 +10,7 @@ import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.Drawable;
+import com.bbr.player.Player;
 import com.bbr.resource.Settings;
 
 // TODO add zone boundaries where entities are destroyed/paused
@@ -18,6 +19,7 @@ public class Zone implements Drawable {
 	protected List<Entity> entities = new ArrayList<Entity>();
 	protected List<Entity> entitiesToAdd = new ArrayList<Entity>();
 	protected List<Entity> entitiesToRemove = new ArrayList<Entity>();
+	protected Player player;
 	// Scrolling
 	protected Entity followed;
 	protected int xScroll = 0, yScroll = 0;
@@ -26,6 +28,7 @@ public class Zone implements Drawable {
 
 	public void addEntity(Entity entity) {
 		entitiesToAdd.add(entity);
+		if (entity instanceof Player) player = (Player)entity;
 	}
 	public void removeEntity(Entity entity) {
 		entitiesToRemove.add(entity);
@@ -49,6 +52,9 @@ public class Zone implements Drawable {
 			}
 		}
 		return null;
+	}
+	public Player getPlayer() {
+		return player;
 	}
 	public List<Entity> getTerrainCollided(Entity collider) {
 		List<Entity> entitiesCollided = new ArrayList<Entity>();

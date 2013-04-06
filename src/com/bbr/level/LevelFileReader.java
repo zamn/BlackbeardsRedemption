@@ -21,20 +21,32 @@ public class LevelFileReader extends SequentialFileReader {
 		// TODO keep track of a level and edit it
 	}
 
+	public Level getLevel() { return level; }
+
 	protected void processLine(String curLine, int lineNumber) {
-		// TODO Auto-generated method stub
-		int px, py;
-		int sx, sy;
 		Matcher spawnMatcher = REGEX_PLAYER_START.matcher(curLine);
 		Matcher posMatcher = REGEX_POS.matcher(curLine);
 		Matcher sizePosMatcher = REGEX_SIZE_POS.matcher(curLine);
+
+		String entityName;
+		int px, py;
+		int sx, sy;
 		if (spawnMatcher.matches()) {
 			px = Utility.getInt(spawnMatcher.group(1), -1);
 			py = Utility.getInt(spawnMatcher.group(2), -1);
-			if (px >= 0 && py >= 0) {
-				level.setSpawnPoint(px, py);
-			} // TODO else error
+			level.setSpawnPoint(px, py);
 		} else if (posMatcher.matches()) {
+			entityName = posMatcher.group(1);
+			px = Utility.getInt(posMatcher.group(2), -1);
+			py = Utility.getInt(posMatcher.group(3), -1);
+			level.addEntityEvent(entityName, px, py);
+		} else if (sizePosMatcher.matches()) {
+			entityName = sizePosMatcher.group(1);
+			sx = Utility.getInt(sizePosMatcher.group(2), -1);
+			sy = Utility.getInt(sizePosMatcher.group(3), -1);
+			px = Utility.getInt(sizePosMatcher.group(4), -1);
+			py = Utility.getInt(sizePosMatcher.group(5), -1);
+			level.addEntityEvent(entityName, sx, sy, px, py);
 		}
 	}
 }

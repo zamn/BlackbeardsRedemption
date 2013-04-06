@@ -1,5 +1,8 @@
 package com.bbr.state;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,6 +15,8 @@ import com.bbr.enemy.Snake;
 import com.bbr.entity.Entity;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.BbrGameState;
+import com.bbr.level.Level;
+import com.bbr.level.LevelFileReader;
 import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.player.Pirate;
 import com.bbr.player.Player;
@@ -28,8 +33,23 @@ public class GameplayState extends BbrGameState {
 	}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		backgroundTest = new Image("res/desert-background.png");
 		gc.getGraphics().setBackground(new Color(128,128,128));
 		zone = new Zone();
+
+		LevelFileReader lfr = new LevelFileReader(new File("level/level1.txt"));
+		try {
+			lfr.readFile();
+			Level level = lfr.getLevel();
+			level.loadLevel(zone);
+			p = zone.getPlayer();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		// testInit(zone);
+	}
+	// Hardcoded level, remove later and use level text files
+	public void testInit(Zone zone) {
 		// Player
 		p = new Pirate(zone, 300, 300);
 		zone.addEntity(p);
@@ -44,8 +64,6 @@ public class GameplayState extends BbrGameState {
 		e = new Platform(zone, 500, (400 - e.getYsize()));
 		e.setXsize(e.getXsize() * 3);
 		zone.addEntity(e);
-
-		backgroundTest = new Image("res/desert-background.png");
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
