@@ -30,3 +30,6 @@ res/ghost-pirate.png
 
 Snake
 res/snake.png
+
+Heart
+res/heart.png
