@@ -1,5 +1,6 @@
 package com.bbr.entity.projectile;
 
+import com.bbr.entity.Enemy;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 import com.bbr.player.Player;
@@ -70,9 +71,14 @@ public abstract class Projectile extends Entity {
 			if (collided instanceof Player && ((Player)collided).getHealth() <= 0 && !Settings.valueBoolean("undying")) {
 				return; // let player realize the cause of their loss
 			}
-			if (this instanceof ExplosiveProjectile) {
-				((ExplosiveProjectile)this).explode();
-			}
+			if (collided instanceof Enemy)
+				System.out.println(((Enemy)collided));
+			if (collided instanceof Enemy && ((Enemy)collided).getHealth() <= 0)
+				container.removeEntity(collided);
+			// No longer need this
+//			if (this instanceof ExplosiveProjectile) {
+//				((ExplosiveProjectile)this).explode();
+//			}
 			if (!hasAttribute(ATT_PIERCE)) {
 				container.removeEntity(this);
 			}
