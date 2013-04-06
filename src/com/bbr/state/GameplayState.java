@@ -1,6 +1,5 @@
 package com.bbr.state;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.newdawn.slick.Color;
@@ -17,7 +16,6 @@ import com.bbr.entity.Entity;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.BbrGameState;
 import com.bbr.level.Level;
-import com.bbr.level.LevelFileReader;
 import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.player.Pirate;
 import com.bbr.player.Player;
@@ -38,11 +36,8 @@ public class GameplayState extends BbrGameState {
 		gc.getGraphics().setBackground(new Color(128,128,128));
 		zone = new Zone();
 
-		LevelFileReader lfr = new LevelFileReader(new File("level/level1.txt"));
 		try {
-			lfr.readFile();
-			Level level = lfr.getLevel();
-			level.loadLevel(zone);
+			Level.loadLevel("level/level1.txt").loadInto(zone);
 			p = zone.getPlayer();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
