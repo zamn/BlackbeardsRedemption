@@ -8,7 +8,7 @@ public class GhostPirate extends Enemy {
 	protected int dip = 0;
 	protected int dipMax = Settings.valueInt("fps")*5;
 	public GhostPirate(Zone zone, float x, float y) {
-		super(zone, x, y);
+		super(zone, x, y, 0);
 		vx = 1;
 		terrainCollidable = false;
 	}

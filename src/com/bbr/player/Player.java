@@ -25,7 +25,6 @@ public abstract class Player extends Unit {
 	protected double slowFactor = 0;
 	protected int slowDuration = 0;
 	protected int snareDuration = 0;
-	
 	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, ACT_SPECIAL};
 	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT, Input.KEY_X, Input.KEY_Z};
 	// Controls
@@ -36,8 +35,8 @@ public abstract class Player extends Unit {
 	protected boolean preventMovement = false; // Prevents player from controlling movement
 	protected boolean preventFiring = false; // Prevents player from controlling firing
 
-	public Player(Zone container, float xpos, float ypos) {
-		super(container, xpos, ypos);
+	public Player(Zone container, float xpos, float ypos, int defaultHealth) {
+		super(container, xpos, ypos, defaultHealth);
 		health = 100;
 		for (int i = 0; i < Action.values().length; i++) {
 			controlAction.add(Action.values()[i]);
