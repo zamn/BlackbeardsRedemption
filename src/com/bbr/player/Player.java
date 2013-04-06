@@ -25,8 +25,8 @@ public abstract class Player extends Unit {
 	protected double slowFactor = 0;
 	protected int slowDuration = 0;
 	protected int snareDuration = 0;
-	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, ACT_SPECIAL};
-	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT, Input.KEY_X, Input.KEY_Z};
+	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, ACT_SPECIAL, TPHOME};
+	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT, Input.KEY_X, Input.KEY_Z, Input.KEY_K};
 	// Controls
 	private ArrayList<Action> controlAction = new ArrayList<Action>();
 	private ArrayList<Integer> controlKey = new ArrayList<Integer>();
@@ -73,6 +73,10 @@ public abstract class Player extends Unit {
 		case ACT_FIRE:
 			break;
 		case ACT_SPECIAL:
+			break;
+		case TPHOME:
+			px=500;
+			py=225;
 			break;
 		}
 	}
