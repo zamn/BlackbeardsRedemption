@@ -4,10 +4,11 @@ import com.bbr.core.Zone;
 import com.bbr.enemy.GhostPirate;
 import com.bbr.enemy.Snake;
 import com.bbr.entity.Entity;
+import com.bbr.entity.terrain.Exit;
 import com.bbr.entity.terrain.Platform;
 
 public class EntityEvent {
-	public enum EntityType { PLATFORM, GHOSTPIRATE, SNAKE }
+	public enum EntityType { PLATFORM, GHOSTPIRATE, SNAKE, EXIT }
 	protected EntityType entityType;
 	protected int sx, sy;
 	protected int px, py;
@@ -33,6 +34,10 @@ public class EntityEvent {
 			break;
 		case SNAKE:
 			e = new Snake(zone, px, py);
+			zone.addEntity(e);
+			break;
+		case EXIT:
+			e = new Exit(zone, px, py);
 			zone.addEntity(e);
 			break;
 		}
