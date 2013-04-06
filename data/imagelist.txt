@@ -23,6 +23,9 @@ res/red-pirate.png
 Platform
 res/dirt-platform.png
 
+Spike
+res/spike.png
+
 // Enemies
 
 GhostPirate
