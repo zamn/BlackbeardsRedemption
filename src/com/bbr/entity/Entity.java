@@ -131,6 +131,7 @@ public abstract class Entity {
 	public float getYvel() { return vy; }
 	public boolean isTerrainCollidable() { return terrainCollidable; }
 	public boolean isOnPlatform() { return onPlatform; }
+	public boolean isFacingRight() { return !flipHorizontal; }
 
 	public void setZone(Zone zone) { container = zone; }
 	public void setXsize(int newxsize) { sx = newxsize; hitbox.width = sx; }
