@@ -5,10 +5,11 @@ import com.bbr.entity.Enemy;
 import com.bbr.resource.Settings;
 
 public class GhostPirate extends Enemy {
+	private static final int BASE_HEALTH = 0;
 	protected int dip = 0;
 	protected int dipMax = Settings.valueInt("fps")*5;
 	public GhostPirate(Zone zone, float x, float y) {
-		super(zone, x, y, 0);
+		super(zone, x, y, BASE_HEALTH);
 		vx = 1;
 		terrainCollidable = false;
 	}
