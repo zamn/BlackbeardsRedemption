@@ -16,7 +16,7 @@ public class Pirate extends Player {
 	protected boolean charging = false;
 
 	public Pirate(Zone container, float xpos, float ypos) {
-		super(container, xpos, ypos);
+		super(container, xpos, ypos, BASE_HEALTH);
 		health = BASE_HEALTH;
 		fireDelay = BASE_FIREDELAY;
 		specialDelay = BASE_SPECIALDELAY;

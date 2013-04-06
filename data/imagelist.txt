@@ -27,3 +27,6 @@ res/dirt-platform.png
 
 GhostPirate
 res/ghost-pirate.png
+
+Snake
+res/snake.png
