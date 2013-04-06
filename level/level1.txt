@@ -1,0 +1,11 @@
+
+// comments are ignored to end of line
+// lines are trimmed of leading and trailing spaces
+//
+// spawn at x,y						- sets player spawn point
+// platform widthxheight at x,y		- creates platform
+// ghostpirate at x,y				- creates ghost pirate
+
+spawn at 500,300
+platform 1000x50 at 300,300
+ghostpirate at 300,300
