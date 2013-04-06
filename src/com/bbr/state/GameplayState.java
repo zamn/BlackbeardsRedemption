@@ -1,7 +1,5 @@
 package com.bbr.state;
 
-import java.io.FileNotFoundException;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -36,12 +34,8 @@ public class GameplayState extends BbrGameState {
 		gc.getGraphics().setBackground(new Color(128,128,128));
 		zone = new Zone();
 
-		try {
-			Level.loadLevel("level/level1.txt").loadInto(zone);
-			p = zone.getPlayer();
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		Level.getFirstLevel().loadInto(zone);
+		p = zone.getPlayer();
 		// testInit(zone);
 	}
 	// Hardcoded level, remove later and use level text files
