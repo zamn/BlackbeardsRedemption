@@ -9,15 +9,25 @@ public class HealthController{
 	public HealthController(String imageName){
 		unitImage = Art.getImage(imageName);
 	}
+	public HealthController(String imageName, int defaultHealth){
+		unitImage = Art.getImage(imageName);
+		changeHealth(defaultHealth);
+	}
 	public void changeHealth(int newHealth){
 		if(newHealth < 0)
 			return;
 		numUnites = (newHealth / healthPerHeart);
+		System.out.println("NumUnits: "+numUnites);
+		for(int i=0; i<numUnites; i++){
+			System.out.println("x: "+(i * unitImage.getWidth())+", y: 0");
+		}
+
 	}	
 	public void draw(){
 		for(int i=0; i<numUnites; i++){
-			unitImage.draw(numUnites * unitImage.getWidth(), 0);
+			unitImage.draw(i * unitImage.getWidth(), 0);
 		}
+
 	}
 
 }

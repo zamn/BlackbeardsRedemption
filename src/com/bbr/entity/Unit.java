@@ -14,7 +14,7 @@ public class Unit extends Entity {
 	public Unit(Zone zone, float x, float y, int defaultHealth, String HealthIcon){
 		super(zone, x, y);
 		health = defaultHealth;
-		healthBar = new HealthController(HealthIcon);
+		healthBar = new HealthController(HealthIcon, defaultHealth);
 	}
 	public void hitBy(Entity attacker, int damage) {
 		if(damage > 0)

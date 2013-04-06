@@ -72,10 +72,11 @@ public class GameplayState extends BbrGameState {
 		//backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
 		//backgroundTest.draw();
 		zone.draw(g);
+		p.drawHealth();
+
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		zone.dt();
-		p.drawHealth();
 	}
 
 	public void keyPressed(int key, char c) {
