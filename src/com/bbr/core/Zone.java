@@ -138,6 +138,10 @@ public class Zone implements Drawable {
 	public void nextLevel() {
 		levelHandler.nextLevel();
 	}
+	public void clear() {
+		entitiesToAdd.clear();
+		entitiesToRemove.addAll(entities);
+	}
 
 	public void follow(Entity entity) {
 		followed = entity;

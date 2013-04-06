@@ -61,7 +61,12 @@ public class GameplayState extends BbrGameState implements LevelHandler {
 	}
 
 	public void nextLevel() {
-		Level.getNextLevel(curLevel);
+		Level nextLevel = Level.getNextLevel(curLevel);
+		if (nextLevel != null) {
+			curLevel = nextLevel;
+			zone.clear();
+			curLevel.loadInto(zone);
+		}
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
