@@ -6,6 +6,7 @@
 *.war
 *.ear
 *.sav
+.settings/
 Tests/
 bin/
 
