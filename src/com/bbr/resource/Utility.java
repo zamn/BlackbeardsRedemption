@@ -19,4 +19,11 @@ public final class Utility {
 		}
 		return fileText;
 	}
+	public static int getInt(String number, int failVal) {
+		try {
+			return Integer.parseInt(number);
+		} catch (NumberFormatException ex) {
+			return failVal;
+		}
+	}
 }

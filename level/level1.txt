@@ -1,0 +1,4 @@
+
+spawn at 250,300
+platform 50x1000 at 300,300
+ghostpirate at 300,300
