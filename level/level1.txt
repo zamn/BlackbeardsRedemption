@@ -9,3 +9,4 @@
 spawn at 500,300
 platform 1000x50 at 300,300
 ghostpirate at 300,300
+spike at 350,250

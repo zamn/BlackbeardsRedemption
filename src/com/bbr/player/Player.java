@@ -97,6 +97,7 @@ public abstract class Player extends Unit {
 
 	protected void preDt() { // handle shooting and movement
 		super.preDt();
+		System.out.println((container.getPlayer().getHealth()));
 		if (!preventFiring) { // also stops firing cooldown
 			if (keyHeld(Action.ACT_FIRE)) {
 				if (fireCooldown <= 0) {
