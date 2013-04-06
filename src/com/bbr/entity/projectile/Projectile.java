@@ -41,8 +41,8 @@ public abstract class Projectile extends Entity {
 			duration--;
 		}
 		preDt();
-		px += vx;
-		py += vy;
+		setXpos(px + vx);
+		setYpos(py + vy);
 		checkCollision();
 		postDt();
 	}

@@ -49,7 +49,7 @@ public class GameplayState extends BbrGameState {
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
+		//backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
 		//backgroundTest.draw();
 		zone.draw(g);
 	}
