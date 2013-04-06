@@ -11,6 +11,7 @@ public class Unit extends Entity {
 		health = defaultHealth;
 	}
 	public void hitBy(Entity attacker, int damage) {
+//		System.out.println(this + " was his by: " + attacker + " for: " + damage);
 		if(damage > 0)
 			health -= damage;
 	}

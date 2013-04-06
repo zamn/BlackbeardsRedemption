@@ -127,7 +127,7 @@ public abstract class Player extends Unit {
 				vx = moveSpeed; this.moved();
 			}
 
-			applyMovementModifiers();
+//			applyMovementModifiers();
 		}
 	}
 	protected void postDt() {

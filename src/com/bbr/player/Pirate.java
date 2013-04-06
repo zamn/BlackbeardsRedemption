@@ -8,7 +8,7 @@ public class Pirate extends Player {
 	public static final int BASE_HEALTH = 1000;
 	public static final int BASE_FIREDELAY = 20;
 	public static final int BASE_SPECIALDELAY = 80;
-	public static final int BASE_MOVESPEED = 6;
+	public static final int BASE_MOVESPEED = 10;
 	// Special Ability: Charge
 	protected static final float CHARGE_FACTOR = 2.5f;
 	protected static final int CONTROL_LOCK_DURATION = 20; // minimum charge time before controls unlocked
@@ -25,7 +25,7 @@ public class Pirate extends Player {
 
 	protected void fireProjectile() { // fire the missile!
 		stopCharging(); // firing cancels charge
-		Projectile fired = new Missile(this, px+sx/2 - 5, py - 20);
+		Projectile fired = new Missile(this, px, py);
 		container.addEntity(fired);
 	}
 	// Rush Attack!
@@ -40,7 +40,7 @@ public class Pirate extends Player {
 		}
 		super.preDt();
 	}
-	protected void moved() { stopCharging(); }
+	protected void moved() { /*stopCharging();*/ }
 	protected void stopCharging() {
 		if (charging) {
 			charging = false;
