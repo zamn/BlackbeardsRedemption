@@ -6,3 +6,6 @@ res/red-pirate.png
 
 StartButton
 res/red-pirate.png
+
+Heart
+res/heart.png

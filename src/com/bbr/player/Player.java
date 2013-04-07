@@ -36,7 +36,7 @@ public abstract class Player extends Unit {
 	protected boolean preventFiring = false; // Prevents player from controlling firing
 
 	public Player(Zone container, float xpos, float ypos, int defaultHealth) {
-		super(container, xpos, ypos, defaultHealth);
+		super(container, xpos, ypos, defaultHealth, "Heart");
 		health = 100;
 		for (int i = 0; i < Action.values().length; i++) {
 			controlAction.add(Action.values()[i]);

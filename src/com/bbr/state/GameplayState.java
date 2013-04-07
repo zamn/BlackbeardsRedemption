@@ -18,15 +18,17 @@ import com.bbr.level.LevelHandler;
 import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.player.Pirate;
 import com.bbr.player.Player;
+import com.bbr.health.*;
 
 public class GameplayState extends BbrGameState implements LevelHandler {
+
 	protected boolean lost = false;
 
 	protected Zone zone;
 	protected Level curLevel;
 	protected Player p;
 	protected Image backgroundTest;
-
+	protected HealthController health;
 	public GameplayState() throws SlickException {
 		super(BlackbeardsRedemption.GAMEPLAYSTATE);
 	}
@@ -35,10 +37,10 @@ public class GameplayState extends BbrGameState implements LevelHandler {
 		backgroundTest = new Image("res/desert-background.png");
 		gc.getGraphics().setBackground(new Color(128,128,128));
 		zone = new Zone(this);
-
 		curLevel = Level.getFirstLevel();
 		curLevel.loadInto(zone);
 		p = zone.getPlayer();
+		health = new HealthController("Heart", p);
 		// testInit(zone);
 	}
 	// Hardcoded level, remove later and use level text files
@@ -58,6 +60,8 @@ public class GameplayState extends BbrGameState implements LevelHandler {
 		e = new Platform(zone, 500, (400 - e.getYsize()));
 		e.setXsize(e.getXsize() * 3);
 		zone.addEntity(e);
+		
+		
 	}
 
 	public void nextLevel() {
@@ -74,6 +78,10 @@ public class GameplayState extends BbrGameState implements LevelHandler {
 		//backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
 		//backgroundTest.draw();
 		zone.draw(g);
+		if(health != null)
+			health.draw();
+		
+
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		zone.dt();

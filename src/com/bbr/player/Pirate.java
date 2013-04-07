@@ -5,8 +5,8 @@ import org.newdawn.slick.Image;
 import com.bbr.core.Zone;
 import com.bbr.entity.projectile.Missile;
 import com.bbr.entity.projectile.Projectile;
+import com.bbr.health.*;
 import com.bbr.resource.Settings;
-
 public class Pirate extends Player {
 	public static final int BASE_HEALTH = 1000;
 	public static final int BASE_FIREDELAY = Settings.valueInt("fps")/2;
@@ -17,7 +17,6 @@ public class Pirate extends Player {
 	protected static final int CONTROL_LOCK_DURATION = 20; // minimum charge time before controls unlocked
 	protected int chargeTime = 0;
 	protected boolean charging = false;
-
 	public Pirate(Zone container, float xpos, float ypos) {
 		super(container, xpos, ypos, BASE_HEALTH);
 		health = BASE_HEALTH;
