@@ -14,14 +14,16 @@ import com.bbr.entity.Entity;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.BbrGameState;
 import com.bbr.level.Level;
+import com.bbr.level.LevelHandler;
 import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.player.Pirate;
 import com.bbr.player.Player;
 
-public class GameplayState extends BbrGameState {
+public class GameplayState extends BbrGameState implements LevelHandler {
 	protected boolean lost = false;
 
 	protected Zone zone;
+	protected Level curLevel;
 	protected Player p;
 	protected Image backgroundTest;
 
@@ -32,9 +34,10 @@ public class GameplayState extends BbrGameState {
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		backgroundTest = new Image("res/desert-background.png");
 		gc.getGraphics().setBackground(new Color(128,128,128));
-		zone = new Zone();
+		zone = new Zone(this);
 
-		Level.getFirstLevel().loadInto(zone);
+		curLevel = Level.getFirstLevel();
+		curLevel.loadInto(zone);
 		p = zone.getPlayer();
 		// testInit(zone);
 	}
@@ -55,6 +58,15 @@ public class GameplayState extends BbrGameState {
 		e = new Platform(zone, 500, (400 - e.getYsize()));
 		e.setXsize(e.getXsize() * 3);
 		zone.addEntity(e);
+	}
+
+	public void nextLevel() {
+		Level nextLevel = Level.getNextLevel(curLevel);
+		if (nextLevel != null) {
+			curLevel = nextLevel;
+			zone.clear();
+			curLevel.loadInto(zone);
+		}
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {

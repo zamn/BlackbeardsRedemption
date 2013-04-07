@@ -1,0 +1,34 @@
+// Warning: This file has spoilers!
+
+// spaces in file path or image group names can cause funky behavior
+// spaces in categories (ex: player) *ought* to work fine
+// Everything after "//" is ignored
+// Preceding and trailing whitespace is ignored for every line
+// sprites are animated and used by their respective classes
+
+// Player
+
+Pirate
+res/red-pirate.png
+
+Missile
+res/red-pirate.png
+
+Explosion
+res/red-pirate.png
+
+// Terrain
+
+Platform
+res/dirt-platform.png
+
+Spike
+res/spike.png
+
+// Enemies
+
+GhostPirate
+res/ghost-pirate.png
+
+Snake
+res/snake.png
