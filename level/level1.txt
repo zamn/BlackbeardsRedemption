@@ -30,7 +30,8 @@ ghostpirate at 600,300
 snake at 500,275
 snake at 1500,200
 snake at 2700,250
-
+senorrat at 500,275
+arboc at 400,275
 
 //spikes
 spike at 4900,650
