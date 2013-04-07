@@ -16,7 +16,7 @@ attack res/red-pirate-attack.png
 attack res/red-pirate-attack2.png
 
 Missile
-res/red-pirate.png
+res/invismissile.png
 
 Explosion
 res/red-pirate.png
