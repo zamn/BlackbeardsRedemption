@@ -20,6 +20,8 @@ Explosion
 res/red-pirate.png
 
 // Terrain
+Exit
+res/Exit.png
 
 Platform
 res/dirt-platform.png

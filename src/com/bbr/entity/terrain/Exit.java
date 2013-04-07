@@ -14,7 +14,7 @@ public class Exit extends Entity{
 		tiledHorizontally = false;
 	}
 	
-	public void checkExit(){
+	public void preDt(){
 		List<Entity> entities = container.getTerrainCollided(this);
 		for(Entity e : entities){
 			if(e instanceof Pirate){
