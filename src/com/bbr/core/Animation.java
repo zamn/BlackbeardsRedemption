@@ -14,6 +14,9 @@ public class Animation {
 	public long lastTime = 0; // in ms
 	public long delay = ANIMATION_FRAME_DELAY;
 
+	public void setDelay(long delay) {
+		this.delay = delay;
+	}
 	public void addFrame(Image frame) {
 		frames.add(frame);
 	}

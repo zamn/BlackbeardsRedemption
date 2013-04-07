@@ -26,4 +26,11 @@ public final class Utility {
 			return failVal;
 		}
 	}
+	public static float getFloat(String number, float failVal) {
+		try {
+			return Float.parseFloat(number);
+		} catch (NumberFormatException ex) {
+			return failVal;
+		}
+	}
 }
