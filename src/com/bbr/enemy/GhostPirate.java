@@ -2,6 +2,7 @@ package com.bbr.enemy;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Enemy;
+import com.bbr.entity.projectile.GhostRock;
 import com.bbr.resource.Settings;
 
 public class GhostPirate extends Enemy {
@@ -25,6 +26,10 @@ public class GhostPirate extends Enemy {
 		}
 	}
 	public void postDt() {
-		
+		if (fireCooldown > 0) fireCooldown--;
+		if (fireCooldown <= 0) {
+			container.addEntity(new GhostRock(this, px + (flipHorizontal ? -40 - sx : 40 + sx) + vx, py));
+			fireCooldown = FIRE_COOLDOWN;
+		}
 	}
 }

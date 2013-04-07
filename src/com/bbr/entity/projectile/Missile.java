@@ -2,7 +2,6 @@ package com.bbr.entity.projectile;
 
 import com.bbr.entity.Entity;
 import com.bbr.entity.projectile.Projectile.ExplosiveProjectile;
-import com.bbr.player.Player;
 import com.bbr.resource.Settings;
 
 public class Missile extends ExplosiveProjectile {
