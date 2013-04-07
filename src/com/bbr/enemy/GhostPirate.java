@@ -8,6 +8,8 @@ public class GhostPirate extends Enemy {
 	private static final int BASE_HEALTH = 0;
 	protected int dip = 0;
 	protected int dipMax = Settings.valueInt("fps")*5;
+	protected static final int FIRE_COOLDOWN = Settings.valueInt("fps") * 3;
+	protected int fireCooldown = FIRE_COOLDOWN;
 	public GhostPirate(Zone zone, float x, float y) {
 		super(zone, x, y, BASE_HEALTH);
 		vx = 1;
@@ -21,5 +23,8 @@ public class GhostPirate extends Enemy {
 			dip = 0;
 			vx = -vx;
 		}
+	}
+	public void postDt() {
+		
 	}
 }
