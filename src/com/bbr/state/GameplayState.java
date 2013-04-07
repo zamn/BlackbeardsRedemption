@@ -21,14 +21,14 @@ import com.bbr.level.LevelFileReader;
 import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.player.Pirate;
 import com.bbr.player.Player;
-
+import com.bbr.health.*;
 public class GameplayState extends BbrGameState {
 	protected boolean lost = false;
 
 	protected Zone zone;
 	protected Player p;
 	protected Image backgroundTest;
-
+	protected HealthController health;
 	public GameplayState() throws SlickException {
 		super(BlackbeardsRedemption.GAMEPLAYSTATE);
 	}
@@ -44,9 +44,11 @@ public class GameplayState extends BbrGameState {
 			Level level = lfr.getLevel();
 			level.loadLevel(zone);
 			p = zone.getPlayer();
+			health = new HealthController("Heart", p);
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
+		
 		// testInit(zone);
 	}
 	// Hardcoded level, remove later and use level text files
@@ -66,13 +68,17 @@ public class GameplayState extends BbrGameState {
 		e = new Platform(zone, 500, (400 - e.getYsize()));
 		e.setXsize(e.getXsize() * 3);
 		zone.addEntity(e);
+		
+		
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		//backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
 		//backgroundTest.draw();
 		zone.draw(g);
-		p.drawHealth();
+		if(health != null)
+			health.draw();
+		
 
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {

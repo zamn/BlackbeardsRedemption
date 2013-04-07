@@ -1,4 +1,5 @@
 *.class
+*.swp
 # Adding classpath to gitignore in order to
 # allow multiple os's to use this project
 .classpath
