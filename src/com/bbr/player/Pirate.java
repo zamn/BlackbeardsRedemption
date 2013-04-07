@@ -1,5 +1,7 @@
 package com.bbr.player;
 
+import org.newdawn.slick.Image;
+
 import com.bbr.core.Zone;
 import com.bbr.entity.projectile.Missile;
 import com.bbr.entity.projectile.Projectile;
@@ -27,6 +29,12 @@ public class Pirate extends Player {
 		stopCharging(); // firing cancels charge
 		Projectile fired = new Missile(this, px, py);
 		container.addEntity(fired);
+	}
+	public Image getFrameToDraw() {
+		if (Math.abs(vx) > 0.01) {
+			return sprite.getFrame("move");
+		}
+		return super.getFrameToDraw();
 	}
 	// Rush Attack!
 	protected void preDt() {
