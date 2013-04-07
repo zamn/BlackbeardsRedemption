@@ -1,8 +1,5 @@
 package com.bbr.state;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -17,15 +14,18 @@ import com.bbr.entity.Entity;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.BbrGameState;
 import com.bbr.level.Level;
-import com.bbr.level.LevelFileReader;
+import com.bbr.level.LevelHandler;
 import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.player.Pirate;
 import com.bbr.player.Player;
 import com.bbr.health.*;
-public class GameplayState extends BbrGameState {
+
+public class GameplayState extends BbrGameState implements LevelHandler {
+
 	protected boolean lost = false;
 
 	protected Zone zone;
+	protected Level curLevel;
 	protected Player p;
 	protected Image backgroundTest;
 	protected HealthController health;
@@ -36,19 +36,11 @@ public class GameplayState extends BbrGameState {
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		backgroundTest = new Image("res/desert-background.png");
 		gc.getGraphics().setBackground(new Color(128,128,128));
-		zone = new Zone();
-
-		LevelFileReader lfr = new LevelFileReader(new File("level/level1.txt"));
-		try {
-			lfr.readFile();
-			Level level = lfr.getLevel();
-			level.loadLevel(zone);
-			p = zone.getPlayer();
-			health = new HealthController("Heart", p);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		
+		zone = new Zone(this);
+		curLevel = Level.getFirstLevel();
+		curLevel.loadInto(zone);
+		p = zone.getPlayer();
+		health = new HealthController("Heart", p);
 		// testInit(zone);
 	}
 	// Hardcoded level, remove later and use level text files
@@ -70,6 +62,16 @@ public class GameplayState extends BbrGameState {
 		zone.addEntity(e);
 		
 		
+	}
+
+	public void nextLevel() {
+		Level nextLevel = Level.getNextLevel(curLevel);
+		if (nextLevel != null) {
+			curLevel = nextLevel;
+			zone.clear();
+			curLevel.loadInto(zone);
+			p = zone.getPlayer();
+		}
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {

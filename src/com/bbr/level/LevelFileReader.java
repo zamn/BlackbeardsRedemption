@@ -18,7 +18,6 @@ public class LevelFileReader extends SequentialFileReader {
 		super(file);
 		cleanLines = true;
 		ignoreBlankLines = true;
-		// TODO keep track of a level and edit it
 	}
 
 	public Level getLevel() { return level; }

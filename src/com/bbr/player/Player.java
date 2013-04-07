@@ -25,8 +25,8 @@ public abstract class Player extends Unit {
 	protected double slowFactor = 0;
 	protected int slowDuration = 0;
 	protected int snareDuration = 0;
-	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, ACT_SPECIAL};
-	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT, Input.KEY_X, Input.KEY_Z};
+	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, ACT_SPECIAL, TPHOME};
+	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT, Input.KEY_X, Input.KEY_Z, Input.KEY_K};
 	// Controls
 	private ArrayList<Action> controlAction = new ArrayList<Action>();
 	private ArrayList<Integer> controlKey = new ArrayList<Integer>();
@@ -74,6 +74,10 @@ public abstract class Player extends Unit {
 			break;
 		case ACT_SPECIAL:
 			break;
+		case TPHOME:
+			px=500;
+			py=225;
+			break;
 		}
 	}
 	public void keyTyped(KeyEvent ke) { }
@@ -97,7 +101,6 @@ public abstract class Player extends Unit {
 
 	protected void preDt() { // handle shooting and movement
 		super.preDt();
-		//System.out.println((container.getPlayer().getHealth()));
 		if (!preventFiring) { // also stops firing cooldown
 			if (keyHeld(Action.ACT_FIRE)) {
 				if (fireCooldown <= 0) {
@@ -128,7 +131,7 @@ public abstract class Player extends Unit {
 				vx = moveSpeed; this.moved();
 			}
 
-			applyMovementModifiers();
+//			applyMovementModifiers();
 		}
 	}
 	protected void postDt() {

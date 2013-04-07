@@ -10,6 +10,7 @@ import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.Drawable;
+import com.bbr.level.LevelHandler;
 import com.bbr.player.Player;
 import com.bbr.resource.Settings;
 
@@ -20,11 +21,14 @@ public class Zone implements Drawable {
 	protected List<Entity> entitiesToAdd = new ArrayList<Entity>();
 	protected List<Entity> entitiesToRemove = new ArrayList<Entity>();
 	protected Player player;
+	protected LevelHandler levelHandler;
 	// Scrolling
 	protected Entity followed;
 	protected int xScroll = 0, yScroll = 0;
 
-	public Zone() { }
+	public Zone(LevelHandler levelHandler) {
+		this.levelHandler = levelHandler;
+	}
 
 	public void addEntity(Entity entity) {
 		entitiesToAdd.add(entity);
@@ -129,6 +133,14 @@ public class Zone implements Drawable {
 		entitiesToAdd.clear();
 		entities.removeAll(entitiesToRemove);
 		entitiesToRemove.clear();
+	}
+
+	public void nextLevel() {
+		levelHandler.nextLevel();
+	}
+	public void clear() {
+		entitiesToAdd.clear();
+		entitiesToRemove.addAll(entities);
 	}
 
 	public void follow(Entity entity) {

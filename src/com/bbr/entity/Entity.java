@@ -7,6 +7,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
+import com.bbr.core.Sprite;
 import com.bbr.core.Zone;
 import com.bbr.resource.Art;
 import com.bbr.resource.Settings;
@@ -25,7 +26,7 @@ public abstract class Entity {
 	protected boolean terrainCollidable = true;
 	protected boolean onPlatform = false;
 	// Graphical
-	protected Image image;
+	protected Sprite sprite;
 	protected boolean flipHorizontal = false; // facing right by default
 	protected boolean tiledHorizontally = false, tiledVertically = false;
 
@@ -38,16 +39,16 @@ public abstract class Entity {
 	}
 
 	private void loadSprite() {
-		image = Art.getImage(this);
+		sprite = Art.getSprite(this);
 	}
 	protected void autoResize() { // resize to match image size
-		if (image == null) return;
-		setXsize(image.getWidth());
-		setYsize(image.getHeight());
+		if (sprite == null) return;
+		setXsize(sprite.getFrame().getWidth());
+		setYsize(sprite.getFrame().getHeight());
 	}
 
 	protected Image getFrameToDraw() { // override to draw different frames
-		return image;
+		return sprite.getFrame();
 	}
 	public void draw(Graphics g) {
 		Image toDraw = getFrameToDraw();
@@ -131,6 +132,7 @@ public abstract class Entity {
 	public float getYvel() { return vy; }
 	public boolean isTerrainCollidable() { return terrainCollidable; }
 	public boolean isOnPlatform() { return onPlatform; }
+	public boolean isFacingRight() { return !flipHorizontal; }
 
 	public void setZone(Zone zone) { container = zone; }
 	public void setXsize(int newxsize) { sx = newxsize; hitbox.width = sx; }

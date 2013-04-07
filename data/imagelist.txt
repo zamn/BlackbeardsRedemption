@@ -5,6 +5,7 @@ TitleImage
 res/red-pirate.png
 
 StartButton
+<<<<<<< HEAD
 res/red-pirate.png
 
 // Player
@@ -36,3 +37,6 @@ res/snake.png
 
 Heart
 res/heart.png
+=======
+res/red-pirate.png
+>>>>>>> 9c2a186b0b75f633f8721ca90bc4060836838480

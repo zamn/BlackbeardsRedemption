@@ -1,14 +1,17 @@
 package com.bbr.player;
 
+import org.newdawn.slick.Image;
+
 import com.bbr.core.Zone;
 import com.bbr.entity.projectile.Missile;
 import com.bbr.entity.projectile.Projectile;
 import com.bbr.health.*;
+import com.bbr.resource.Settings;
 public class Pirate extends Player {
 	public static final int BASE_HEALTH = 1000;
-	public static final int BASE_FIREDELAY = 20;
-	public static final int BASE_SPECIALDELAY = 80;
-	public static final int BASE_MOVESPEED = 6;
+	public static final int BASE_FIREDELAY = Settings.valueInt("fps")/2;
+	public static final int BASE_SPECIALDELAY = Settings.valueInt("fps");
+	public static final int BASE_MOVESPEED = 10;
 	// Special Ability: Charge
 	protected static final float CHARGE_FACTOR = 2.5f;
 	protected static final int CONTROL_LOCK_DURATION = 20; // minimum charge time before controls unlocked
@@ -24,8 +27,15 @@ public class Pirate extends Player {
 
 	protected void fireProjectile() { // fire the missile!
 		stopCharging(); // firing cancels charge
-		Projectile fired = new Missile(this, px+sx/2 - 5, py - 20);
+		Projectile fired = new Missile(this, px, py);
+		if (charging) fired.setXvel(fired.getXvel() * 5);
 		container.addEntity(fired);
+	}
+	public Image getFrameToDraw() {
+		if (Math.abs(vx) > 0.01) {
+			return sprite.getFrame("move");
+		}
+		return super.getFrameToDraw();
 	}
 	// Rush Attack!
 	protected void preDt() {
@@ -34,12 +44,11 @@ public class Pirate extends Player {
 				chargeTime++;
 			} else { // allow controls
 				this.preventMovement = false;
-				this.preventFiring = false;
 			}
 		}
 		super.preDt();
 	}
-	protected void moved() { stopCharging(); }
+	protected void moved() { /*stopCharging();*/ }
 	protected void stopCharging() {
 		if (charging) {
 			charging = false;
@@ -58,7 +67,6 @@ public class Pirate extends Player {
 		applyMovementModifiers();
 		this.collisionDamage /= 3;
 		this.preventMovement = true;
-		this.preventFiring = true;
 		charging = true;
 	}
 }
