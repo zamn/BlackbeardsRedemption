@@ -6,30 +6,3 @@ res/red-pirate.png
 
 StartButton
 res/red-pirate.png
-
-// Player
-
-Pirate
-res/red-pirate.png
-
-Missile
-res/red-pirate.png
-
-Explosion
-res/red-pirate.png
-
-// Terrain
-
-Platform
-res/dirt-platform.png
-
-Spike
-res/spike.png
-
-// Enemies
-
-GhostPirate
-res/ghost-pirate.png
-
-Snake
-res/snake.png
