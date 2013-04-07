@@ -66,6 +66,7 @@ public class GameplayState extends BbrGameState implements LevelHandler {
 			curLevel = nextLevel;
 			zone.clear();
 			curLevel.loadInto(zone);
+			p = zone.getPlayer();
 		}
 	}
 
