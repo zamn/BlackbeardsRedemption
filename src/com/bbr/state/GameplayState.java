@@ -40,7 +40,7 @@ public class GameplayState extends BbrGameState implements LevelHandler {
 		curLevel = Level.getFirstLevel();
 		curLevel.loadInto(zone);
 		p = zone.getPlayer();
-		health = new HealthController("Heart", p);
+		health = new HealthController("Heart", "BlackHeart", p);
 		// testInit(zone);
 	}
 	// Hardcoded level, remove later and use level text files

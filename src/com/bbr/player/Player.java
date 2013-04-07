@@ -9,6 +9,7 @@ import com.bbr.core.Zone;
 import com.bbr.entity.Unit;
 
 public abstract class Player extends Unit {
+	public static final int BASE_HEALTH = 0;
 	// Scoring
 	protected long score = 0;
 	// Firing
@@ -37,7 +38,6 @@ public abstract class Player extends Unit {
 
 	public Player(Zone container, float xpos, float ypos, int defaultHealth) {
 		super(container, xpos, ypos, defaultHealth, "Heart");
-		health = 100;
 		for (int i = 0; i < Action.values().length; i++) {
 			controlAction.add(Action.values()[i]);
 			controlKey.add(DEFAULT_KEYS[i]);
@@ -195,4 +195,5 @@ public abstract class Player extends Unit {
 	public void snare(int tickDuration) { // non-stacking
 		snareDuration = Math.max(snareDuration, tickDuration);
 	}
+	abstract public int getBaseHealth();
 }
