@@ -21,6 +21,21 @@ res/red-pirate.png
 Explosion
 res/red-pirate.png
 
+Spit
+res/Spit.png
+
+Insult
+res/Spit.png
+
+Dagger
+res/Dagger.png
+
+Venom
+res/Venom.png
+
+Laser
+res/Laser.png
+
 // Terrain
 Exit
 res/Exit.png
@@ -36,5 +51,14 @@ res/spike.png
 GhostPirate
 res/ghost-pirate.png
 
+GhostRock
+res/ghost-rock.png
+
 Snake
 res/snake.png
+
+Arboc
+res/Arboc.png
+
+SenorRat
+res/SenorRat.png

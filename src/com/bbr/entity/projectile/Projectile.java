@@ -9,7 +9,7 @@ import com.bbr.resource.Settings;
 public abstract class Projectile extends Entity {
 	protected Entity owner;
 	// Targetting (used in collision checking)
-	protected enum TargetType {ALL, ENEMY}
+	protected enum TargetType {ALL, ENEMY, PLAYER}
 	protected TargetType targetting = TargetType.ALL;
 	// Attributes
 	protected static final short ATT_PIERCE = 1 << 0; // hits multiple targets
@@ -62,6 +62,9 @@ public abstract class Projectile extends Entity {
 		case ENEMY:
 			collided = container.getEnemyCollided(this);
 			break;
+		case PLAYER:
+			collided = container.getPlayerCollided(this);
+			break;
 		}
 		return collided;
 	}
@@ -71,8 +74,6 @@ public abstract class Projectile extends Entity {
 			if (collided instanceof Player && ((Player)collided).getHealth() <= 0 && !Settings.valueBoolean("undying")) {
 				return; // let player realize the cause of their loss
 			}
-			if (collided instanceof Enemy)
-				System.out.println(((Enemy)collided));
 			if (collided instanceof Enemy && ((Enemy)collided).getHealth() <= 0)
 				container.removeEntity(collided);
 			// No longer need this

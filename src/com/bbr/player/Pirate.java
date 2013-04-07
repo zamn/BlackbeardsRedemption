@@ -5,8 +5,8 @@ import org.newdawn.slick.Image;
 import com.bbr.core.Zone;
 import com.bbr.entity.projectile.Missile;
 import com.bbr.entity.projectile.Projectile;
+import com.bbr.health.*;
 import com.bbr.resource.Settings;
-
 public class Pirate extends Player {
 	public static final int BASE_HEALTH = 1000;
 	public static final int BASE_FIREDELAY = Settings.valueInt("fps")/2;
@@ -18,10 +18,8 @@ public class Pirate extends Player {
 	protected int chargeTime = 0;
 	protected int attacking = 0;
 	protected boolean charging = false;
-
 	public Pirate(Zone container, float xpos, float ypos) {
 		super(container, xpos, ypos, BASE_HEALTH);
-		health = BASE_HEALTH;
 		fireDelay = BASE_FIREDELAY;
 		specialDelay = BASE_SPECIALDELAY;
 		moveSpeed = BASE_MOVESPEED;
@@ -76,5 +74,10 @@ public class Pirate extends Player {
 		this.collisionDamage /= 3;
 		this.preventMovement = true;
 		charging = true;
+	}
+
+	@Override
+	public int getBaseHealth() {
+		return Pirate.BASE_HEALTH;
 	}
 }
