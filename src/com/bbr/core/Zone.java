@@ -109,6 +109,18 @@ public class Zone implements Drawable {
 		}
 		return null;
 	}
+	public Player getPlayerCollided(Entity collider) {
+		Entity entity;
+		for (int i = 0; i < entities.size(); i++) {
+			entity = entities.get(i);
+			if (entity != collider) {
+				if (entity instanceof Player && entity.collidesWith(collider)) {
+					return (Player)entity;
+				}
+			}
+		}
+		return null;
+	}
 
 	public void draw(Graphics g) {
 		updateScrolling();

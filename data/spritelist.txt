@@ -49,6 +49,9 @@ res/spike.png
 GhostPirate
 res/ghost-pirate.png
 
+GhostRock
+res/ghost-rock.png
+
 Snake
 res/snake.png
 
