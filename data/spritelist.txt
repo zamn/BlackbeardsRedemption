@@ -10,6 +10,7 @@
 
 Pirate
 res/red-pirate.png
+move res/red-pirate-move.png
 
 Missile
 res/red-pirate.png
