@@ -1,3 +1,4 @@
+
 // comments are ignored to end of line
 // lines are trimmed of leading and trailing spaces
 //
@@ -5,7 +6,44 @@
 // platform widthxheight at x,y		- creates platform
 // ghostpirate at x,y				- creates ghost pirate
 
-spawn at 500,300
-platform 1000x1000 at 300,300
-ghostpirate at 300,300
-spike at 350,250
+//player
+spawn at 500,525
+
+//platforms and shit
+platform 2000x50 at 300,600
+platform 1000x50 at 2300,550
+platform 50x50 at 3500,550
+platform 1500x50 at 3300,600
+platform 50x50 at 4000,550
+platform 50x50 at 4850,550
+platform 200x50 at 5000,450
+platform 500x50 at 5400,550
+platform 50x50 at 5950,500
+platform 100x50 at 6050,450
+platform 100x50 at 6300,450
+platform 100x50 at 6700,450
+platform 200x50 at 6850,550
+
+
+//enemies
+snake at 500,275
+snake at 1500,200
+snake at 2700,250
+
+
+//spikes
+spike at 4900,650
+spike at 5000,650
+spike at 5100,650
+spike at 5200,650
+spike at 5950,650
+spike at 6000,650
+spike at 6100,650
+spike at 6200,650
+spike at 6300,650
+spike at 6400,650
+
+//exit
+exit at 6900,450
+
+
