@@ -2,6 +2,7 @@ package com.bbr.entity;
 
 import com.bbr.core.Zone;
 import com.bbr.health.*;
+import com.bbr.player.Player;
 public class Unit extends Entity {
 	public static final int BASE_COLLISION_DAMAGE = 25;
 	protected int health = 0; 
@@ -19,6 +20,14 @@ public class Unit extends Entity {
 //		System.out.println(this + " was his by: " + attacker + " for: " + damage);
 		if(damage > 0)
 			health -= damage;
+		if (this instanceof Player){
+			if (this.health <= 0){
+				System.out.println("GAME OVER");
+				this.px = 500;
+				this.py = 300;
+				this.health = 1000;
+			}
+		}
 	}
 
 	public int getHealth() {

@@ -21,5 +21,10 @@ public class Snake extends Enemy {
 			vx = -vx;
 		}
 		
+		if (container.getPlayer().collidesWith(this)) {
+			container.getPlayer().hitBy(this, 100);
+			
+	}
+		
 	}
 }
