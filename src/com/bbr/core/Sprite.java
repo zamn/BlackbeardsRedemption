@@ -4,10 +4,7 @@ import java.util.HashMap;
 
 import org.newdawn.slick.Image;
 
-import com.bbr.resource.Settings;
-
 public class Sprite {
-	public static final int ANIMATION_FRAME_DELAY = Settings.valueInt("fps") * 2; // time between frames in ms
 	protected HashMap<String, Animation> animations = new HashMap<String, Animation>();
 
 

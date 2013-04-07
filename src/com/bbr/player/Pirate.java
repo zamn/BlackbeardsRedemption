@@ -5,11 +5,12 @@ import org.newdawn.slick.Image;
 import com.bbr.core.Zone;
 import com.bbr.entity.projectile.Missile;
 import com.bbr.entity.projectile.Projectile;
+import com.bbr.resource.Settings;
 
 public class Pirate extends Player {
 	public static final int BASE_HEALTH = 1000;
-	public static final int BASE_FIREDELAY = 20;
-	public static final int BASE_SPECIALDELAY = 80;
+	public static final int BASE_FIREDELAY = Settings.valueInt("fps")/2;
+	public static final int BASE_SPECIALDELAY = Settings.valueInt("fps");
 	public static final int BASE_MOVESPEED = 10;
 	// Special Ability: Charge
 	protected static final float CHARGE_FACTOR = 2.5f;
@@ -28,6 +29,7 @@ public class Pirate extends Player {
 	protected void fireProjectile() { // fire the missile!
 		stopCharging(); // firing cancels charge
 		Projectile fired = new Missile(this, px, py);
+		if (charging) fired.setXvel(fired.getXvel() * 5);
 		container.addEntity(fired);
 	}
 	public Image getFrameToDraw() {
@@ -43,7 +45,6 @@ public class Pirate extends Player {
 				chargeTime++;
 			} else { // allow controls
 				this.preventMovement = false;
-				this.preventFiring = false;
 			}
 		}
 		super.preDt();
@@ -67,7 +68,6 @@ public class Pirate extends Player {
 		applyMovementModifiers();
 		this.collisionDamage /= 3;
 		this.preventMovement = true;
-		this.preventFiring = true;
 		charging = true;
 	}
 }

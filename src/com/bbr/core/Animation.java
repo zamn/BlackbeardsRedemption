@@ -4,11 +4,15 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.Image;
 
+import com.bbr.resource.Settings;
+
 public class Animation {
+	public static final int ANIMATION_FRAME_DELAY = Settings.valueInt("fps") * 50; // time between frames in ms
+
 	protected ArrayList<Image> frames = new ArrayList<Image>();
 	protected int curFrameIndex = -1; // will be advanced to 0 in getCurrentFrame
 	public long lastTime = 0; // in ms
-	public long delay = Sprite.ANIMATION_FRAME_DELAY;
+	public long delay = ANIMATION_FRAME_DELAY;
 
 	public void addFrame(Image frame) {
 		frames.add(frame);
