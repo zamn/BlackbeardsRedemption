@@ -8,7 +8,7 @@ import com.bbr.resource.Settings;
 public class Missile extends ExplosiveProjectile {
 	public Missile(Entity owner, float xpos, float ypos) {
 		super(owner, xpos, ypos);
-		damage = 25;
+		damage = 100;
 		targetting = TargetType.ENEMY;
 		vx = owner.isFacingRight() ? 10 : -10;
 		vx += 1.2*owner.getXvel();

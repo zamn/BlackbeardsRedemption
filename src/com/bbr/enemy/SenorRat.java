@@ -12,20 +12,25 @@ public class SenorRat extends Enemy {
 	protected int dip = 0;
 	protected int dipMax = Settings.valueInt("fps")*5;
 	protected Random rand;
+	protected float startx;
+	protected int counter;
 
 	public SenorRat(Zone zone, float x, float y, int defaultHealth) {
 		super(zone, x, y, defaultHealth);
-		vx = 1;
+		vx = 2;
 		terrainCollidable = false;
 		rand = new Random();
+		startx = x;
+		counter = 0;
 	}
 	
 	public void preDt(){
-		vy = (float)(Math.sin(2*Math.PI * dip / dipMax));
-		dip++;
-		if (dip > dipMax) {
-			dip = 0;
+		counter ++;
+		if(Math.abs(startx-px) > 400)
 			vx = -vx;
+		if(counter > 60){
+			counter = 0;
+			attack();
 		}
 	}
 	
@@ -42,11 +47,13 @@ public class SenorRat extends Enemy {
 	}
 
 	private void stab(){
-		
+		Projectile dagger = new Missile(this, px+sx/2 - 5, py - 20);
+		container.addEntity(dagger);
 	}
 	
 	private void throwDagger(){
 		Projectile dagger = new Missile(this, px+sx/2 - 5, py - 20);
+		dagger.multDmg(2);
 		container.addEntity(dagger);
 	}
 	
