@@ -10,8 +10,8 @@ public class Missile extends ExplosiveProjectile {
 		super(owner, xpos, ypos);
 		damage = 25;
 		targetting = TargetType.ENEMY;
-		if (owner instanceof Player)
-			vx = owner.isFacingRight() ? 10 : -10;
+		vx = owner.isFacingRight() ? 10 : -10;
+		vx += 1.2*owner.getXvel();
 
 		explosionDamage = damage;
 		duration = Settings.valueInt("fps")/10;
