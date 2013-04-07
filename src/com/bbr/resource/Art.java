@@ -107,8 +107,8 @@ public final class Art {
 
 		protected void processLine(String curLine, int lineNumber) {
 			if (curLine.indexOf('.') > 0) { // has delim and text before the delim, is file name
-				int delimpos = curLine.indexOf(' '); // delim between image "name" and image path
-				if (delimpos == -1) {
+				int delimPos = curLine.indexOf(' '); // delim between image "name" and image path
+				if (delimPos == -1) {
 					if (curCategory == null) {
 						Utility.printWarning("Loaded a sprite image without a category on line " + lineNumber + " of " + file);
 					} else {
@@ -122,10 +122,15 @@ public final class Art {
 					if (curCategory == null) {
 						Utility.printError("Syntax error: Sprite image \"" + curLine + "\" not named in " + SPRITE_LIST + " on line " + lineNumber + " of " + file);
 					} else {
-						try {
-							curSprite.addFrame(curLine.substring(0,delimpos), loadImage(curLine.substring(delimpos+1)));
-						} catch (SlickException e) {
-							e.printStackTrace();
+						float delay = Utility.getFloat(curLine.substring(delimPos+1), -1);
+						if (delay <= 0) {
+							try {
+								curSprite.addFrame(curLine.substring(0,delimPos), loadImage(curLine.substring(delimPos+1)));
+							} catch (SlickException e) {
+								e.printStackTrace();
+							}
+						} else {
+							curSprite.setDelay(curLine.substring(0,delimPos), (long)(Settings.valueInt("fps")*delay));
 						}
 					}
 				}

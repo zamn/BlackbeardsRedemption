@@ -14,6 +14,7 @@ move res/red-pirate-move.png
 move res/red-pirate-move2.png
 attack res/red-pirate-attack.png
 attack res/red-pirate-attack2.png
+attack .5
 
 Missile
 res/invismissile.png
