@@ -16,6 +16,7 @@ public class Pirate extends Player {
 	protected static final float CHARGE_FACTOR = 2.5f;
 	protected static final int CONTROL_LOCK_DURATION = 20; // minimum charge time before controls unlocked
 	protected int chargeTime = 0;
+	protected int attacking = 0;
 	protected boolean charging = false;
 
 	public Pirate(Zone container, float xpos, float ypos) {
@@ -28,6 +29,7 @@ public class Pirate extends Player {
 
 	protected void fireProjectile() { // fire the missile!
 		stopCharging(); // firing cancels charge
+		attacking = Settings.valueInt("fps")/2;
 		Projectile fired = new Missile(this, px, py);
 		if (charging) fired.setXvel(fired.getXvel() * 5);
 		container.addEntity(fired);
@@ -36,10 +38,15 @@ public class Pirate extends Player {
 		if (Math.abs(vx) > 0.01) {
 			return sprite.getFrame("move");
 		}
+		else if (attacking > 0) {
+			return sprite.getFrame("attack");
+		}
 		return super.getFrameToDraw();
 	}
 	// Rush Attack!
 	protected void preDt() {
+		if (attacking > 0)
+			attacking--;
 		if (charging) {
 			if (chargeTime < CONTROL_LOCK_DURATION) {
 				chargeTime++;
