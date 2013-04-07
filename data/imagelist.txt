@@ -6,6 +6,7 @@ res/red-pirate.png
 
 StartButton
 res/red-pirate.png
+<<<<<<< HEAD
 
 // Player
 
@@ -35,3 +36,5 @@ res/ghost-pirate.png
 
 Snake
 res/snake.png
+=======
+>>>>>>> a6f15b30fe68dafab9e75c153b49284317a61739
