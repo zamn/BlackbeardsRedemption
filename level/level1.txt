@@ -10,6 +10,7 @@ spawn at 500,225
 platform 1000x50 at 300,300
 ghostpirate at 500,10
 spike at 350,250
+exit at 350,200
 
 // Ghost pirate crew
 ghostpirate at 559,392
