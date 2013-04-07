@@ -74,8 +74,6 @@ public abstract class Projectile extends Entity {
 			if (collided instanceof Player && ((Player)collided).getHealth() <= 0 && !Settings.valueBoolean("undying")) {
 				return; // let player realize the cause of their loss
 			}
-			if (collided instanceof Enemy)
-				System.out.println(((Enemy)collided));
 			if (collided instanceof Enemy && ((Enemy)collided).getHealth() <= 0)
 				container.removeEntity(collided);
 			// No longer need this
