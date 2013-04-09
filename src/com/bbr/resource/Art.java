@@ -124,12 +124,16 @@ public final class Art {
 					} else {
 						float delay = Utility.getFloat(curLine.substring(delimPos+1), -1);
 						if (delay <= 0) {
+							delay = Utility.getInt(curLine.substring(delimPos+1), -1);
+						}
+						if (delay <= 0) {
 							try {
 								curSprite.addFrame(curLine.substring(0,delimPos), loadImage(curLine.substring(delimPos+1)));
 							} catch (SlickException e) {
 								e.printStackTrace();
 							}
 						} else {
+							System.out.println((long)(Settings.valueInt("fps")*delay));
 							curSprite.setDelay(curLine.substring(0,delimPos), (long)(Settings.valueInt("fps")*delay));
 						}
 					}
