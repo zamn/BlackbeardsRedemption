@@ -12,17 +12,18 @@ import javax.swing.JOptionPane;
 public final class Settings {
 	public static final File SETTINGS_FILE = new File("data/settings.txt");
 	private static HashMap<String, String> settings = new HashMap<String, String>();
-	private enum VariableType {STRING, BOOLEAN, INTEGER}; // STRING = no restriction
+	private enum VariableType {STRING, BOOLEAN, INTEGER, LONG}; // STRING = no restriction
 	private static SequentialFileReader settingsReader;
 
 	// helper of loadSettings(), verify type of settings, ex: boolean, int
 	// TODO do some magic to put these into map literals-equivalents
 	private static void verifySettings() {
-		verify("fps", "integer", "30");
-		verify("windowWidth", "integer", "600");
-		verify("windowHeight", "integer", "600");
-		verify("fullScreen", "boolean", "false");
-		verify("showHitbox", "boolean", "false");
+		verify("fps", VariableType.INTEGER, "30");
+		verify("windowWidth", VariableType.INTEGER, "1024");
+		verify("windowHeight", VariableType.INTEGER, "768");
+		verify("fullScreen", VariableType.BOOLEAN, "false");
+		verify("showHitbox", VariableType.BOOLEAN, "false");
+		verify("animationDelay", VariableType.LONG, "30");
 	}
 
 	static {
@@ -50,14 +51,14 @@ public final class Settings {
 	 * - type = "String" only checks to see if the key has a value<br>
 	 * - make sure <code>defaultValue</code> is of type <code>type</code>
 	 */
-	private static void verify(String key, String type, String defaultValue) {
+	private static void verify(String key, VariableType type, String defaultValue) {
 		key = key.toUpperCase();
 		String value = settings.get(key);
 
 		if (value == null) {
 			settings.put(key, defaultValue);
 		} else {
-			switch (VariableType.valueOf(type.toUpperCase())) {
+			switch (type) {
 			case STRING: break; // No check necessary
 			case BOOLEAN:
 				if (!value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false")) {
@@ -71,8 +72,15 @@ public final class Settings {
 					settings.put(key, defaultValue);
 				}
 				break;
+			case LONG:
+				try {
+					Long.parseLong(value);
+				} catch (NumberFormatException ex) {
+					settings.put(key, defaultValue);
+				}
+				break;
 			default: // you goofed on an entry to verifySettings()
-				Utility.printError("Programmer hardcoded error: Type \"" + type + "\" not supported in verify(String,String,String).");
+				Utility.printError("Programmer hardcoded error: Type \"" + type + "\" not supported in verify(String,VariableType,String).");
 				break;
 			}
 		}
@@ -86,6 +94,9 @@ public final class Settings {
 	}
 	public static int valueInt(String key) {
 		return Integer.parseInt(value(key));
+	}
+	public static long valueLong(String key) {
+		return Long.parseLong(value(key));
 	}
 
 	// File reader for settings file

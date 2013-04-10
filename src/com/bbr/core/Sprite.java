@@ -9,7 +9,7 @@ public class Sprite {
 	public static final String DEFAULT_FRAME = "normal";
 	protected HashMap<String, Animation> animations = new HashMap<String, Animation>();
 
-	public void setDelay(String name, long delay) {
+	public void setDelay(String name, int delay) {
 		Animation anim = animations.get(name);
 		if (anim == null) {
 			anim = new Animation();

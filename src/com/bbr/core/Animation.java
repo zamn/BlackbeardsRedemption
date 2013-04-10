@@ -11,7 +11,7 @@ public class Animation {
 	// Tick-based/frame-based animation handling
 	protected static TickHandler tickHandler;
 	protected long startTick = 0;
-	protected long tickDelay = Settings.valueInt("fps");
+	protected int tickDelay = Settings.valueInt("fps");
 
 	protected ArrayList<Image> frames = new ArrayList<Image>();
 	protected int curFrameIndex = -1; // will be advanced to 0 in getCurrentFrame
@@ -20,7 +20,8 @@ public class Animation {
 		tickHandler = handler;
 	}
 
-	public void setDelay(long delay) {
+	public void setDelay(int delay) {
+		if (delay < 0) delay = Settings.valueInt("animationDelay");
 		this.tickDelay = delay;
 	}
 	public void addFrame(Image frame) {
