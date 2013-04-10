@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.Input;
 
 import com.bbr.core.Zone;
+import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 
 public abstract class Player extends Unit {
@@ -26,8 +27,10 @@ public abstract class Player extends Unit {
 	protected double slowFactor = 0;
 	protected int slowDuration = 0;
 	protected int snareDuration = 0;
-	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, ACT_SPECIAL, TPHOME};
-	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT, Input.KEY_X, Input.KEY_Z, Input.KEY_K};
+	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT,
+		ACT_FIRE, ACT_SPECIAL, TPHOME};
+	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT,
+		Input.KEY_X, Input.KEY_Z, Input.KEY_K};
 	// Controls
 	private ArrayList<Action> controlAction = new ArrayList<Action>();
 	private ArrayList<Integer> controlKey = new ArrayList<Integer>();
@@ -37,7 +40,7 @@ public abstract class Player extends Unit {
 	protected boolean preventFiring = false; // Prevents player from controlling firing
 
 	public Player(Zone container, float xpos, float ypos, int defaultHealth) {
-		super(container, xpos, ypos, defaultHealth, "Heart");
+		super(container, xpos, ypos, defaultHealth);
 		for (int i = 0; i < Action.values().length; i++) {
 			controlAction.add(Action.values()[i]);
 			controlKey.add(DEFAULT_KEYS[i]);
@@ -99,6 +102,16 @@ public abstract class Player extends Unit {
 		return null;
 	}
 
+	public void hitBy(Entity attacker, int damage) {
+		super.hitBy(attacker, damage);
+		if (this.health <= 0){
+			System.out.println("GAME OVER");
+			this.px = 500;
+			this.py = 300;
+			this.health = 1000;
+		}
+	}
+
 	protected void preDt() { // handle shooting and movement
 		super.preDt();
 		if (!preventFiring) { // also stops firing cooldown
@@ -119,7 +132,7 @@ public abstract class Player extends Unit {
 		if (specialCooldown > 0) specialCooldown--;
 
 		if (!preventMovement) {
-			if (keyHeld(Action.MOVE_UP) && onPlatform) { // TODO and not midair
+			if (keyHeld(Action.MOVE_UP) && onPlatform) {
 				vy = -jumpSpeed; this.moved();
 			}
 //			else if (keyHeld(Action.MOVE_DOWN)) {

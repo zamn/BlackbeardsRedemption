@@ -53,7 +53,7 @@ public final class Art {
 		}
 	}
 	private static Image loadImage(String imagename) throws SlickException {
-		System.out.println("loading "+ imagename);
+		//System.out.println("loading "+ imagename);
 		Image loaded = new Image(imagename);
 		return loaded;
 	}
@@ -123,17 +123,23 @@ public final class Art {
 						Utility.printError("Syntax error: Sprite image \"" + curLine + "\" not named in " + SPRITE_LIST + " on line " + lineNumber + " of " + file);
 					} else {
 						float delay = Utility.getFloat(curLine.substring(delimPos+1), -1);
+						System.out.print(curLine.substring(delimPos+1));
 						if (delay <= 0) {
 							delay = Utility.getInt(curLine.substring(delimPos+1), -1);
 						}
 						if (delay <= 0) {
+							System.out.println(": Not valid delay");
 							try {
 								curSprite.addFrame(curLine.substring(0,delimPos), loadImage(curLine.substring(delimPos+1)));
 							} catch (SlickException e) {
 								e.printStackTrace();
 							}
 						} else {
+							System.out.print(": ");
+							System.out.print((delay));
+							System.out.print(" # or frames # ");
 							System.out.println((long)(Settings.valueInt("fps")*delay));
+							System.out.println(curLine.substring(0,delimPos));
 							curSprite.setDelay(curLine.substring(0,delimPos), (long)(Settings.valueInt("fps")*delay));
 						}
 					}

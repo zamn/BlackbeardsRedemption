@@ -7,30 +7,36 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.bbr.core.Animation;
+import com.bbr.core.TickHandler;
 import com.bbr.core.Zone;
 import com.bbr.enemy.GhostPirate;
 import com.bbr.enemy.Snake;
 import com.bbr.entity.Entity;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.BbrGameState;
+import com.bbr.health.HealthController;
 import com.bbr.level.Level;
 import com.bbr.level.LevelHandler;
 import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.player.Pirate;
 import com.bbr.player.Player;
-import com.bbr.health.*;
 
-public class GameplayState extends BbrGameState implements LevelHandler {
+public class GameplayState extends BbrGameState implements LevelHandler, TickHandler {
 
 	protected boolean lost = false;
 
 	protected Zone zone;
 	protected Level curLevel;
 	protected Player p;
-	protected Image backgroundTest;
 	protected HealthController health;
+
+	protected Image backgroundTest;
+	protected long tickCount = 0; // used for animation
+
 	public GameplayState() throws SlickException {
 		super(BlackbeardsRedemption.GAMEPLAYSTATE);
+		Animation.setFrameHandler(this);
 	}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -85,6 +91,10 @@ public class GameplayState extends BbrGameState implements LevelHandler {
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		zone.dt();
+		tickCount++;
+	}
+	public long getTickCount() {
+		return tickCount;
 	}
 
 	public void keyPressed(int key, char c) {

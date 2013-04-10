@@ -1,33 +1,19 @@
 package com.bbr.entity;
 
 import com.bbr.core.Zone;
-import com.bbr.health.*;
-import com.bbr.player.Player;
 public class Unit extends Entity {
 	public static final int BASE_COLLISION_DAMAGE = 25;
 	protected int health = 0; 
 	protected int collisionDamage = BASE_COLLISION_DAMAGE;
-	private HealthController healthBar;
+	//private HealthController healthBar;
 	public Unit(Zone zone, float x, float y, int defaultHealth) {
 		super(zone, x, y);
 		health = defaultHealth;
 	}
-	public Unit(Zone zone, float x, float y, int defaultHealth, String HealthIcon){
-		super(zone, x, y);
-		health = defaultHealth;
-	}
 	public void hitBy(Entity attacker, int damage) {
-//		System.out.println(this + " was his by: " + attacker + " for: " + damage);
+//		System.out.println(this + " was hit by: " + attacker + " for: " + damage);
 		if(damage > 0)
 			health -= damage;
-		if (this instanceof Player){
-			if (this.health <= 0){
-				System.out.println("GAME OVER");
-				this.px = 500;
-				this.py = 300;
-				this.health = 1000;
-			}
-		}
 	}
 
 	public int getHealth() {

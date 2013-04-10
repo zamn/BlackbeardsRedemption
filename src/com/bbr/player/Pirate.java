@@ -5,7 +5,6 @@ import org.newdawn.slick.Image;
 import com.bbr.core.Zone;
 import com.bbr.entity.projectile.Missile;
 import com.bbr.entity.projectile.Projectile;
-import com.bbr.health.*;
 import com.bbr.resource.Settings;
 public class Pirate extends Player {
 	public static final int BASE_HEALTH = 1000;
