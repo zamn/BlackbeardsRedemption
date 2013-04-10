@@ -6,13 +6,14 @@ import com.bbr.entity.projectile.GhostRock;
 import com.bbr.resource.Settings;
 
 public class GhostPirate extends Enemy {
-	private static final int BASE_HEALTH = 0;
+	public int getBaseHealth() { return 150; }
+
 	protected int dip = 0;
 	protected int dipMax = Settings.valueInt("fps")*5;
 	protected static final int FIRE_COOLDOWN = Settings.valueInt("fps") * 3;
 	protected int fireCooldown = FIRE_COOLDOWN;
 	public GhostPirate(Zone zone, float x, float y) {
-		super(zone, x, y, BASE_HEALTH);
+		super(zone, x, y);
 		vx = 1;
 		terrainCollidable = false;
 	}

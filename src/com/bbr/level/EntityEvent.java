@@ -11,7 +11,9 @@ import com.bbr.entity.terrain.Platform;
 import com.bbr.entity.terrain.Spike;
 
 public class EntityEvent {
-	public enum EntityType { PLATFORM, GHOSTPIRATE, SNAKE, EXIT, SPIKE, ARBOC, SENORRAT }
+	public enum EntityType { PLATFORM, SPIKE, EXIT,
+		GHOSTPIRATE, SNAKE,
+		ARBOC, SENORRAT }
 	protected EntityType entityType;
 	protected int sx, sy;
 	protected int px, py;
@@ -31,14 +33,6 @@ public class EntityEvent {
 			e = new Platform(zone, px, py);
 			zone.addEntity(e);
 			break;
-		case GHOSTPIRATE:
-			e = new GhostPirate(zone, px, py);
-			zone.addEntity(e);
-			break;
-		case SNAKE:
-			e = new Snake(zone, px, py);
-			zone.addEntity(e);
-			break;
 		case SPIKE:
 			e = new Spike (zone, px, py);
 			zone.addEntity(e);
@@ -47,12 +41,22 @@ public class EntityEvent {
 			e = new Exit(zone, px, py);
 			zone.addEntity(e);
 			break;
+
+		case GHOSTPIRATE:
+			e = new GhostPirate(zone, px, py);
+			zone.addEntity(e);
+			break;
+		case SNAKE:
+			e = new Snake(zone, px, py);
+			zone.addEntity(e);
+			break;
+
 		case ARBOC:
-			e = new Arboc(zone, px, py, 2000);
+			e = new Arboc(zone, px, py);
 			zone.addEntity(e);
 			break;
 		case SENORRAT:
-			e = new SenorRat(zone, px, py, 2000);
+			e = new SenorRat(zone, px, py);
 			zone.addEntity(e);
 			break;
 		}

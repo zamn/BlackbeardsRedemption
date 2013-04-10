@@ -6,21 +6,17 @@ import com.bbr.core.Zone;
 import com.bbr.entity.Enemy;
 import com.bbr.entity.projectile.Missile;
 import com.bbr.entity.projectile.Projectile;
-import com.bbr.resource.Settings;
-
 
 public class Arboc extends Enemy {
+	public int getBaseHealth() { return 2000; }
 
 	protected int level;
-	protected int dip = 0;
-	protected int dipMax = Settings.valueInt("fps")*5;
 	protected Random rand;
 	protected int counter;
 	protected float startx;
 	
-	
-	public Arboc(Zone zone, float x, float y, int defaultHealth) {
-		super(zone, x, y, defaultHealth);
+	public Arboc(Zone zone, float x, float y) {
+		super(zone, x, y);
 		vx = 1;
 		terrainCollidable = false;
 		rand = new Random();

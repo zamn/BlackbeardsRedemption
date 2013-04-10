@@ -17,7 +17,7 @@ public final class Art {
 	protected static HashMap<String, Image> images = new HashMap<String, Image>();
 
 	private static boolean loaded = false;
-	//
+
 	private Art() { }
 	//
 	//	static {
@@ -30,7 +30,7 @@ public final class Art {
 	//	}
 	public static void load() { // Not in a static block due to Slick 
 		if (loaded) {
-			Utility.printWarning("Loading art files after already having loaded art files.");
+			Utility.printWarning("Loading art files after already art has already been loaded.");
 		}
 		loadImages();
 		loadSprites();
@@ -54,8 +54,7 @@ public final class Art {
 	}
 	protected static Image loadImage(String imagename) throws SlickException {
 		//System.out.println("loading "+ imagename);
-		Image loaded = new Image(imagename);
-		return loaded;
+		return new Image(imagename);
 	}
 
 	public static Sprite getSprite(Entity entity) {
