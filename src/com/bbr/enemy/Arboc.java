@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Enemy;
-import com.bbr.entity.projectile.Missile;
+import com.bbr.entity.projectile.SwordAttack;
 import com.bbr.entity.projectile.Projectile;
 
 public class Arboc extends Enemy {
@@ -89,7 +89,7 @@ public class Arboc extends Enemy {
 	
 	//Spits venom.
 	private void venom(){
-		Projectile venom = new Missile(this, px+sx/2 - 5, py - 20);
+		Projectile venom = new SwordAttack(this, px+sx/2 - 5, py - 20);
 		container.addEntity(venom);
 	}
 	
@@ -102,13 +102,13 @@ public class Arboc extends Enemy {
 	}
 	
 	private void lasers(){
-		Projectile laser = new Missile(this, px+sx/2 - 5, py - 20);
+		Projectile laser = new SwordAttack(this, px+sx/2 - 5, py - 20);
 		laser.multDmg(2);
 		container.addEntity(laser);
 	}
 	
 	private void stare(){
-		Projectile stare = new Missile(this, px+sx/2 - 5, py - 20);
+		Projectile stare = new SwordAttack(this, px+sx/2 - 5, py - 20);
 		container.addEntity(stare);
 	}
 	

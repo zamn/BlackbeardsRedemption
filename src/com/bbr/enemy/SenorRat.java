@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Enemy;
-import com.bbr.entity.projectile.Missile;
+import com.bbr.entity.projectile.SwordAttack;
 import com.bbr.entity.projectile.Projectile;
 
 public class SenorRat extends Enemy {
@@ -46,23 +46,23 @@ public class SenorRat extends Enemy {
 	}
 
 	private void stab(){
-		Projectile dagger = new Missile(this, px+sx/2 - 5, py - 20);
+		Projectile dagger = new SwordAttack(this, px+sx/2 - 5, py - 20);
 		container.addEntity(dagger);
 	}
 	
 	private void throwDagger(){
-		Projectile dagger = new Missile(this, px+sx/2 - 5, py - 20);
+		Projectile dagger = new SwordAttack(this, px+sx/2 - 5, py - 20);
 		dagger.multDmg(2);
 		container.addEntity(dagger);
 	}
 	
 	private void hurlInsult(){
-		Projectile insult = new Missile(this, px+sx/2 - 5, py - 20);
+		Projectile insult = new SwordAttack(this, px+sx/2 - 5, py - 20);
 		container.addEntity(insult);
 	}
 	
 	private void spit(){
-		Projectile spit = new Missile(this, px+sx/2 - 5, py - 20);
+		Projectile spit = new SwordAttack(this, px+sx/2 - 5, py - 20);
 		container.addEntity(spit);
 	}
 	

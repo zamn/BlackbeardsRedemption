@@ -3,7 +3,7 @@ package com.bbr.player;
 import org.newdawn.slick.Image;
 
 import com.bbr.core.Zone;
-import com.bbr.entity.projectile.Missile;
+import com.bbr.entity.projectile.SwordAttack;
 import com.bbr.entity.projectile.Projectile;
 import com.bbr.resource.Settings;
 public class Pirate extends Player {
@@ -13,10 +13,11 @@ public class Pirate extends Player {
 	public static final int BASE_MOVESPEED = 10;
 	// Special Ability: Charge
 	protected static final float CHARGE_FACTOR = 2.5f;
-	protected static final int CONTROL_LOCK_DURATION = 0; // minimum charge time before controls unlocked
+	protected static final int CONTROL_LOCK_DURATION = Settings.valueInt("fps")/2; // minimum charge time before controls unlocked
 	protected int chargeTime = 0;
-	protected int attacking = 0;
 	protected boolean charging = false;
+
+	protected int attackingFrames = 0; // for animation
 
 	public Pirate(Zone container, float xpos, float ypos) {
 		super(container, xpos, ypos);
@@ -25,26 +26,24 @@ public class Pirate extends Player {
 		moveSpeed = BASE_MOVESPEED;
 	}
 
-	protected void fireProjectile() { // fire the missile!
-		stopCharging(); // firing cancels charge
-		attacking = Settings.valueInt("fps")/2;
-		Projectile fired = new Missile(this, px, py);
-		if (charging) fired.setXvel(fired.getXvel() * 5);
+	protected void fireProjectile() { // sword slash!
+		attackingFrames = Settings.valueInt("fps")/2;
+		Projectile fired = new SwordAttack(this, px, py);
 		container.addEntity(fired);
 	}
 	public Image getFrameToDraw() {
 		if (Math.abs(vx) > 0.01) {
 			return sprite.getFrame("move");
 		}
-		else if (attacking > 0) {
+		else if (attackingFrames > 0) {
 			return sprite.getFrame("attack");
 		}
 		return super.getFrameToDraw();
 	}
 	// Rush Attack!
 	protected void preDt() {
-		if (attacking > 0)
-			attacking--;
+		if (attackingFrames > 0)
+			attackingFrames--;
 		if (charging) {
 			if (chargeTime < CONTROL_LOCK_DURATION) {
 				chargeTime++;
@@ -54,15 +53,13 @@ public class Pirate extends Player {
 		}
 		super.preDt();
 	}
-	protected void moved() { /*stopCharging();*/ }
+	protected void moved() { stopCharging(); }
 	protected void stopCharging() {
 		if (charging) {
 			charging = false;
-			vy = 0;
-			this.collisionDamage = BASE_COLLISION_DAMAGE;
 		}
 	}
-	protected void useSpecial() { // Rush: charges forward, cannot attack/move for short time, afterwards keys cancel charge
+	protected void useSpecial() { // Rush: charges forward
 		chargeTime = 0;
 		if (vy != 0 || (vx == 0 && vy == 0)) {
 			vy = moveSpeed * CHARGE_FACTOR * (vy <= 0 ? -1 : 1); // charge backwards if moving backwards
@@ -71,7 +68,6 @@ public class Pirate extends Player {
 			vx = moveSpeed * CHARGE_FACTOR * (vx <= 0 ? -1 : 1);
 		}
 		applyMovementModifiers();
-		this.collisionDamage /= 3;
 		this.preventMovement = true;
 		charging = true;
 	}

@@ -130,10 +130,10 @@ public abstract class Player extends Unit {
 		}
 		if (specialCooldown > 0) specialCooldown--;
 
+		if (keyHeld(Action.MOVE_UP) && onPlatform) {
+			vy = -jumpSpeed; this.moved();
+		}
 		if (!preventMovement) {
-			if (keyHeld(Action.MOVE_UP) && onPlatform) {
-				vy = -jumpSpeed; this.moved();
-			}
 //			else if (keyHeld(Action.MOVE_DOWN)) {
 //				vy = moveSpeed; this.moved();
 //			}
