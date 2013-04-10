@@ -38,21 +38,5 @@ public class ImagesFileReader extends SequentialFileReader {
 		} else if (imageNameMatcher.matches()) {
 			curCategory = imageNameMatcher.group(1);
 		}
-		/*if (curLine.indexOf('.') > 0) { // has delim and text before the delim, is file name
-			if (curCategory == null) {
-				Utility.printWarning("Loaded an image without a name on line " + lineNumber +".");
-			} else {
-				if (Art.images.get(curCategory) != null) {
-					Utility.printError("Duplicate image for \"" + curCategory + "\" on line " + lineNumber +".");
-				}
-				try {
-					Art.images.put(curCategory, Art.loadImage(curLine));
-				} catch (SlickException e) {
-					e.printStackTrace();
-				}
-			}
-		} else {
-			curCategory = curLine;
-		}*/
 	}
 }
