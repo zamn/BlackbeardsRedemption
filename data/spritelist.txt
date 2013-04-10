@@ -1,7 +1,5 @@
 // Warning: This file has spoilers!
 
-// spaces in file path or image group names can cause funky behavior
-// spaces in categories (ex: player) *ought* to work fine
 // Everything after "//" is ignored
 // Preceding and trailing whitespace is ignored for every line
 // sprites are animated and used by their respective classes
