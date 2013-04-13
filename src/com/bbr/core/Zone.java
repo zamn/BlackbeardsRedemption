@@ -163,7 +163,7 @@ public class Zone implements Drawable {
 			float xCenter = followed.getXpos() + followed.getXsize() / 2;
 			float yCenter = followed.getYpos() + followed.getYsize() / 2;
 			xScroll = (int)(xCenter - Settings.valueInt("windowWidth")/2);
-			yScroll = (int)(yCenter - Settings.valueInt("windowHeight")/2);
+			//yScroll = (int)(yCenter - Settings.valueInt("windowHeight")/2);
 		}
 	}
 	public int getXscroll() { return xScroll; }
