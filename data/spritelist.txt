@@ -39,6 +39,9 @@ res/Laser.png
 Exit
 res/Exit.png
 
+FallingPlatform
+res/dirt-platform.png
+
 Platform
 res/dirt-platform.png
 
