@@ -27,9 +27,9 @@ public abstract class Player extends Unit {
 	protected int slowDuration = 0;
 	protected int snareDuration = 0;
 	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT,
-		ACT_FIRE, ACT_SPECIAL, TPHOME};
+		ACT_FIRE, ACT_SPECIAL, TPHOME, NLEVEL};
 	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT,
-		Input.KEY_X, Input.KEY_Z, Input.KEY_K};
+		Input.KEY_X, Input.KEY_Z, Input.KEY_K, Input.KEY_N};
 	// Controls
 	private ArrayList<Action> controlAction = new ArrayList<Action>();
 	private ArrayList<Integer> controlKey = new ArrayList<Integer>();
@@ -77,8 +77,10 @@ public abstract class Player extends Unit {
 		case ACT_SPECIAL:
 			break;
 		case TPHOME:
-			px=500;
-			py=225;
+			kill();
+			break;
+		case NLEVEL:
+			nextLevel();
 			break;
 		}
 	}
@@ -176,7 +178,10 @@ public abstract class Player extends Unit {
 	}
 	private void kill(){
 		System.out.println("GAME OVER");
-		state.resetLevel();
+		if(state != null)
+			state.resetLevel();
+		else
+			System.out.println("GameplayState not set in Player");
 	}
 	protected void applySlow() {
 		if (slowDuration > 0) {
@@ -226,6 +231,12 @@ public abstract class Player extends Unit {
 	}
 	public void setGameplayState(GameplayState state){
 		this.state = state;
+	}
+	private void nextLevel(){
+		if(state != null)
+			state.nextLevel();
+		else
+			System.out.println("GameplayState not set in Player");
 	}
 	
 }
