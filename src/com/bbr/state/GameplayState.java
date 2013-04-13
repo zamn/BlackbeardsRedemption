@@ -77,6 +77,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 			zone.clear();
 			curLevel.loadInto(zone);
 			p = zone.getPlayer();
+			health.changeUnit(p);
 		}
 	}
 
