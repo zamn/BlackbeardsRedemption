@@ -8,9 +8,9 @@ import org.newdawn.slick.Input;
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
-
+import com.bbr.state.GameplayState;
 public abstract class Player extends Unit {
-	// Scoring
+	private GameplayState state;
 	protected long score = 0;
 	// Firing
 	protected int fireDelay = 10;
@@ -27,9 +27,9 @@ public abstract class Player extends Unit {
 	protected int slowDuration = 0;
 	protected int snareDuration = 0;
 	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT,
-		ACT_FIRE, ACT_SPECIAL, TPHOME};
+		ACT_FIRE, ACT_SPECIAL, TPHOME, NLEVEL};
 	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT,
-		Input.KEY_X, Input.KEY_Z, Input.KEY_K};
+		Input.KEY_X, Input.KEY_Z, Input.KEY_K, Input.KEY_N};
 	// Controls
 	private ArrayList<Action> controlAction = new ArrayList<Action>();
 	private ArrayList<Integer> controlKey = new ArrayList<Integer>();
@@ -77,8 +77,10 @@ public abstract class Player extends Unit {
 		case ACT_SPECIAL:
 			break;
 		case TPHOME:
-			px=500;
-			py=225;
+			kill();
+			break;
+		case NLEVEL:
+			nextLevel();
 			break;
 		}
 	}
@@ -104,10 +106,7 @@ public abstract class Player extends Unit {
 	public void hitBy(Entity attacker, int damage) {
 		super.hitBy(attacker, damage);
 		if (this.health <= 0){
-			System.out.println("GAME OVER");
-			this.px = 500;
-			this.py = 300;
-			this.setHealth(1000);
+			kill();
 		}
 	}
 
@@ -148,12 +147,22 @@ public abstract class Player extends Unit {
 	}
 	protected void postDt() {
 		// prevent moving out of bounds
-		if (px < 0) px = 0;
-		if (py < 0) py = 0;
+		System.out.println(py);
+		if (px < 0)
+			px = 0;
+		if (py < 0)
+			py = 0;
 		// haste/slow/snare decay
-		if (hasteDuration > 0) hasteDuration--;
-		if (slowDuration > 0) slowDuration--;
-		if (snareDuration > 0) snareDuration--;
+		if(hasteDuration > 0)
+			hasteDuration--;
+		if(slowDuration > 0)
+			slowDuration--;
+		if(snareDuration > 0)
+			snareDuration--;
+		//detect if too low
+		if(py >= 768){
+			kill();
+		}
 	}
 	// apply Haste/Slow/Snare should be applied in that order whenever player tries to move
 	protected void applyMovementModifiers() {
@@ -166,6 +175,13 @@ public abstract class Player extends Unit {
 			vx *= hasteFactor;
 			vy *= hasteFactor;
 		}
+	}
+	private void kill(){
+		System.out.println("GAME OVER");
+		if(state != null)
+			state.resetLevel();
+		else
+			System.out.println("GameplayState not set in Player");
 	}
 	protected void applySlow() {
 		if (slowDuration > 0) {
@@ -208,11 +224,19 @@ public abstract class Player extends Unit {
 		snareDuration = Math.max(snareDuration, tickDuration);
 	}
 	public int getHealth() {
-		System.out.println(health);
 		return health;
 	}
 	public void setHealth(int newHealth) {
 		this.health = newHealth;
-		System.out.println("Set "+this.health);
 	}
+	public void setGameplayState(GameplayState state){
+		this.state = state;
+	}
+	private void nextLevel(){
+		if(state != null)
+			state.nextLevel();
+		else
+			System.out.println("GameplayState not set in Player");
+	}
+	
 }

@@ -9,9 +9,10 @@ import com.bbr.entity.Entity;
 import com.bbr.entity.terrain.Exit;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.entity.terrain.Spike;
+import com.bbr.entity.terrain.FallingPlatform;
 
 public class EntityEvent {
-	public enum EntityType { PLATFORM, SPIKE, EXIT,
+	public enum EntityType { FALLINGPLATFORM, PLATFORM, SPIKE, EXIT,
 		GHOSTPIRATE, SNAKE,
 		ARBOC, SENORRAT }
 	protected EntityType entityType;
@@ -29,6 +30,10 @@ public class EntityEvent {
 	public void trigger(Zone zone) {
 		Entity e = null;
 		switch (entityType) {
+		case FALLINGPLATFORM:
+			e = new FallingPlatform(zone, px, py);
+			zone.addEntity(e);
+			break;
 		case PLATFORM:
 			e = new Platform(zone, px, py);
 			zone.addEntity(e);

@@ -47,6 +47,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		curLevel.loadInto(zone);
 		p = zone.getPlayer();
 		health = new HealthController("Heart", "BlackHeart", p);
+		p.setGameplayState(this);
 		// testInit(zone);
 	}
 	// Hardcoded level, remove later and use level text files
@@ -78,9 +79,16 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 			curLevel.loadInto(zone);
 			p = zone.getPlayer();
 			health.changeUnit(p);
+			p.setGameplayState(this);
 		}
 	}
-
+	public void resetLevel(){
+		zone.clear();
+		curLevel.loadInto(zone);
+		p=zone.getPlayer();
+		health.changeUnit(p);
+		p.setGameplayState(this);
+	}
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		//backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
 		//backgroundTest.draw();
