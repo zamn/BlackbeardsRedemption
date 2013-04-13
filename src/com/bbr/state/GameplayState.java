@@ -40,8 +40,8 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		backgroundTest = new Image("res/desert-background.png");
-		gc.getGraphics().setBackground(new Color(128,128,128));
+		backgroundTest = new Image("res/levels/lvl1.png");
+		//gc.getGraphics().setBackground(new Color(128,128,128));
 		zone = new Zone(this);
 		curLevel = Level.getFirstLevel();
 		curLevel.loadInto(zone);
@@ -84,6 +84,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		//backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
 		//backgroundTest.draw();
+		backgroundTest.draw(0, 0);
 		zone.draw(g);
 		if(health != null)
 			health.draw();
