@@ -107,7 +107,7 @@ public abstract class Player extends Unit {
 			System.out.println("GAME OVER");
 			this.px = 500;
 			this.py = 300;
-			this.health = 1000;
+			this.setHealth(1000);
 		}
 	}
 
@@ -206,5 +206,13 @@ public abstract class Player extends Unit {
 	}
 	public void snare(int tickDuration) { // non-stacking
 		snareDuration = Math.max(snareDuration, tickDuration);
+	}
+	public int getHealth() {
+		System.out.println(health);
+		return health;
+	}
+	public void setHealth(int newHealth) {
+		this.health = newHealth;
+		System.out.println("Set "+this.health);
 	}
 }

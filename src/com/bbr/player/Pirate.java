@@ -53,7 +53,9 @@ public class Pirate extends Player {
 		}
 		super.preDt();
 	}
-	protected void moved() { stopCharging(); }
+	protected void moved() {
+		stopCharging();
+	}
 	protected void stopCharging() {
 		if (charging) {
 			charging = false;

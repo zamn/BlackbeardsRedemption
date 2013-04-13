@@ -18,7 +18,9 @@ public class HealthController{
 		numTotalUnits = unit.getBaseHealth() / healthPerHeart;
 
 	}
-
+	public void changeUnit(Unit unit){
+		this.unit = unit;
+	}
 	public void draw(){
 		int numUnits = 0;
 		if(unit.getHealth() > 0)
