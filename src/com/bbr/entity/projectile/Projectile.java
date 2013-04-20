@@ -1,6 +1,5 @@
 package com.bbr.entity.projectile;
 
-import com.bbr.entity.Enemy;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 
@@ -69,15 +68,13 @@ public abstract class Projectile extends Entity {
 	protected void hit(Entity collided) {
 		if (collided instanceof Unit) {
 			collided.hitBy(this.owner, damage);
-			if (collided instanceof Enemy && ((Enemy)collided).getHealth() <= 0)
-				container.removeEntity(collided);
+			if (!hasAttribute(ATT_PIERCE)) {
+				container.removeEntity(this);
+			}
 			// No longer need this
 //			if (this instanceof ExplosiveProjectile) {
 //				((ExplosiveProjectile)this).explode();
 //			}
-			if (!hasAttribute(ATT_PIERCE)) {
-				container.removeEntity(this);
-			}
 		}
 	}
 	public void boostDmg(int boost) {
@@ -85,21 +82,5 @@ public abstract class Projectile extends Entity {
 	}
 	public void multDmg(double boost) {
 		damage = (int)(damage * boost);
-	}
-
-	public static abstract class ExplosiveProjectile extends Projectile {
-		protected int explosionSize;
-		protected int explosionDamage;
-
-		public ExplosiveProjectile(Entity owner, float xpos, float ypos) {
-			super(owner, xpos, ypos);
-			explosionSize = 0;
-			explosionDamage = 0;
-		}
-		public void explode() {
-			Explosion e = new Explosion(owner, px+sx/2, py+sy/2,
-					explosionSize, explosionDamage);
-			container.addEntity(e);
-		}
 	}
 }
