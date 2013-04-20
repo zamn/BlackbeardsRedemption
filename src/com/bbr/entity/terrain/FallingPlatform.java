@@ -1,7 +1,7 @@
 package com.bbr.entity.terrain;
 
 import com.bbr.core.Zone;
-import com.bbr.player.Player;
+import com.bbr.entity.player.Player;
 
 public class FallingPlatform extends Platform {
 	public FallingPlatform(Zone container, float xpos, float ypos) {

@@ -12,14 +12,14 @@ import com.bbr.core.Zone;
 import com.bbr.enemy.GhostPirate;
 import com.bbr.enemy.Snake;
 import com.bbr.entity.Entity;
+import com.bbr.entity.player.Pirate;
+import com.bbr.entity.player.Player;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.BbrGameState;
-import com.bbr.health.HealthController;
+import com.bbr.gui.HealthController;
 import com.bbr.level.Level;
 import com.bbr.level.LevelHandler;
 import com.bbr.main.BlackbeardsRedemption;
-import com.bbr.player.Pirate;
-import com.bbr.player.Player;
 
 public class GameplayState extends BbrGameState implements LevelHandler, TickHandler {
 

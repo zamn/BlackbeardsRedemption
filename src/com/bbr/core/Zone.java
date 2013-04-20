@@ -8,10 +8,10 @@ import org.newdawn.slick.Graphics;
 import com.bbr.entity.Enemy;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
+import com.bbr.entity.player.Player;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.Drawable;
 import com.bbr.level.LevelHandler;
-import com.bbr.player.Player;
 import com.bbr.resource.Settings;
 
 // TODO add zone boundaries where entities are destroyed/paused

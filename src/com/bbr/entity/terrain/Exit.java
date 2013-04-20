@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
-import com.bbr.player.Pirate;
+import com.bbr.entity.player.Pirate;
 
 public class Exit extends Entity{
 

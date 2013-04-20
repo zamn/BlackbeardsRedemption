@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bbr.core.Zone;
-import com.bbr.player.Pirate;
+import com.bbr.entity.player.Pirate;
 
 // TODO some way to finalize a level to prevent changes. Don't call it finalize()
 // TODO have level bounds?
