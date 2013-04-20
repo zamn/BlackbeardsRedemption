@@ -3,8 +3,6 @@ package com.bbr.entity.projectile;
 import com.bbr.entity.Enemy;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
-import com.bbr.player.Player;
-import com.bbr.resource.Settings;
 
 public abstract class Projectile extends Entity {
 	protected Entity owner;
@@ -71,9 +69,6 @@ public abstract class Projectile extends Entity {
 	protected void hit(Entity collided) {
 		if (collided instanceof Unit) {
 			collided.hitBy(this.owner, damage);
-			if (collided instanceof Player && ((Player)collided).getHealth() <= 0 && !Settings.valueBoolean("undying")) {
-				return; // let player realize the cause of their loss
-			}
 			if (collided instanceof Enemy && ((Enemy)collided).getHealth() <= 0)
 				container.removeEntity(collided);
 			// No longer need this

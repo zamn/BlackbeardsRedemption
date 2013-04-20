@@ -11,7 +11,7 @@ public class SenorRat extends Enemy {
 	public int getBaseHealth() { return 2000; }
 	
 	protected Random rand;
-	protected float startx;
+	protected float startX;
 	protected int counter;
 
 	public SenorRat(Zone zone, float x, float y) {
@@ -19,13 +19,13 @@ public class SenorRat extends Enemy {
 		vx = 2;
 		terrainCollidable = false;
 		rand = new Random();
-		startx = x;
+		startX = x;
 		counter = 0;
 	}
 	
 	public void preDt(){
 		counter ++;
-		if(Math.abs(startx-px) > 400)
+		if(Math.abs(startX-px) > 400)
 			vx = -vx;
 		if(counter > 60){
 			counter = 0;

@@ -46,7 +46,6 @@ public class Zone implements Drawable {
 		for (int i = 0; i < entities.size(); i++) {
 			collided = entities.get(i);
 			if (collided != mover) {
-				// TODO allows feet to be buried in platform due to no check for distance
 				if (collided instanceof Platform && collided.collidesWith(mover)) {
 //					System.out.println(mover.getYpos() + mover.getYsize() - collided.getYpos());
 //					if (mover.getYpos() + mover.getYsize() - collided.getYpos() < 0.001) {
@@ -161,13 +160,14 @@ public class Zone implements Drawable {
 	private void updateScrolling() {
 		if (followed != null) {
 			float xCenter = followed.getXpos() + followed.getXsize() / 2;
-			float yCenter = followed.getYpos() + followed.getYsize() / 2;
 			xScroll = (int)(xCenter - Settings.valueInt("windowWidth")/2);
+			//float yCenter = followed.getYpos() + followed.getYsize() / 2;
 			//yScroll = (int)(yCenter - Settings.valueInt("windowHeight")/2);
 		}
 	}
 	public int getXscroll() { return xScroll; }
 	public int getYscroll() { return yScroll; }
+	// collision detection with platforms
 	public Platform collidesWithBottomOf(Entity mover) {
 		Entity collided;
 		for (int i = 0; i < entities.size(); i++) {
@@ -198,7 +198,7 @@ public class Zone implements Drawable {
 		}
 		return null;
 	}
-	public Platform collidesWithLefttOf(Entity mover) {
+	public Platform collidesWithLeftOf(Entity mover) {
 		Entity collided;
 		for (int i = 0; i < entities.size(); i++) {
 			collided = entities.get(i);

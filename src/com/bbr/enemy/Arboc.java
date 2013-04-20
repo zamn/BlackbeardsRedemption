@@ -13,7 +13,7 @@ public class Arboc extends Enemy {
 	protected int level;
 	protected Random rand;
 	protected int counter;
-	protected float startx;
+	protected float startX;
 	
 	public Arboc(Zone zone, float x, float y) {
 		super(zone, x, y);
@@ -22,12 +22,12 @@ public class Arboc extends Enemy {
 		rand = new Random();
 		level = 1;
 		counter = 0;
-		startx = x;
+		startX = x;
 	}
 	
 	public void preDt(){
 		counter ++;
-		if(Math.abs(startx-px) > 200)
+		if(Math.abs(startX-px) > 200)
 			vx = -vx;
 		if(counter > 90){
 			attack();

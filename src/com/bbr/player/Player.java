@@ -8,6 +8,7 @@ import org.newdawn.slick.Input;
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
+import com.bbr.resource.Settings;
 import com.bbr.state.GameplayState;
 public abstract class Player extends Unit {
 	private GameplayState state;
@@ -77,7 +78,7 @@ public abstract class Player extends Unit {
 		case ACT_SPECIAL:
 			break;
 		case TPHOME:
-			kill();
+			die();
 			break;
 		case NLEVEL:
 			nextLevel();
@@ -105,9 +106,6 @@ public abstract class Player extends Unit {
 
 	public void hitBy(Entity attacker, int damage) {
 		super.hitBy(attacker, damage);
-		if (this.health <= 0){
-			kill();
-		}
 	}
 
 	protected void preDt() { // handle shooting and movement
@@ -159,8 +157,8 @@ public abstract class Player extends Unit {
 		if(snareDuration > 0)
 			snareDuration--;
 		//detect if too low
-		if(py >= 768){
-			kill();
+		if(py >= Settings.valueInt("windowHeight")){
+			die();
 		}
 	}
 	// apply Haste/Slow/Snare should be applied in that order whenever player tries to move
@@ -174,13 +172,6 @@ public abstract class Player extends Unit {
 			vx *= hasteFactor;
 			vy *= hasteFactor;
 		}
-	}
-	private void kill(){
-		System.out.println("GAME OVER");
-		if(state != null)
-			state.resetLevel();
-		else
-			System.out.println("GameplayState not set in Player");
 	}
 	protected void applySlow() {
 		if (slowDuration > 0) {
@@ -222,12 +213,7 @@ public abstract class Player extends Unit {
 	public void snare(int tickDuration) { // non-stacking
 		snareDuration = Math.max(snareDuration, tickDuration);
 	}
-	public int getHealth() {
-		return health;
-	}
-	public void setHealth(int newHealth) {
-		this.health = newHealth;
-	}
+	// game container specific
 	public void setGameplayState(GameplayState state){
 		this.state = state;
 	}
@@ -237,5 +223,11 @@ public abstract class Player extends Unit {
 		else
 			System.out.println("GameplayState not set in Player");
 	}
-	
+	public void die(){
+		System.out.println("GAME OVER");
+		if(state != null)
+			state.resetLevel();
+		else
+			System.out.println("GameplayState not set in Player");
+	}
 }

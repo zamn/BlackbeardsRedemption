@@ -12,6 +12,18 @@ public abstract class Unit extends Entity {
 	}
 	public abstract int getBaseHealth();
 
+	public void dt() {
+		if (isDead()) {
+			die();
+			return;
+		} else {
+			super.dt();
+		}
+	}
+	public void die() {
+		container.removeEntity(this);
+	}
+
 	public void hitBy(Entity attacker, int damage) {
 //		System.out.println(this + " was hit by: " + attacker + " for: " + damage);
 		if(damage > 0)
