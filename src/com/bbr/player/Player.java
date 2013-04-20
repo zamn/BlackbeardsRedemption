@@ -147,7 +147,6 @@ public abstract class Player extends Unit {
 	}
 	protected void postDt() {
 		// prevent moving out of bounds
-		System.out.println(py);
 		if (px < 0)
 			px = 0;
 		if (py < 0)

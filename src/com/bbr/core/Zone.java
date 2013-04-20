@@ -168,4 +168,64 @@ public class Zone implements Drawable {
 	}
 	public int getXscroll() { return xScroll; }
 	public int getYscroll() { return yScroll; }
+	public Platform collidesWithBottomOf(Entity mover) {
+		Entity collided;
+		for (int i = 0; i < entities.size(); i++) {
+			collided = entities.get(i);
+			if (collided != mover) {
+				if (collided instanceof Platform && collided.collidesWith(mover)) {
+					float moverYpos = mover.getYpos() + mover.getYsize();
+					if (moverYpos >= collided.getYpos()) {
+						return (Platform)collided;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	public Platform collidesWithRightOf(Entity mover) {
+		Entity collided;
+		for (int i = 0; i < entities.size(); i++) {
+			collided = entities.get(i);
+			if (collided != mover) {
+				if (collided instanceof Platform && collided.collidesWith(mover)) {
+						float moverXpos = mover.getXpos() + mover.getYpos();
+						if(moverXpos >= collided.getXpos() && moverXpos <= (collided.getXpos() + collided.getXsize()))
+							return (Platform) collided;
+					
+				}
+			}
+		}
+		return null;
+	}
+	public Platform collidesWithLefttOf(Entity mover) {
+		Entity collided;
+		for (int i = 0; i < entities.size(); i++) {
+			collided = entities.get(i);
+			if (collided != mover) {
+				if (collided instanceof Platform && collided.collidesWith(mover)) {
+						float moverXpos = mover.getXpos();
+						if(moverXpos >= collided.getXpos() && moverXpos <= (collided.getXpos() + collided.getXsize()))
+							return (Platform) collided;
+					
+				}
+			}
+		}
+		return null;
+	}
+	public Platform collidesWithTopOf(Entity mover) {
+		Entity collided;
+		for (int i = 0; i < entities.size(); i++) {
+			collided = entities.get(i);
+			if (collided != mover) {
+				if (collided instanceof Platform && collided.collidesWith(mover)) {
+					float moverYpos = mover.getYpos() + mover.getYsize();
+					if (moverYpos >= collided.getYpos()) {
+						return (Platform)collided;
+					}
+				}
+			}
+		}
+		return null;
+	}
 }

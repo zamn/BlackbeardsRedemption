@@ -1,6 +1,7 @@
 package com.bbr.entity;
 
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Float;
 import java.util.Random;
 
 import org.newdawn.slick.Color;
@@ -95,7 +96,7 @@ public abstract class Entity {
 		}
 	}
 	protected void preDt() { }
-	public void dt() {
+	public void dt() {				
 		preDt();
 		if (vx < 0) {
 			flipHorizontal = true;
@@ -103,11 +104,31 @@ public abstract class Entity {
 			flipHorizontal = false;
 		}
 		setXpos(px + vx);
+
+		if(container.collidesWithRightOf(this) != null){
+			if(this.toString() == "Player");
+				System.out.println("Collider: "+container.collidesWithRightOf(this).getXpos()+" Player: "+(this.getXpos()+this.getXsize()));
+			this.setXpos(container.collidesWithRightOf(this).getXpos() - this.getXsize());
+		}
+		if(container.collidesWithLefttOf(this) != null){
+			if(this.toString() == "Player");
+				System.out.println("Collider: "+(container.collidesWithLefttOf(this).getXpos() + container.collidesWithLefttOf(this).getXsize())+" Player: "+this.getXpos());
+			this.setXpos(container.collidesWithLefttOf(this).getXpos() + container.collidesWithLefttOf(this).getXsize());
+		}
 		setYpos(py + vy);
 
-		onPlatform = container.getPlatformBelow(this) != null;
-		if (onPlatform) vy = 0;
-		if (terrainCollidable && !onPlatform && vy < TERMINAL_VELOCITY) vy++; // TODO gravity
+		onPlatform = (container.collidesWithBottomOf(this) != null);
+		if (onPlatform && vy != 0){
+			vy = 0;
+			this.setYpos(container.collidesWithBottomOf(this).getYpos() - this.getYsize());
+		}
+		if (terrainCollidable && !onPlatform && vy < TERMINAL_VELOCITY){
+			vy++;
+		}
+		
+			
+		
+		
 		postDt();
 	}
 	protected void postDt() { }
@@ -120,6 +141,11 @@ public abstract class Entity {
 //				((other.py<=this.py&&other.py+other.sy>=this.py)||
 //						(other.py>=this.py&&other.py+other.sy<=this.py+this.sy))) {
 		return hitbox.intersects(other.hitbox);
+	}
+	public boolean futureCollidesWith(Entity other, float xmod, float ymod) {
+		Rectangle2D.Float temp = (Float) other.hitbox.clone();
+		temp.setFrame(temp.getX() + xmod, temp.getY()+ymod, temp.getWidth(), temp.getHeight());
+		return temp.intersects(this.hitbox);
 	}
 	public void hitBy(Entity attacker, int damage) { }
 
