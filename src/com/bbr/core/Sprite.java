@@ -46,7 +46,6 @@ public class Sprite {
 	public Image getFrame() {
 		return getFrame(DEFAULT_FRAME);
 	}
-	
 	public Image getFrame(String animationName) {
 		restartOtherAnimations(animationName);
 		return animations.get(animationName).getCurrentFrame();

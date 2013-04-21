@@ -1,5 +1,7 @@
 package com.bbr.enemy;
 
+import org.newdawn.slick.Image;
+
 import com.bbr.core.Zone;
 import com.bbr.entity.Enemy;
 
@@ -8,11 +10,20 @@ public class Snake extends Enemy {
 
 	protected float startX;
 	protected int hitDelay;
+	
 	public Snake(Zone zone, float x, float y) {
 		super(zone, x, y);
-		vx = 1;
+		flipHorizontal = true;
+		vx = -1;
 		terrainCollidable = true;
 		startX = x;
+	}
+	
+	public Image getFrameToDraw() {
+		if (Math.abs(vx) > 0.01) {
+			return sprite.getFrame("move");
+		}
+		return super.getFrameToDraw();
 	}
 
 	public void preDt() {

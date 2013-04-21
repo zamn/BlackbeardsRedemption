@@ -10,6 +10,9 @@ Pirate
 res/blackbeard/standing.png
 move res/blackbeard/run1.png
 move res/blackbeard/run2.png
+move res/blackbeard/run3.png
+move res/blackbeard/run2.png
+move .33
 attack res/blackbeard/attack1.png
 attack res/blackbeard/attack2.png
 attack .33
@@ -57,7 +60,9 @@ GhostRock
 res/ghost-rock.png
 
 Snake
-res/snake.png
+res/enemies/snake/idle.png
+move res/enemies/snake/idle.png
+move res/enemies/snake/move.png
 
 Arboc
 res/Arboc.png
