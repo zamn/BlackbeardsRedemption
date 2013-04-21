@@ -2,6 +2,7 @@ package com.bbr.resource;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 
 import org.newdawn.slick.Image;
@@ -54,6 +55,8 @@ public final class Art {
 	}
 	protected static Image loadImage(String imagename) throws SlickException {
 		//System.out.println("loading "+ imagename);
+			System.out.println(imagename);
+
 		return new Image(imagename);
 	}
 

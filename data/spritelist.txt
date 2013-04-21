@@ -48,6 +48,9 @@ res/dirt-platform.png
 Platform
 res/dirt-platform.png
 
+Ground
+res/levels/level1/ground/botmid.png
+
 Spike
 res/spike.png
 
