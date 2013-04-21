@@ -7,11 +7,11 @@
 // Player
 
 Pirate
-res/red-pirate.png
-move res/red-pirate-move.png
-move res/red-pirate-move2.png
-attack res/red-pirate-attack.png
-attack res/red-pirate-attack2.png
+res/blackbeard/standing.png
+move res/blackbeard/run1.png
+move res/blackbeard/run2.png
+attack res/blackbeard/attack1.png
+attack res/blackbeard/attack2.png
 attack .33
 
 SwordAttack
