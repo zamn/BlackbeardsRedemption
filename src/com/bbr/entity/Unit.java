@@ -28,6 +28,12 @@ public abstract class Unit extends Entity {
 //		System.out.println(this + " was hit by: " + attacker + " for: " + damage);
 		if(damage > 0)
 			health -= damage;
+		//if the attacker is to the left, get knocked to the right
+		if (attacker.px < this.px)
+			this.px -= 30;
+		//if the attacker is on the right, get knocked left
+		else
+			this.px -= 30;
 	}
 	public void heal(int damageHealed){
 		if(damageHealed > 0)
