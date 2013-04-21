@@ -12,3 +12,6 @@ res/ui/heart.png
 
 BlackHeart
 res/ui/blackheart.png
+
+Level1Background
+res/levels/lvl1.png

@@ -14,7 +14,7 @@ import com.bbr.entity.terrain.FallingPlatform;
 public class EntityEvent {
 	public enum EntityType { FALLINGPLATFORM, PLATFORM, SPIKE, EXIT,
 		GHOSTPIRATE, SNAKE,
-		ARBOC, SENORRAT }
+		ARBOC, SENORRAT, BACKGROUND }
 	protected EntityType entityType;
 	protected int sx, sy;
 	protected int px, py;

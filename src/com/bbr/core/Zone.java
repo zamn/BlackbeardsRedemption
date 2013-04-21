@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
 import com.bbr.entity.Enemy;
 import com.bbr.entity.Entity;
@@ -25,7 +26,7 @@ public class Zone implements Drawable {
 	// Scrolling
 	protected Entity followed;
 	protected int xScroll = 0, yScroll = 0;
-
+	protected Image background;
 	public Zone(LevelHandler levelHandler) {
 		this.levelHandler = levelHandler;
 	}
@@ -123,6 +124,7 @@ public class Zone implements Drawable {
 
 	public void draw(Graphics g) {
 		updateScrolling();
+		background.draw(0, 0);
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).draw(g);
 		}
@@ -227,5 +229,8 @@ public class Zone implements Drawable {
 			}
 		}
 		return null;
+	}
+	public void setBackground(Image bg){
+		this.background = bg;
 	}
 }

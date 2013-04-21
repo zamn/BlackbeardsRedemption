@@ -5,7 +5,7 @@
 // spawn at x,y						- sets player spawn point
 // platform widthxheight at x,y		- creates platform
 // ghostpirate at x,y				- creates ghost pirate
-
+Background Level1Background
 spawn at 500,300
 platform 1000x1000 at 300,300
 ghostpirate at 300,300
