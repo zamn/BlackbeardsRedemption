@@ -29,9 +29,9 @@ public abstract class Player extends Unit {
 	protected int slowDuration = 0;
 	protected int snareDuration = 0;
 	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT,
-		ACT_FIRE, ACT_SPECIAL, TPHOME, NLEVEL};
+		ACT_FIRE, ACT_SPECIAL, TPHOME, NLEVEL, RESTART};
 	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT,
-		Input.KEY_X, Input.KEY_Z, Input.KEY_K, Input.KEY_N};
+		Input.KEY_X, Input.KEY_Z, Input.KEY_K, Input.KEY_N, Input.KEY_R};
 	// Controls
 	private ArrayList<Action> controlAction = new ArrayList<Action>();
 	private ArrayList<Integer> controlKey = new ArrayList<Integer>();
@@ -39,6 +39,9 @@ public abstract class Player extends Unit {
 	// Controls Modification
 	protected boolean preventMovement = false; // Prevents player from controlling movement
 	protected boolean preventFiring = false; // Prevents player from controlling firing
+	
+	protected Level deadLevel = null;
+	
 
 	public Player(Zone container, float xpos, float ypos) {
 		super(container, xpos, ypos);
@@ -84,6 +87,14 @@ public abstract class Player extends Unit {
 		case NLEVEL:
 			nextLevel();
 			break;
+		case RESTART:
+			System.out.println(health);
+			if (isDead()){
+				state.resetLevel();
+			}
+			
+			break;
+				
 		}
 	}
 	public void keyTyped(KeyEvent ke) { }
@@ -226,7 +237,10 @@ public abstract class Player extends Unit {
 	}
 	public void die(){
 		System.out.println("GAME OVER");
-		GameplayState.gameOver();
+		health = 0;
+		deadLevel = state.getCurLevel();
+		state.gameOver();
+		
 //		if(state != null)
 //			state.resetLevel();
 //		else
