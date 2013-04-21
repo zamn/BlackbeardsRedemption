@@ -8,6 +8,7 @@ import org.newdawn.slick.Input;
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
+import com.bbr.level.Level;
 import com.bbr.resource.Settings;
 import com.bbr.state.GameplayState;
 public abstract class Player extends Unit {
@@ -225,9 +226,10 @@ public abstract class Player extends Unit {
 	}
 	public void die(){
 		System.out.println("GAME OVER");
-		if(state != null)
-			state.resetLevel();
-		else
-			System.out.println("GameplayState not set in Player");
+		GameplayState.gameOver();
+//		if(state != null)
+//			state.resetLevel();
+//		else
+//			System.out.println("GameplayState not set in Player");
 	}
 }

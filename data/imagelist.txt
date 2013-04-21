@@ -15,3 +15,6 @@ res/ui/blackheart.png
 
 Level1Background
 res/levels/lvl1.png
+
+GameOverBackground
+res/levels/gameover.png

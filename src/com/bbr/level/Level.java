@@ -37,6 +37,7 @@ public class Level {
 		lfr.readFile();
 		levels.add(lfr.getLevel());
 		lfr.getLevel().setName(f.getName());
+		System.out.println(f.getName());
 		return lfr.getLevel();
 	}
 	
@@ -53,7 +54,7 @@ public class Level {
 	}
 	public static Level getNextLevel(Level curLevel) {
 		int index = levels.indexOf(curLevel);
-		if (index >= 0 && index < levels.size() - 1) {
+		if (index >= 0 && index < levels.size() - 1 && !levels.get(index+1).getName().equals("gameover.txt")) {
 			return levels.get(index + 1);
 		}
 		return null;
