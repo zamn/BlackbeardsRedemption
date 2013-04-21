@@ -25,10 +25,10 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 
 	protected boolean lost = false;
 
-	protected static Zone zone;
+	protected Zone zone;
 	protected Level curLevel;
 	protected Player p;
-	protected static HealthController health;
+	protected HealthController health;
 
 	protected Image backgroundTest;
 	protected long tickCount = 0; // used for animation
@@ -85,14 +85,21 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		zone.clear();
 		curLevel.loadInto(zone);
 		p=zone.getPlayer();
+		if (health == null)
+			health = new HealthController("Heart", "BlackHeart", p);
 		health.changeUnit(p);
 		p.setGameplayState(this);
 	}
 	
-	public static void gameOver() {
+	public void gameOver() {
 		health = null;
 		Level.gameOver().loadInto(zone);
 		zone.clear();
+		
+	}
+	
+	public Level getCurLevel(){
+		return curLevel;
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
