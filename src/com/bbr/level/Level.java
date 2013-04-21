@@ -12,6 +12,8 @@ import com.bbr.entity.player.Pirate;
 // TODO have level bounds?
 public class Level {
 	protected static List<Level> levels = new ArrayList<Level>();
+	protected String levelName;
+	
 	static {
 		LevelListReader llr = new LevelListReader(new File("data/levellist.txt"));
 		try {
@@ -27,11 +29,22 @@ public class Level {
 	protected Level() { }
 
 	public static Level loadLevel(String levelPath) throws FileNotFoundException {
-		LevelFileReader lfr = new LevelFileReader(new File(levelPath));
+		File f = new File(levelPath);
+		LevelFileReader lfr = new LevelFileReader(f);
 		lfr.readFile();
 		levels.add(lfr.getLevel());
+		lfr.getLevel().setName(f.getName());
 		return lfr.getLevel();
 	}
+	
+	public void setName(String name) {
+		levelName = name;
+	}
+	
+	public String getName() {
+		return levelName;
+	}
+	
 	public static Level getFirstLevel() {
 		return levels.get(0);
 	}
@@ -41,6 +54,14 @@ public class Level {
 			return levels.get(index + 1);
 		}
 		return null;
+	}
+	
+	public static Level gameOver() {
+		for (int i = 0; i < levels.size(); i++) {
+			if (levels.get(i).getName().equals("gameover.txt"))
+				return levels.get(i);
+		}
+		return null; // we have no game over screen :x
 	}
 
 	public void setSpawnPoint(int spawnX, int spawnY) {
