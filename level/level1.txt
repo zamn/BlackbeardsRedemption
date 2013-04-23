@@ -12,7 +12,13 @@ Background Level1Background
 
 
 //player
-spawn at 50,350
+spawn at 0,50
+
+// starting point - introduce falling platforms
+platform at 0,350
+platform at 50,350
+fallingplatform at 100,350
+fallingplatform at 150,350
 
 //platforms and shit
 platform 550x50 at 50,600
