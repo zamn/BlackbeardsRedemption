@@ -10,6 +10,7 @@ public class SwordAttack extends Projectile {
 		targetting = TargetType.ENEMY;
 		vx = owner.isFacingRight() ? 10 : -10;
 		vx += 1.2*owner.getXvel();
+		sy = owner.getYsize();
 
 		duration = Settings.valueInt("fps")/10;
 	}
