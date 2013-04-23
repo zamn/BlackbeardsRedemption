@@ -51,10 +51,10 @@ fallingplatform 50x50 at 2150,600
 fallingplatform 50x50 at 2200,600
 fallingplatform 50x50 at 2250,600
 platform 1000x50 at 2300,550
-platform 50x50 at 3500,550
+spike at 3700,570
 platform 1500x50 at 3300,600
-platform 50x50 at 4000,550
-platform 50x50 at 4850,550
+spike at 4000,570
+platform 50x50 at 4850,570
 platform 200x50 at 5000,450
 platform 500x50 at 5400,550
 platform 50x50 at 5950,500
@@ -65,8 +65,8 @@ platform 200x50 at 6850,550
 
 
 //enemies
-ghostpirate at 600,300
-//snake at 500,275
+//ghostpirate at 600,300
+snake at 500,275
 snake at 1500,200
 snake at 2700,250
 //senorrat at 500,275
