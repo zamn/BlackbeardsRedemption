@@ -6,9 +6,11 @@ public final class Utility {
 	public static void printWarning(Object warning) {
 		System.out.println("[WAR] " + warning);
 	}
+
 	public static void printError(Object error) {
 		System.err.println("[ERR] " + error);
 	}
+
 	/**
 	 * Removes comments and trims a <code>String</code>.<br>
 	 * Intended to be used on <code>String</code>s parsed from text data files.
@@ -19,6 +21,7 @@ public final class Utility {
 		}
 		return fileText;
 	}
+
 	public static int getInt(String number, int failVal) {
 		try {
 			return Integer.parseInt(number);
@@ -26,6 +29,7 @@ public final class Utility {
 			return failVal;
 		}
 	}
+
 	public static float getFloat(String number, float failVal) {
 		try {
 			return Float.parseFloat(number);

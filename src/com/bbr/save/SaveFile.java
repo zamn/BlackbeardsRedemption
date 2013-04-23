@@ -7,38 +7,74 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 public class SaveFile{
-	public static void save(String name, Object obj) throws Exception{
-		FileOutputStream fos = null;;
+	public static void save(String name, Object obj)
+		throws FileNotFoundException, IOException {
+		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
+		
+		if (name == null) {
+			throw new NullPointerException("Filename is null");
+		}
+
 		try {
-			fos = new FileOutputStream( new File(name+".sav"));
+			fos = new FileOutputStream(new File(name+".sav"));
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(obj);
 		} catch (FileNotFoundException e) {
-			throw new FileNotFoundException("Error saving "+name);
-		} catch (IOException e){
-			throw new IOException("Error saving "+name);
-		} finally{
-			oos.close();
-			fos.close();
+			throw new FileNotFoundException("Could not find file "+name+".sav");
+		} catch (IOException e) {
+			throw new IOException("Error saving to "+name+".sav");
+		} finally {
+			if (oos != null) {
+				try {
+					oos.close();
+				} catch (IOException e) {
+					throw new RuntimeException("This should never happen", e);
+				}
+			}
+			if(fos != null) {
+				try {
+					fos.close();
+				} catch(IOException e) {
+					throw new RuntimeException("This should never happen", e);
+				}
+			}
 		}
-			
 	}
-	public static Object load(String name) throws Exception{
+	
+	public static Object load(String name) 
+			throws FileNotFoundException, IOException, ClassNotFoundException {
 		FileInputStream fis = null;
-		ObjectInputStream iss = null;
+		ObjectInputStream ois = null;
 		Object obj;
-		try{
+		
+		if(name == null) {
+			throw new NullPointerException("Filename is null");
+		}
+		
+		try {
 			fis = new FileInputStream(new File(name+".sav"));
-			iss = new ObjectInputStream(fis);
-			obj=iss.readObject();
-		} catch (FileNotFoundException e){
-			throw new FileNotFoundException("\""+name+"\" not found");
-		} catch (IOException e){
-			throw new IOException("Error getting "+name+"object");
-		} finally{
-			fis.close();
-			iss.close();
+			ois = new ObjectInputStream(fis);
+			obj = ois.readObject();
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException("Could not find file"+name+".sav");
+		} catch (IOException e) {
+			throw new IOException("Error reading "+name+".sav");
+		} finally {
+			if (ois != null) {
+				try {
+					ois.close();
+				} catch (IOException e) {
+					throw new RuntimeException("This should never happen", e);
+				}
+			}
+			if(fis != null) {
+				try {
+					fis.close();
+				} catch(IOException e) {
+					throw new RuntimeException("This should never happen", e);
+				}
+			}
 		}	
 		return obj;
 	}
