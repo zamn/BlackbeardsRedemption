@@ -30,6 +30,10 @@ public class Pirate extends Player {
 		attackingFrames = Settings.valueInt("fps")/2;
 		Projectile fired = new SwordAttack(this, px + (flipHorizontal ? 0 : sx), py);
 		container.addEntity(fired);
+		fired = new SwordAttack(this, px + (flipHorizontal ? 0 : sx), py + sy /3);
+		container.addEntity(fired);
+		fired = new SwordAttack(this, px + (flipHorizontal ? 0 : sx), py + sy *2/3);
+		container.addEntity(fired);
 	}
 	public Image getFrameToDraw() {
 		if (attackingFrames > 0) {
