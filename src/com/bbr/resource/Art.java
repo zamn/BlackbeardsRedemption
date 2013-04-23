@@ -57,7 +57,7 @@ public final class Art {
 	
 	protected static Image loadImage(String imagename) throws SlickException {
 		//System.out.println("loading "+ imagename);
-		System.out.println(imagename);
+		//System.out.println(imagename);
 		
 		return new Image(imagename);
 	}

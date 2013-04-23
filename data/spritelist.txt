@@ -16,12 +16,10 @@ move .33
 attack res/blackbeard/attack1.png
 attack res/blackbeard/attack2.png
 attack .33
+jump res/blackbeard/jump2.png
 
 SwordAttack
 res/invismissile.png
-
-Explosion
-res/red-pirate.png
 
 Spit
 res/Spit.png
@@ -40,19 +38,20 @@ res/Laser.png
 
 // Terrain
 Exit
-res/Exit.png
+res/terrain/Exit.png
 
 FallingPlatform
-res/dirt-platform.png
+res/terrain/dirt-platform.png
+danger res/terrain/dirt-platform-red.png
 
 Platform
-res/dirt-platform.png
+res/terrain/dirt-platform.png
 
 Ground
 res/levels/level1/ground/botmid.png
 
 Spike
-res/spike.png
+res/terrain/spike.png
 
 // Enemies
 
@@ -63,9 +62,9 @@ GhostRock
 res/ghost-rock.png
 
 Snake
-res/enemies/snake/idle.png
-move res/enemies/snake/idle.png
-move res/enemies/snake/move.png
+res/enemy/snake/idle.png
+move res/enemy/snake/idle.png
+move res/enemy/snake/move.png
 
 Arboc
 res/Arboc.png

@@ -10,6 +10,7 @@ import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 import com.bbr.level.Level;
 import com.bbr.resource.Settings;
+import com.bbr.resource.Utility;
 import com.bbr.state.GameplayState;
 public abstract class Player extends Unit {
 	private GameplayState state;
@@ -88,7 +89,6 @@ public abstract class Player extends Unit {
 			nextLevel();
 			break;
 		case RESTART:
-			System.out.println(health);
 			if (isDead()){
 				state.resetLevel();
 			}
@@ -233,17 +233,12 @@ public abstract class Player extends Unit {
 		if(state != null)
 			state.nextLevel();
 		else
-			System.out.println("GameplayState not set in Player");
+			Utility.printError("GameplayState not set in Player");
 	}
 	public void die(){
 		System.out.println("GAME OVER");
 		health = 0;
 		deadLevel = state.getCurLevel();
 		state.gameOver();
-		
-//		if(state != null)
-//			state.resetLevel();
-//		else
-//			System.out.println("GameplayState not set in Player");
 	}
 }

@@ -37,7 +37,7 @@ public class Level {
 		lfr.readFile();
 		levels.add(lfr.getLevel());
 		lfr.getLevel().setName(f.getName());
-		System.out.println(f.getName());
+		//System.out.println(f.getName());
 		return lfr.getLevel();
 	}
 	

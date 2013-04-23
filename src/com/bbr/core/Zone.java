@@ -26,6 +26,7 @@ public class Zone implements Drawable {
 	// Scrolling
 	protected Entity followed;
 	protected int xScroll = 0, yScroll = 0;
+	protected int xScrollTarget = 0, yScrollTarget = 0; // further = faster scroll
 	protected Image background;
 	public Zone(LevelHandler levelHandler) {
 		this.levelHandler = levelHandler;
@@ -140,6 +141,11 @@ public class Zone implements Drawable {
 		}
 
 		updateEntities();
+		// scrolling velocity
+		float xScrollDelta = (xScrollTarget - xScroll) * .1f;
+		float yScrollDelta = (yScrollTarget - yScroll) * .1f;
+		xScroll += xScrollDelta;
+		yScroll += yScrollDelta;
 	}
 
 	private void updateEntities() {
@@ -162,8 +168,15 @@ public class Zone implements Drawable {
 	}
 	private void updateScrolling() {
 		if (followed != null) {
-			float xCenter = followed.getXpos() + followed.getXsize() / 2;
-			xScroll = (int)(xCenter - Settings.valueInt("windowWidth")/2);
+			float xPos = followed.getXpos();// + followed.getXsize() / 2;
+			if (!followed.isFacingRight()) {
+				xPos += followed.getXsize();
+			} else {
+				//xPos += followed.getXsize();
+//				System.out.println(followed.getXsize());
+//				System.out.println(xPos);
+			}
+			xScrollTarget = (int)(xPos - Settings.valueInt("windowWidth")/2);
 			//float yCenter = followed.getYpos() + followed.getYsize() / 2;
 			//yScroll = (int)(yCenter - Settings.valueInt("windowHeight")/2);
 		}

@@ -44,8 +44,11 @@ public abstract class Entity {
 	}
 	protected void autoResize() { // resize to match image size
 		if (sprite == null) return;
-		setXsize(sprite.getFrame().getWidth());
-		setYsize(sprite.getFrame().getHeight());
+		autoResize(sprite.getFrame());
+	}
+	protected void autoResize(Image frame) { // resize to match image size
+		setXsize(frame.getWidth());
+		setYsize(frame.getHeight());
 	}
 
 	protected Image getFrameToDraw() { // override to draw different frames
