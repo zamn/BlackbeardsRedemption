@@ -122,6 +122,7 @@ public class Zone implements Drawable {
 		return null;
 	}
 
+	@Override
 	public void draw(Graphics g) {
 		updateScrolling();
 		background.draw(0, 0);

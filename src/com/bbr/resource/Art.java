@@ -2,7 +2,6 @@ package com.bbr.resource;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.HashMap;
 
 import org.newdawn.slick.Image;
@@ -30,9 +29,11 @@ public final class Art {
 	//		}
 	//	}
 	public static void load() { // Not in a static block due to Slick 
-		if (loaded) {
-			Utility.printWarning("Loading art files after already art has already been loaded.");
+		if(loaded) {
+			Utility.printWarning(
+					"Loading art files after art has already been loaded.");
 		}
+		
 		loadImages();
 		loadSprites();
 		loaded = true;
@@ -53,10 +54,11 @@ public final class Art {
 			ex.printStackTrace();
 		}
 	}
+	
 	protected static Image loadImage(String imagename) throws SlickException {
 		//System.out.println("loading "+ imagename);
-			System.out.println(imagename);
-
+		System.out.println(imagename);
+		
 		return new Image(imagename);
 	}
 

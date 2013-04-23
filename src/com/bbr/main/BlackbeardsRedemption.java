@@ -10,27 +10,34 @@ import com.bbr.resource.Settings;
 import com.bbr.state.GameplayState;
 import com.bbr.state.MainMenuState;
 
-// Runner
 public class BlackbeardsRedemption extends StateBasedGame {
-	public static final int MAINMENUSTATE = 0;
-	public static final int GAMEPLAYSTATE = 1;
+	public enum States {MENU, GAME, SETTINGS, CREDITS};
 
 	public BlackbeardsRedemption() {
 		super("Blackbeards Redemption");
 	}
 
 	public static void main(String[] args) throws SlickException {
-		AppGameContainer app = new AppGameContainer(new BlackbeardsRedemption());
-		app.setDisplayMode(Settings.valueInt("windowWidth"), Settings.valueInt("windowHeight"), Settings.valueBoolean("fullScreen"));
+		AppGameContainer app = 
+				new AppGameContainer(new BlackbeardsRedemption());
+		app.setDisplayMode(Settings.valueInt("windowWidth"), 
+				Settings.valueInt("windowHeight"), 
+				Settings.valueBoolean("fullScreen"));
 		app.setTargetFrameRate(Settings.valueInt("fps"));
 		app.setShowFPS(false);
 		app.start();
 	}
-
-	public void initStatesList(GameContainer gameContainer) throws SlickException {
+	
+	@Override
+	public void initStatesList(GameContainer gameContainer) 
+			throws SlickException {
 		Art.load();
+		
+		/* Note: States MUST be added in the same order 
+		 * as they appear in the enum BlackbeardsRedemption.States 
+		 */
 		this.addState(new MainMenuState());
 		this.addState(new GameplayState());
-		this.enterState(GAMEPLAYSTATE); // skip main menu for now
+		this.enterState(States.MENU.ordinal());
 	}
 }

@@ -1,11 +1,10 @@
-
 // Gui
 
 TitleImage
 res/blackbeard/standing.png
 
 StartButton
-res/blackbeard/standing.png
+res/ui/start.png
 
 Heart
 res/ui/heart.png

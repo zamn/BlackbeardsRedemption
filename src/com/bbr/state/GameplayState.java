@@ -34,7 +34,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	protected long tickCount = 0; // used for animation
 
 	public GameplayState() throws SlickException {
-		super(BlackbeardsRedemption.GAMEPLAYSTATE);
+		super(BlackbeardsRedemption.States.GAME.ordinal());
 		Animation.setFrameHandler(this);
 	}
 
