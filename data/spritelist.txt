@@ -45,6 +45,7 @@ res/Exit.png
 
 FallingPlatform
 res/dirt-platform.png
+danger res/dirt-platform-red.png
 
 Platform
 res/dirt-platform.png

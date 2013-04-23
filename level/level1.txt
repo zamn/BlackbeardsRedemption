@@ -22,7 +22,7 @@ fallingplatform at 150,350
 
 //platforms and shit
 platform 550x50 at 50,600
-fallingplatform 50x50 at 600,601
+fallingplatform 50x50 at 600,600
 fallingplatform 50x50 at 650,600
 fallingplatform 50x50 at 700,600
 fallingplatform 50x50 at 750,600
