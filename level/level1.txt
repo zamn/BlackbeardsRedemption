@@ -12,10 +12,10 @@ Background Level1Background
 
 
 //player
-spawn at 300,350
+spawn at 50,350
 
 //platforms and shit
-platform 300x50 at 300,600
+platform 550x50 at 50,600
 fallingplatform 50x50 at 600,601
 fallingplatform 50x50 at 650,600
 fallingplatform 50x50 at 700,600
@@ -66,7 +66,7 @@ platform 200x50 at 6850,550
 
 //enemies
 //ghostpirate at 600,300
-snake at 500,275
+snake at 550,300
 snake at 1500,200
 snake at 2700,250
 //senorrat at 500,275

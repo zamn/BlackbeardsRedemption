@@ -16,6 +16,7 @@ move .33
 attack res/blackbeard/attack1.png
 attack res/blackbeard/attack2.png
 attack .33
+jump res/blackbeard/jump2.png
 
 SwordAttack
 res/invismissile.png

@@ -27,7 +27,7 @@ public class Pirate extends Player {
 	}
 
 	protected void fireProjectile() { // sword slash!
-		attackingFrames = Settings.valueInt("fps")/2 * 1;
+		attackingFrames = Settings.valueInt("fps")/2;
 		Projectile fired = new SwordAttack(this, px + (flipHorizontal ? 0 : sx), py);
 		container.addEntity(fired);
 	}
@@ -41,6 +41,8 @@ public class Pirate extends Player {
 				setXpos(oldXpos - sx);
 			}
 			return sprite.getFrame("attack");
+		} else if (vy < 0) {
+			return sprite.getFrame("jump");
 		} else if (Math.abs(vx) > 0.01) {
 			return sprite.getFrame("move");
 		}
@@ -68,25 +70,6 @@ public class Pirate extends Player {
 			}
 		}
 		super.preDt();
-	}
-	protected void postDt() {
-//		if (attackingFrames > 0) { // change hitbox for attack to look better
-////			float oldX, oldY = py + sy;
-////			if (flipHorizontal) { // facing left, track bottom right corner
-////				oldX = px + sx;
-////			} else { // facing right, track bottom left corner
-////				oldX = px;
-////			}
-////			setXpos(oldX - sx);
-////			setYpos(oldY);
-//			float oldHeight = sy;
-//			autoResize(sprite.getFrame("attack"));
-//			setYpos(py - sy + oldHeight);
-//		} else if (attackingFrames == 0) {
-//			float oldHeight = sy;
-//			autoResize(sprite.getFrame());
-//			setYpos(py - sy + oldHeight);
-//		}
 	}
 
 	protected void moved() {
