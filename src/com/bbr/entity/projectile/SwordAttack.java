@@ -8,7 +8,7 @@ public class SwordAttack extends Projectile {
 		super(owner, xpos, ypos);
 		damage = 25;
 		targetting = TargetType.ENEMY;
-		vx = owner.isFacingRight() ? 15 : -15;
+		vx = owner.isFacingRight() ? 5 : -5;
 		vx += 1.2*owner.getXvel();
 
 		duration = Settings.valueInt("fps")/5;

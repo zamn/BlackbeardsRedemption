@@ -19,30 +19,29 @@ public abstract class Player extends Unit {
 	protected int fireDelay = 10;
 	protected int fireCooldown = 0;
 	// Special Ability
-	protected int specialDelay = 120;
-	protected int specialCooldown = 0;
+//	protected int specialDelay = 120;
+//	protected int specialCooldown = 0;
 	// Movement
 	protected float moveSpeed = 5;
 	protected float jumpSpeed = 15;
-	protected double hasteFactor = 0;
-	protected int hasteDuration = 0;
-	protected double slowFactor = 0;
-	protected int slowDuration = 0;
-	protected int snareDuration = 0;
-	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT,
-		ACT_FIRE, ACT_SPECIAL, TPHOME, NLEVEL, RESTART};
+//	protected double hasteFactor = 0;
+//	protected int hasteDuration = 0;
+//	protected double slowFactor = 0;
+//	protected int slowDuration = 0;
+//	protected int snareDuration = 0;
+	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, TPHOME, NLEVEL, RESTART};
 	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT,
-		Input.KEY_X, Input.KEY_Z, Input.KEY_K, Input.KEY_N, Input.KEY_R};
+		Input.KEY_X, Input.KEY_K, Input.KEY_N, Input.KEY_R};
 	// Controls
 	private ArrayList<Action> controlAction = new ArrayList<Action>();
 	private ArrayList<Integer> controlKey = new ArrayList<Integer>();
 	private ArrayList<Boolean> controlHeld = new ArrayList<Boolean>();
 	// Controls Modification
-	protected boolean preventMovement = false; // Prevents player from controlling movement
+	//	protected boolean preventMovement = false; // Prevents player from controlling movement
 	protected boolean preventFiring = false; // Prevents player from controlling firing
-	
+
 	protected Level deadLevel = null;
-	
+
 
 	public Player(Zone container, float xpos, float ypos) {
 		super(container, xpos, ypos);
@@ -80,8 +79,8 @@ public abstract class Player extends Unit {
 			break;
 		case ACT_FIRE:
 			break;
-		case ACT_SPECIAL:
-			break;
+			//		case ACT_SPECIAL:
+			//			break;
 		case TPHOME:
 			die();
 			break;
@@ -92,9 +91,9 @@ public abstract class Player extends Unit {
 			if (isDead()){
 				state.resetLevel();
 			}
-			
+
 			break;
-				
+
 		}
 	}
 	public void keyTyped(KeyEvent ke) { }
@@ -131,29 +130,29 @@ public abstract class Player extends Unit {
 			}
 			if (fireCooldown > 0) fireCooldown--;
 		}
-		if (keyHeld(Action.ACT_SPECIAL)) {
-			if (specialCooldown <= 0) {
-				specialCooldown = specialDelay;
-				useSpecial();
-			}
-		}
-		if (specialCooldown > 0) specialCooldown--;
+		//		if (keyHeld(Action.ACT_SPECIAL)) {
+		//			if (specialCooldown <= 0) {
+		//				specialCooldown = specialDelay;
+		//				useSpecial();
+		//			}
+		//		}
+		//		if (specialCooldown > 0) specialCooldown--;
 
 		if (keyHeld(Action.MOVE_UP) && onPlatform) {
 			vy = -jumpSpeed; this.moved();
 		}
-		if (!preventMovement) {
-//			else if (keyHeld(Action.MOVE_DOWN)) {
-//				vy = moveSpeed; this.moved();
-//			}
-			if (keyHeld(Action.MOVE_LEFT)) {
-				vx = -moveSpeed; this.moved();
-			} else if (keyHeld(Action.MOVE_RIGHT)) {
-				vx = moveSpeed; this.moved();
-			}
-
-//			applyMovementModifiers();
+		//		if (!preventMovement) {
+		//			else if (keyHeld(Action.MOVE_DOWN)) {
+		//				vy = moveSpeed; this.moved();
+		//			}
+		if (keyHeld(Action.MOVE_LEFT)) {
+			vx = -moveSpeed; this.moved();
+		} else if (keyHeld(Action.MOVE_RIGHT)) {
+			vx = moveSpeed; this.moved();
 		}
+
+		//			applyMovementModifiers();
+		//		}
 	}
 	protected void postDt() {
 		// prevent moving out of bounds
@@ -162,45 +161,45 @@ public abstract class Player extends Unit {
 		if (py < 0)
 			py = 0;
 		// haste/slow/snare decay
-		if(hasteDuration > 0)
-			hasteDuration--;
-		if(slowDuration > 0)
-			slowDuration--;
-		if(snareDuration > 0)
-			snareDuration--;
+//		if(hasteDuration > 0)
+//			hasteDuration--;
+//		if(slowDuration > 0)
+//			slowDuration--;
+//		if(snareDuration > 0)
+//			snareDuration--;
 		//detect if too low
 		if(py >= Settings.valueInt("windowHeight")){
 			die();
 		}
 	}
 	// apply Haste/Slow/Snare should be applied in that order whenever player tries to move
-	protected void applyMovementModifiers() {
-		applyHaste();
-		applySlow();
-		applySnare();
-	}
-	protected void applyHaste() {
-		if (hasteDuration > 0) {
-			vx *= hasteFactor;
-			vy *= hasteFactor;
-		}
-	}
-	protected void applySlow() {
-		if (slowDuration > 0) {
-			vx /= slowFactor;
-			vy /= slowFactor;
-		}
-	}
-	protected void applySnare() {
-		if (snareDuration > 0) { // immobilize player if snared
-			vx = 0;
-			vy = 0;
-		}
-	}
+//	protected void applyMovementModifiers() {
+//		applyHaste();
+//		applySlow();
+//		applySnare();
+//	}
+//	protected void applyHaste() {
+//		if (hasteDuration > 0) {
+//			vx *= hasteFactor;
+//			vy *= hasteFactor;
+//		}
+//	}
+//	protected void applySlow() {
+//		if (slowDuration > 0) {
+//			vx /= slowFactor;
+//			vy /= slowFactor;
+//		}
+//	}
+//	protected void applySnare() {
+//		if (snareDuration > 0) { // immobilize player if snared
+//			vx = 0;
+//			vy = 0;
+//		}
+//	}
 	// Player actions
 	protected void moved() { } // Called whenever player tries to move
 	protected abstract void fireProjectile();
-	protected abstract void useSpecial();
+	//	protected abstract void useSpecial();
 	///////////////////////////////////////
 	//               Score               //
 	///////////////////////////////////////
@@ -210,21 +209,21 @@ public abstract class Player extends Unit {
 	///////////////////////////////////////
 	//               Speed               //
 	///////////////////////////////////////
-	public void speedUp(double factor, int tickDuration) {
+//	public void speedUp(double factor, int tickDuration) {
 		// TODO allow stacking instead of overwrite
-		if (factor == 0) tickDuration = 0; // avoid div by 0
-		hasteFactor = factor;
-		hasteDuration = tickDuration;
-	}
-	public void slowDown(double factor, int tickDuration) {
+//		if (factor == 0) tickDuration = 0; // avoid div by 0
+//		hasteFactor = factor;
+//		hasteDuration = tickDuration;
+//	}
+//	public void slowDown(double factor, int tickDuration) {
 		// TODO allow stacking instead of overwrite
-		if (factor == 0) tickDuration = 0; // avoid div by 0
-		slowFactor = factor;
-		slowDuration = tickDuration;
-	}
-	public void snare(int tickDuration) { // non-stacking
-		snareDuration = Math.max(snareDuration, tickDuration);
-	}
+//		if (factor == 0) tickDuration = 0; // avoid div by 0
+//		slowFactor = factor;
+//		slowDuration = tickDuration;
+//	}
+//	public void snare(int tickDuration) { // non-stacking
+//		snareDuration = Math.max(snareDuration, tickDuration);
+//	}
 	// game container specific
 	public void setGameplayState(GameplayState state){
 		this.state = state;
