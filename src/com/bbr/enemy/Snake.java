@@ -6,6 +6,7 @@ import com.bbr.core.Zone;
 import com.bbr.entity.Enemy;
 
 public class Snake extends Enemy {
+	@Override
 	public int getBaseHealth() { return 200; }
 
 	protected float startX;
@@ -19,6 +20,7 @@ public class Snake extends Enemy {
 		startX = x;
 	}
 	
+	@Override
 	public Image getFrameToDraw() {
 		if (Math.abs(vx) > 0.01) {
 			return sprite.getFrame("move");
@@ -26,6 +28,7 @@ public class Snake extends Enemy {
 		return super.getFrameToDraw();
 	}
 
+	@Override
 	public void preDt() {
 		if(Math.abs(px - startX) > 300){
 			vx = -vx;

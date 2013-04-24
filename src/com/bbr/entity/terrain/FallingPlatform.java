@@ -13,6 +13,7 @@ public class FallingPlatform extends Platform {
 		super(container, xpos, ypos);
 	}
 
+	@Override
 	public Image getFrameToDraw() {
 		if (falling) {
 			return sprite.getFrame("danger");
@@ -20,6 +21,7 @@ public class FallingPlatform extends Platform {
 		return super.getFrameToDraw();
 	}
 	
+	@Override
 	public void preDt() {
 		super.preDt();
 		Player p = container.getPlayer();

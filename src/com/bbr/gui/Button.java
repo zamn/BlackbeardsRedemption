@@ -11,8 +11,8 @@ public class Button implements Drawable {
 	protected int sizeX,sizeY;
 
 	public Button(Image image, int x, int y) {
-		this.posX = x;
-		this.posY = y;
+		posX = x;
+		posY = y;
 		setImage(image);
 	}
 

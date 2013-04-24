@@ -31,6 +31,7 @@ public abstract class Projectile extends Entity {
 		return (attributes & attributeFlag) != 0;
 	}
 
+	@Override
 	public void dt() {
 		if (duration == 0) {
 			container.removeEntity(this);

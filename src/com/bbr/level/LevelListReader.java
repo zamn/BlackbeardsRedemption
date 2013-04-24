@@ -12,6 +12,7 @@ public class LevelListReader extends SequentialFileReader {
 		ignoreBlankLines = true;
 	}
 
+	@Override
 	protected void processLine(String curLine, int lineNumber) {
 		try {
 			Level.loadLevel(curLine);

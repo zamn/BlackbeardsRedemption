@@ -12,6 +12,7 @@ public abstract class Unit extends Entity {
 	}
 	public abstract int getBaseHealth();
 
+	@Override
 	public void dt() {
 		if (isDead()) {
 			die();
@@ -24,6 +25,7 @@ public abstract class Unit extends Entity {
 		container.removeEntity(this);
 	}
 
+	@Override
 	public void hitBy(Entity attacker, int damage) {
 		//System.out.println(this + " was hit by: " + attacker + " for: " + damage);
 		if(damage > 0)

@@ -38,6 +38,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		Animation.setFrameHandler(this);
 	}
 
+	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		//backgroundTest = new Image("res/levels/lvl1.png");
 		//gc.getGraphics().setBackground(new Color(128,128,128));
@@ -70,6 +71,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		
 	}
 
+	@Override
 	public void nextLevel() {
 		Level nextLevel = Level.getNextLevel(curLevel);
 		if (nextLevel != null) {
@@ -102,6 +104,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		return curLevel;
 	}
 	
+	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		//backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
 		//backgroundTest.draw();
@@ -112,17 +115,21 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		
 
 	}
+	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		zone.dt();
 		tickCount++;
 	}
+	@Override
 	public long getTickCount() {
 		return tickCount;
 	}
 
+	@Override
 	public void keyPressed(int key, char c) {
 		p.keyPressed(key);
 	}
+	@Override
 	public void keyReleased(int key, char c) {
 		p.keyReleased(key);
 	}

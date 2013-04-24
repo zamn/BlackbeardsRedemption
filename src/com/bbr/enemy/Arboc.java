@@ -8,6 +8,7 @@ import com.bbr.entity.projectile.SwordAttack;
 import com.bbr.entity.projectile.Projectile;
 
 public class Arboc extends Enemy {
+	@Override
 	public int getBaseHealth() { return 2000; }
 
 	protected int level;
@@ -25,6 +26,7 @@ public class Arboc extends Enemy {
 		startX = x;
 	}
 	
+	@Override
 	public void preDt(){
 		counter ++;
 		if(Math.abs(startX-px) > 200)

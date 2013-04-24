@@ -169,6 +169,7 @@ public abstract class Entity {
 	public void setTerrainCollidable(boolean collidability) { terrainCollidable = collidability; }
 	public void setOnPlatform(boolean newState) { onPlatform = newState; }
 
+	@Override
 	public String toString() {
 		return this.getClass().getSimpleName();
 	}

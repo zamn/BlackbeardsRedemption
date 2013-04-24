@@ -115,10 +115,12 @@ public abstract class Player extends Unit {
 		return null;
 	}
 
+	@Override
 	public void hitBy(Entity attacker, int damage) {
 		super.hitBy(attacker, damage);
 	}
 
+	@Override
 	protected void preDt() { // handle shooting and movement
 		super.preDt();
 		if (!preventFiring) { // also stops firing cooldown
@@ -154,6 +156,7 @@ public abstract class Player extends Unit {
 		//			applyMovementModifiers();
 		//		}
 	}
+	@Override
 	protected void postDt() {
 		// prevent moving out of bounds
 		if (px < 0)
@@ -234,6 +237,7 @@ public abstract class Player extends Unit {
 		else
 			Utility.printError("GameplayState not set in Player");
 	}
+	@Override
 	public void die(){
 		System.out.println("GAME OVER");
 		health = 0;

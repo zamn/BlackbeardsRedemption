@@ -18,6 +18,7 @@ public class ImagesFileReader extends SequentialFileReader {
 		ignoreBlankLines = true;
 	}
 
+	@Override
 	protected void processLine(String curLine, int lineNumber) {
 		Matcher imageNameMatcher = REGEX_IMAGE_NAME.matcher(curLine);
 		Matcher imageFileMatcher = REGEX_IMAGE_FILE.matcher(curLine);

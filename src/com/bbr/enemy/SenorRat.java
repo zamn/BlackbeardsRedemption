@@ -8,6 +8,7 @@ import com.bbr.entity.projectile.SwordAttack;
 import com.bbr.entity.projectile.Projectile;
 
 public class SenorRat extends Enemy {
+	@Override
 	public int getBaseHealth() { return 2000; }
 	
 	protected Random rand;
@@ -23,6 +24,7 @@ public class SenorRat extends Enemy {
 		counter = 0;
 	}
 	
+	@Override
 	public void preDt(){
 		counter ++;
 		if(Math.abs(startX-px) > 400)

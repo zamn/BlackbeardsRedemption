@@ -14,6 +14,7 @@ public class Exit extends Entity{
 		tiledHorizontally = false;
 	}
 	
+	@Override
 	public void preDt(){
 		List<Entity> entities = container.getTerrainCollided(this);
 		for(Entity e : entities){

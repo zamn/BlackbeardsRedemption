@@ -14,6 +14,7 @@ public class Spike extends Entity{
 	
 	
 	//basically whenever the player collides with these he dies
+	@Override
 	public void preDt() {
 		if (container.getPlayer().collidesWith(this)) 
 			container.getPlayer().hitBy(this, 100);
