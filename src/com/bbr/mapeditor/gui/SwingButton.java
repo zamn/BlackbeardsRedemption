@@ -59,7 +59,7 @@ public class SwingButton {
 			//Make new deep copy of error
 			img = new BufferedImage(error.getColorModel(),
 					error.copyData(null), error.isAlphaPremultiplied(), null);
-			Utility.printError("Failed to load image at + " + path);
+			Utility.printError("Failed to load image at " + path);
 		}
 	}
 

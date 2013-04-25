@@ -16,12 +16,12 @@ public class Toolbar extends JPanel implements MouseListener {
 	public enum Tools { SPAWN, SPIKE, PLATFORM, FALL_PLATFORM, EXIT };
 	private String[] imagePaths = {
 			"res/ui/spawn.png", "res/ui/spike.png", 
-			"res/terrain/dirt-platform.png", 
+			"res/levels/level1/platform/platform.png", 
 			"res/terrain/dirt-platform-red.png", "res/ui/exit.png" 
 	};
 
 	private SwingMenu toolbar;
-	private Tools currentTool;
+	private Tools currentTool = Tools.SPAWN;
 
 	public Toolbar() {
 		super();
@@ -48,9 +48,9 @@ public class Toolbar extends JPanel implements MouseListener {
 	public Tools getCurrentTool() {
 		return currentTool;
 	}
-	
+
 	@Override
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {	
 		SwingButton clicked = toolbar.buttonClicked(e.getX(), e.getY());
 		if(clicked == null) {
 			return;
@@ -58,12 +58,12 @@ public class Toolbar extends JPanel implements MouseListener {
 
 		int id = clicked.getID();
 		currentTool = Tools.values()[id];
+		getParent().repaint(); //Affects MapEditor.java
 	}
-
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
-
 	@Override
 	public void mouseEntered(MouseEvent e) {		
 	}
