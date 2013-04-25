@@ -168,15 +168,18 @@ public class Zone implements Drawable {
 	}
 	private void updateScrolling() {
 		if (followed != null) {
-			float xPos = followed.getXpos();// + followed.getXsize() / 2;
-			if (!followed.isFacingRight()) {
-				xPos += followed.getXsize();
-			} else {
+			float xCenter = followed.getXpos() + followed.getXsize() / 2;
+			xScroll = (int)(xCenter - Settings.valueInt("windowWidth")/2);
+			// We need to talk about this change below......
+//			float xPos = followed.getXpos();// + followed.getXsize() / 2;
+//			if (!followed.isFacingRight()) {
+//				xPos += followed.getXsize();
+//			} else {
 				//xPos += followed.getXsize();
 //				System.out.println(followed.getXsize());
 //				System.out.println(xPos);
-			}
-			xScrollTarget = (int)(xPos - Settings.valueInt("windowWidth")/2);
+//			}
+//			xScrollTarget = (int)(xPos - Settings.valueInt("windowWidth")/2);
 			//float yCenter = followed.getYpos() + followed.getYsize() / 2;
 			//yScroll = (int)(yCenter - Settings.valueInt("windowHeight")/2);
 		}

@@ -7,9 +7,10 @@
 // ghostpirate at x,y				- creates ghost pirate
 Background Level1Background
 spawn at 500,300
-ground at 500,200
-ground at 500,201
-ground at 500,202
-ground at 500,100
-ground at 500,150
+ground 10x10 at 500,300
+ground 10x10 at 500,201
+ground 10x10 at 500,202
+ground 10x10 at 500,100
+ground 10x10 at 500,150
 spike at 350,250
+ground 100x100 at 345,230
