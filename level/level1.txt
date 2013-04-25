@@ -46,7 +46,11 @@ fallingplatform 50x50 at 2150,600
 fallingplatform 50x50 at 2200,600
 fallingplatform 50x50 at 2250,600
 platform 1000x50 at 2300,550
-platform 50x50 at 3500,550
+breakableplatform 50x50 at 3500,550
+breakableplatform 50x50 at 3500,500
+breakableplatform 50x50 at 3500,450
+breakableplatform 50x50 at 3500,400
+breakableplatform 50x50 at 3500,350
 platform 1500x50 at 3300,600
 platform 50x50 at 4000,550
 platform 50x50 at 4850,550
