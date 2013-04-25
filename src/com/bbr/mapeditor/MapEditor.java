@@ -4,18 +4,27 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 
@@ -23,11 +32,12 @@ import com.bbr.mapeditor.Toolbar.Tools;
 import com.bbr.resource.Utility;
 
 public class MapEditor extends JPanel
-		implements MouseInputListener, KeyListener {
+		implements MouseInputListener, KeyListener, ActionListener {
 	private static final long serialVersionUID = 1L; //Don't care about this
 
 	private static final String TITLE = "Blackbeard's Redemption Map Editor";
-
+	private static final String NEWLINE = System.getProperty("line.separator");
+	
 	private static final int WIDTH = 1024;
 	private static final int HEIGHT = 768;
 	private static final int BUTTON_WIDTH = 50;
@@ -37,6 +47,9 @@ public class MapEditor extends JPanel
 			BUTTON_WIDTH, HEIGHT);
 	private static Rectangle editorBounds = new Rectangle(50, 0, 
 			WIDTH - BUTTON_WIDTH, HEIGHT);
+	private static Rectangle textBounds = new Rectangle(800, 0, 100, 50);
+	private static Rectangle saveBounds = new Rectangle(800, 600, 100, 50);
+	private static Rectangle bgBounds = new Rectangle(695, 600, 105, 50);
 
 	private ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
 	private HashMap<Point, BufferedImage> levelPreview = 
@@ -46,8 +59,11 @@ public class MapEditor extends JPanel
 	Tools currentTool = Tools.SPAWN;
 
 	private JLabel text;
+	private JButton save;
+	private JButton bg;
+	private BufferedImage background;
 	private String level = "";
-	private int mouseX = Integer.MIN_VALUE, mouseY = Integer.MAX_VALUE;
+	private int mouseX = Integer.MIN_VALUE, mouseY = Integer.MIN_VALUE;
 	private int offset = 0;
 
 	public static void main(String argv[]) {
@@ -84,8 +100,22 @@ public class MapEditor extends JPanel
 
 		//Setup text output
 		text = new JLabel();
-		text.setBounds(800, 0, 100, 50);
+		text.setBounds(textBounds);
 		add(text);
+		
+		//Setup save button
+		save = new JButton("Save Level");
+		save.setBounds(saveBounds);
+		save.setToolTipText("Click to save this level");
+		save.addActionListener(this);
+		add(save);
+		
+		//Setup background button
+		bg = new JButton("Background");
+		bg.setBounds(bgBounds);
+		bg.setToolTipText("Click to change background");
+		bg.addActionListener(this);
+		add(bg);
 
 		//Setup images
 		//@TODO Temporarily hardcoded until there's time to fix it
@@ -105,11 +135,15 @@ public class MapEditor extends JPanel
 	@Override
 	public void paintComponent(Graphics g) {
 		g.clearRect(0, 0, getBounds().width, getBounds().height);
-
+		
+		if(background != null) {
+			g.drawImage(background, 0, 0, null);
+		}
+		
 		for(Point p : levelPreview.keySet()) {
 			if(isInView(p)) {
 				g.drawImage(levelPreview.get(p), 
-						p.x - offset, p.y + HEIGHT, null);
+						p.x - offset, p.y, null);
 			}
 		}
 
@@ -118,11 +152,11 @@ public class MapEditor extends JPanel
 	}
 	
 	private boolean isInView(Point p) {
-		if(p.x < offset || p.y > 0) {
+		if(p.x < offset || p.y < 0) {
 			return false;
 		}
 		
-		if(p.x > offset + WIDTH || p.y < 0 - HEIGHT) {
+		if(p.x > offset + WIDTH || p.y > HEIGHT) {
 			return false;
 		}
 		
@@ -132,8 +166,12 @@ public class MapEditor extends JPanel
 	private void updateMouse(MouseEvent e) {
 		mouseX = e.getX();
 		mouseY = e.getY();
-		text.setText("x: " + (mouseX + offset) + " y: " + (mouseY - HEIGHT));
+		updateText();
 		repaint();
+	}
+	
+	private void updateText() {
+		text.setText("x: " + (mouseX + offset) + " y: " + mouseY);
 	}
 
 	@Override
@@ -149,8 +187,7 @@ public class MapEditor extends JPanel
 	@Override
 	public void mousePressed(MouseEvent e) {
 		int gameX = e.getX() + offset;
-		int gameY = e.getY() - HEIGHT;
-		
+		int gameY = e.getY();
 		requestFocusInWindow();
 		
 		levelPreview.put(new Point(gameX, gameY), 
@@ -158,19 +195,19 @@ public class MapEditor extends JPanel
 
 		switch(currentTool) {
 		case SPAWN:
-			level += "spawn at " + gameX + "," + gameY + "\n";
+			level += "spawn at " + gameX + "," + gameY + NEWLINE;
 			break;
 		case SPIKE:
-			level += "spike at " + gameX + "," + (gameY - HEIGHT) + "\n";
+			level += "spike at " + gameX + "," + gameY + NEWLINE;
 			break;
 		case PLATFORM:
-			level += "platform at " + gameX + "," + gameY + "\n";
+			level += "platform at " + gameX + "," + gameY + NEWLINE;
 			break;
 		case FALL_PLATFORM:
-			level += "fallingplatform at " + gameX + "," + gameY + "\n";
+			level += "fallingplatform at " + gameX + "," + gameY + NEWLINE;
 			break;
 		case EXIT:
-			level += "exit at " + gameX + "," + gameY + "\n";
+			level += "exit at " + gameX + "," + gameY + NEWLINE;
 			break;
 		default:
 			throw new RuntimeException("Switch in " +
@@ -192,8 +229,62 @@ public class MapEditor extends JPanel
 			offset += OFFSET_INCREMENT;
 		}
 		
-		text.setText("x: " + (mouseX + offset) + " y: " + (mouseY - HEIGHT));
+		updateText();
 		repaint();
+	}
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == save) {
+			JFileChooser fc = new JFileChooser();
+			PrintWriter fout;
+			
+			int choice = fc.showSaveDialog(this);
+			if(choice == JFileChooser.APPROVE_OPTION) {
+				try {
+					fout = new PrintWriter(fc.getSelectedFile());
+				} catch (FileNotFoundException e1) {
+					throw new RuntimeException("Cannot find selected file", e1);
+				}
+			
+				if(fout != null) {
+					fout.print(level);
+					fout.close();
+				}
+			}
+		}
+		if(e.getSource() == bg) {
+			String input = JOptionPane.showInputDialog("Background name");
+			String line;
+			BufferedReader fin;
+			
+			try {
+				fin = new BufferedReader(
+						new FileReader("data/imagelist.txt"));
+			} catch (FileNotFoundException e1) {
+				throw new RuntimeException("Wrong path to imagelist", e1);
+			}
+			
+			if(fin != null) {
+				try {
+					while((line = fin.readLine()) != null) {
+						if(line.equals(input)) {
+							line = fin.readLine();
+							background = ImageIO.read(new File(line));
+							level += "Background " + input + NEWLINE;
+							fin.close();
+							return;
+						}
+					}
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}
+			}
+			
+			JOptionPane.showMessageDialog(this, 
+					"Could not find requested background image");
+		}
 	}
 
 	@Override
