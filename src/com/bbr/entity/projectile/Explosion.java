@@ -19,15 +19,18 @@ public class Explosion extends Projectile {
 		sx = maxSize;
 		sy = maxSize;
 	}
+	@Override
 	protected void preDt() { // shrink to nothing in 1 second
 		resizeInPlace(sx - (maxSize/Settings.valueInt("fps")));
 		if (sx < 0 || sy < 0) { sx = 0; sy = 0; }
 	}
+	@Override
 	protected void postDt() { // remove explosion if decayed
 		if (sx <= 0 || sy <= 0) {
 			container.removeEntity(this);
 		}
 	}
+	@Override
 	protected void hit(Entity collided) {
 		adjustDamage(collided); // first adjust damage
 		super.hit(collided); // then no need to reimplement hit code

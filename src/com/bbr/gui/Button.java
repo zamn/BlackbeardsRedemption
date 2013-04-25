@@ -5,37 +5,39 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
 
 public class Button implements Drawable {
-	protected Rectangle buttonShape;
+	protected Rectangle bounds;
 	protected Image image;
 	protected int posX,posY;
 	protected int sizeX,sizeY;
 
 	public Button(Image image, int x, int y) {
-		buttonShape = new Rectangle(x, y, image.getWidth(), image.getHeight());
-		this.posX = x;
-		this.posY = y;
+		posX = x;
+		posY = y;
 		setImage(image);
-		autoResize();
 	}
 
 	public void setImage(Image image) {
 		this.image = image;
-		autoResize();
-	}
-	public void autoResize() {
-		if (image != null) changeSize(image.getWidth(), image.getHeight());
-	}
-	public void changeSize(int newWidth, int newHeight) {
-		sizeX = newWidth;
-		sizeY = newHeight;
-		buttonShape.setBounds(posX, posY, newWidth, newHeight);
+
+		if(image != null) {
+			sizeX = image.getWidth();
+			sizeY = image.getHeight();
+		}
 	}
 
+	@Override
 	public void draw(Graphics g) {
-		image.draw(posX, posY, sizeX, sizeY);
+		if(image != null) {
+			image.draw(posX, posY, sizeX, sizeY);
+			bounds = new Rectangle(posX, posY, sizeX, sizeY);
+		}
 	}
 
 	public boolean checkClick(int mouseX, int mouseY) {
-		return buttonShape.contains(mouseX, mouseY);
+		if(bounds == null) {
+			return false;
+		}
+
+		return bounds.contains(mouseX, mouseY);
 	}
 }

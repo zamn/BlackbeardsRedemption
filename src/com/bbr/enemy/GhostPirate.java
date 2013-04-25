@@ -6,6 +6,7 @@ import com.bbr.entity.projectile.GhostRock;
 import com.bbr.resource.Settings;
 
 public class GhostPirate extends Enemy {
+	@Override
 	public int getBaseHealth() { return 150; }
 
 	protected int dip = 0;
@@ -18,6 +19,7 @@ public class GhostPirate extends Enemy {
 		terrainCollidable = false;
 	}
 
+	@Override
 	public void preDt() {
 		vy = (float)(Math.sin(2*Math.PI * dip / dipMax));
 		dip++;
@@ -26,6 +28,7 @@ public class GhostPirate extends Enemy {
 			vx = -vx;
 		}
 	}
+	@Override
 	public void postDt() {
 		if (fireCooldown > 0) fireCooldown--;
 		if (fireCooldown <= 0) {

@@ -5,13 +5,18 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.newdawn.slick.Image;
+
 import com.bbr.core.Zone;
-import com.bbr.player.Pirate;
+import com.bbr.entity.player.Pirate;
+import com.bbr.resource.Art;
 
 // TODO some way to finalize a level to prevent changes. Don't call it finalize()
 // TODO have level bounds?
 public class Level {
 	protected static List<Level> levels = new ArrayList<Level>();
+	protected String levelName;
+	
 	static {
 		LevelListReader llr = new LevelListReader(new File("data/levellist.txt"));
 		try {
@@ -23,24 +28,44 @@ public class Level {
 
 	protected int spawnX, spawnY;
 	protected List<EntityEvent> entityEvents = new ArrayList<EntityEvent>();
-
+	protected Image background;
 	protected Level() { }
 
 	public static Level loadLevel(String levelPath) throws FileNotFoundException {
-		LevelFileReader lfr = new LevelFileReader(new File(levelPath));
+		File f = new File(levelPath);
+		LevelFileReader lfr = new LevelFileReader(f);
 		lfr.readFile();
 		levels.add(lfr.getLevel());
+		lfr.getLevel().setName(f.getName());
+		//System.out.println(f.getName());
 		return lfr.getLevel();
 	}
+	
+	public void setName(String name) {
+		levelName = name;
+	}
+	
+	public String getName() {
+		return levelName;
+	}
+	
 	public static Level getFirstLevel() {
 		return levels.get(0);
 	}
 	public static Level getNextLevel(Level curLevel) {
 		int index = levels.indexOf(curLevel);
-		if (index >= 0 && index < levels.size() - 1) {
+		if (index >= 0 && index < levels.size() - 1 && !levels.get(index+1).getName().equals("gameover.txt")) {
 			return levels.get(index + 1);
 		}
 		return null;
+	}
+	
+	public static Level gameOver() {
+		for (int i = 0; i < levels.size(); i++) {
+			if (levels.get(i).getName().equals("gameover.txt"))
+				return levels.get(i);
+		}
+		return null; // we have no game over screen :x
 	}
 
 	public void setSpawnPoint(int spawnX, int spawnY) {
@@ -59,9 +84,12 @@ public class Level {
 		Pirate p = new Pirate(zone, spawnX, spawnY);
 		zone.addEntity(p);
 		zone.follow(p);
-		// Java ee
+		zone.setBackground(background);
 		for (EntityEvent ee : entityEvents) {
 			ee.trigger(zone);
 		}
+	}
+	public void setBackground(String bg){
+		this.background = Art.getImage(bg);
 	}
 }

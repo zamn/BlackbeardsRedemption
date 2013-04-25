@@ -107,6 +107,7 @@ public final class Settings {
 			ignoreBlankLines = true;
 		}
 
+		@Override
 		protected void processLine(String curLine, int lineNumber) {
 			String curKey, curValue;
 			if (curLine.contains("=")) {

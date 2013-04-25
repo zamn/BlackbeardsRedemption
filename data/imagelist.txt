@@ -1,14 +1,19 @@
-
 // Gui
 
 TitleImage
-res/red-pirate.png
+res/blackbeard/standing.png
 
 StartButton
-res/red-pirate.png
+res/ui/start.png
 
 Heart
-res/heart.png
+res/ui/heart.png
 
 BlackHeart
-res/BlackHeart.png
+res/ui/blackheart.png
+
+Level1Background
+res/levels/lvl1.png
+
+GameOverBackground
+res/levels/gameover.png

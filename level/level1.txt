@@ -6,12 +6,23 @@
 // platform widthxheight at x,y		- creates platform
 // ghostpirate at x,y				- creates ghost pirate
 
+//background
+Background Level1Background
+
+
+
 //player
-spawn at 500,525
+spawn at 0,50
+
+// starting point - introduce falling platforms
+platform at 0,350
+platform at 50,350
+fallingplatform at 100,350
+fallingplatform at 150,350
 
 //platforms and shit
-platform 300x50 at 300,600
-fallingplatform 50x50 at 600,601
+platform 550x50 at 50,600
+fallingplatform 50x50 at 600,600
 fallingplatform 50x50 at 650,600
 fallingplatform 50x50 at 700,600
 fallingplatform 50x50 at 750,600
@@ -52,8 +63,8 @@ breakableplatform 50x50 at 3500,450
 breakableplatform 50x50 at 3500,400
 breakableplatform 50x50 at 3500,350
 platform 1500x50 at 3300,600
-platform 50x50 at 4000,550
-platform 50x50 at 4850,550
+spike at 4000,570
+platform 50x50 at 4850,570
 platform 200x50 at 5000,450
 platform 500x50 at 5400,550
 platform 50x50 at 5950,500
@@ -64,12 +75,12 @@ platform 200x50 at 6850,550
 
 
 //enemies
-ghostpirate at 600,300
-snake at 500,275
+//ghostpirate at 600,300
+snake at 550,300
 snake at 1500,200
 snake at 2700,250
-senorrat at 500,275
-arboc at 400,275
+//senorrat at 500,275
+//arboc at 400,275
 
 //spikes
 spike at 4900,650

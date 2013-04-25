@@ -13,16 +13,24 @@ import org.newdawn.slick.state.StateBasedGame;
 // State Id should be the corresponding constant in BlackbeardsRedemption
 public abstract class BbrGameState extends BasicGameState {
 	protected int stateId = -1; // negative ids are invalid
+	@Override
 	public int getID() { return stateId; }
-	public BbrGameState(int stateId) throws SlickException, IllegalArgumentException {
-		if (stateId < 0) throw new IllegalArgumentException("State ID must be non-negative.");
+	
+	public BbrGameState(int stateId) 
+			throws IllegalArgumentException {
+		if(stateId < 0) {
+			throw new IllegalArgumentException(
+					"State ID must be non-negative.");
+		}
 		this.stateId = stateId;
 	}
 
 	protected List<Button> buttons = new ArrayList<Button>();
+	
+	@Override
 	public void mousePressed(int button, int mouseX, int mouseY) {
-		for (Button b : buttons) {
-			if (b.checkClick(mouseX, mouseY)) {
+		for(Button b : buttons) {
+			if(b.checkClick(mouseX, mouseY)) {
 				try {
 					buttonClicked(b);
 				} catch (SlickException e) {
@@ -31,15 +39,20 @@ public abstract class BbrGameState extends BasicGameState {
 			}
 		}
 	}
-	// no-op optional override instead of ButtonListener interface as design choice
+	
+	// no-op optional override instead of 
+	//ButtonListener interface as design choice
 	public void buttonClicked(Button b) throws SlickException { }
+	
 	public void drawButtons(Graphics g) {
 		for (Button b : buttons) {
 			b.draw(g);
 		}
 	}
 
-	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+	@Override
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
+			throws SlickException {
 		drawButtons(g);
 	}
 }

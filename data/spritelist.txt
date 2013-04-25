@@ -7,18 +7,19 @@
 // Player
 
 Pirate
-res/red-pirate.png
-move res/red-pirate-move.png
-move res/red-pirate-move2.png
-attack res/red-pirate-attack.png
-attack res/red-pirate-attack2.png
+res/blackbeard/standing.png
+move res/blackbeard/run1.png
+move res/blackbeard/run2.png
+move res/blackbeard/run3.png
+move res/blackbeard/run2.png
+move .33
+attack res/blackbeard/attack1.png
+attack res/blackbeard/attack2.png
 attack .33
+jump res/blackbeard/jump2.png
 
 SwordAttack
 res/invismissile.png
-
-Explosion
-res/red-pirate.png
 
 Spit
 res/Spit.png
@@ -40,16 +41,20 @@ BreakablePlatform
 res/dirt-platform.png
 
 Exit
-res/Exit.png
+res/terrain/Exit.png
 
 FallingPlatform
-res/dirt-platform.png
+res/terrain/dirt-platform.png
+danger res/terrain/dirt-platform-red.png
 
 Platform
-res/dirt-platform.png
+res/terrain/dirt-platform.png
+
+Ground
+res/levels/level1/ground/botmid.png
 
 Spike
-res/spike.png
+res/terrain/spike.png
 
 // Enemies
 
@@ -60,7 +65,9 @@ GhostRock
 res/ghost-rock.png
 
 Snake
-res/snake.png
+res/enemy/snake/idle.png
+move res/enemy/snake/idle.png
+move res/enemy/snake/move.png
 
 Arboc
 res/Arboc.png

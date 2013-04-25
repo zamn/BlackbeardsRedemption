@@ -24,6 +24,7 @@ public class SpritesFileReader extends SequentialFileReader {
 		ignoreBlankLines = true;
 	}
 
+	@Override
 	protected void processLine(String curLine, int lineNumber) {
 		Matcher spriteNameMatcher = REGEX_SPRITE_NAME.matcher(curLine);
 		Matcher defaultFrameMatcher = REGEX_DEFAULT_FRAME.matcher(curLine);
@@ -57,6 +58,7 @@ public class SpritesFileReader extends SequentialFileReader {
 			curName = spriteNameMatcher.group(1);
 		}
 	}
+	@Override
 	protected void endOfFile() {
 		if (curName != null) {
 			Art.sprites.put(curName, curSprite);

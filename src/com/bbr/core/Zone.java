@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
 import com.bbr.entity.Enemy;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
+import com.bbr.entity.player.Player;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.Drawable;
 import com.bbr.level.LevelHandler;
-import com.bbr.player.Player;
 import com.bbr.resource.Settings;
 
 // TODO add zone boundaries where entities are destroyed/paused
@@ -25,7 +26,8 @@ public class Zone implements Drawable {
 	// Scrolling
 	protected Entity followed;
 	protected int xScroll = 0, yScroll = 0;
-
+	protected int xScrollTarget = 0, yScrollTarget = 0; // further = faster scroll
+	protected Image background;
 	public Zone(LevelHandler levelHandler) {
 		this.levelHandler = levelHandler;
 	}
@@ -46,7 +48,6 @@ public class Zone implements Drawable {
 		for (int i = 0; i < entities.size(); i++) {
 			collided = entities.get(i);
 			if (collided != mover) {
-				// TODO allows feet to be buried in platform due to no check for distance
 				if (collided instanceof Platform && collided.collidesWith(mover)) {
 //					System.out.println(mover.getYpos() + mover.getYsize() - collided.getYpos());
 //					if (mover.getYpos() + mover.getYsize() - collided.getYpos() < 0.001) {
@@ -122,8 +123,10 @@ public class Zone implements Drawable {
 		return null;
 	}
 
+	@Override
 	public void draw(Graphics g) {
 		updateScrolling();
+		background.draw(0, 0);
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).draw(g);
 		}
@@ -138,6 +141,11 @@ public class Zone implements Drawable {
 		}
 
 		updateEntities();
+		// scrolling velocity
+		float xScrollDelta = (xScrollTarget - xScroll) * .1f;
+		float yScrollDelta = (yScrollTarget - yScroll) * .1f;
+		xScroll += xScrollDelta;
+		yScroll += yScrollDelta;
 	}
 
 	private void updateEntities() {
@@ -160,12 +168,85 @@ public class Zone implements Drawable {
 	}
 	private void updateScrolling() {
 		if (followed != null) {
-			float xCenter = followed.getXpos() + followed.getXsize() / 2;
-			float yCenter = followed.getYpos() + followed.getYsize() / 2;
-			xScroll = (int)(xCenter - Settings.valueInt("windowWidth")/2);
+//			float xCenter = followed.getXpos() + followed.getXsize() / 2;
+//			xScroll = (int)(xCenter - Settings.valueInt("windowWidth")/2);
+			float xPos = followed.getXpos();// + followed.getXsize() / 2;
+			if (!followed.isFacingRight()) {
+				xPos += followed.getXsize();
+			} else {
+				xPos += followed.getXsize();
+				System.out.println(followed.getXsize());
+				System.out.println(xPos);
+			}
+			xScrollTarget = (int)(xPos - Settings.valueInt("windowWidth")/2);
+			//float yCenter = followed.getYpos() + followed.getYsize() / 2;
 			//yScroll = (int)(yCenter - Settings.valueInt("windowHeight")/2);
 		}
 	}
 	public int getXscroll() { return xScroll; }
 	public int getYscroll() { return yScroll; }
+	// collision detection with platforms
+	public Platform collidesWithBottomOf(Entity mover) {
+		Entity collided;
+		for (int i = 0; i < entities.size(); i++) {
+			collided = entities.get(i);
+			if (collided != mover) {
+				if (collided instanceof Platform && collided.collidesWith(mover)) {
+					float moverYpos = mover.getYpos() + mover.getYsize();
+					if (moverYpos >= collided.getYpos()) {
+						return (Platform)collided;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	public Platform collidesWithRightOf(Entity mover) {
+		Entity collided;
+		for (int i = 0; i < entities.size(); i++) {
+			collided = entities.get(i);
+			if (collided != mover) {
+				if (collided instanceof Platform && collided.collidesWith(mover)) {
+						float moverXpos = mover.getXpos() + mover.getYpos();
+						if(moverXpos >= collided.getXpos() && moverXpos <= (collided.getXpos() + collided.getXsize()))
+							return (Platform) collided;
+					
+				}
+			}
+		}
+		return null;
+	}
+	public Platform collidesWithLeftOf(Entity mover) {
+		Entity collided;
+		for (int i = 0; i < entities.size(); i++) {
+			collided = entities.get(i);
+			if (collided != mover) {
+				if (collided instanceof Platform && collided.collidesWith(mover)) {
+						float moverXpos = mover.getXpos();
+						if(moverXpos >= collided.getXpos() && moverXpos <= (collided.getXpos() + collided.getXsize()))
+							return (Platform) collided;
+					
+				}
+			}
+		}
+		return null;
+	}
+	public Platform collidesWithTopOf(Entity mover) {
+		Entity collided;
+		for (int i = 0; i < entities.size(); i++) {
+			collided = entities.get(i);
+			if (collided != mover) {
+				if (collided instanceof Platform && collided.collidesWith(mover)) {
+					float moverYpos = mover.getYpos() + mover.getYsize();
+					if (moverYpos >= collided.getYpos()) {
+						return (Platform)collided;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	public void setBackground(Image bg){
+		this.background = bg;
+	}
 }

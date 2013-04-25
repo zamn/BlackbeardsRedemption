@@ -1,6 +1,7 @@
 package com.bbr.entity;
 
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Float;
 import java.util.Random;
 
 import org.newdawn.slick.Color;
@@ -14,13 +15,13 @@ import com.bbr.resource.Settings;
 
 // represents a game entity with position and image
 public abstract class Entity {
-	public static final int TERMINAL_VELOCITY = 10; // Gravity
+	public static final int TERMINAL_VELOCITY = 10; // Max due to gravity
 
 	protected static final Random rand = new Random(System.currentTimeMillis());
 	// Spatial
 	protected Zone container;
-	protected int sx, sy;
-	protected float px, py;
+	protected int sx, sy; // use setters to change, hitbox derives from this
+	protected float px, py; // use setters to change, hitbox derives from this
 	protected float vx=0, vy=0;
 	protected Rectangle2D.Float hitbox = new Rectangle2D.Float(); // derived from px,py sx,sy
 	protected boolean terrainCollidable = true;
@@ -43,8 +44,11 @@ public abstract class Entity {
 	}
 	protected void autoResize() { // resize to match image size
 		if (sprite == null) return;
-		setXsize(sprite.getFrame().getWidth());
-		setYsize(sprite.getFrame().getHeight());
+		autoResize(sprite.getFrame());
+	}
+	protected void autoResize(Image frame) { // resize to match image size
+		setXsize(frame.getWidth());
+		setYsize(frame.getHeight());
 	}
 
 	protected Image getFrameToDraw() { // override to draw different frames
@@ -52,7 +56,6 @@ public abstract class Entity {
 	}
 	public void draw(Graphics g) {
 		Image toDraw = getFrameToDraw();
-		//toDraw.draw(px-this.container.getXscroll(), py-this.container.getYscroll(), sx, sy);
 		if (tiledHorizontally || tiledVertically) {
 			int width = toDraw.getWidth();
 			width = width > sx ? sx : width;
@@ -95,7 +98,7 @@ public abstract class Entity {
 		}
 	}
 	protected void preDt() { }
-	public void dt() {
+	public void dt() {				
 		preDt();
 		if (vx < 0) {
 			flipHorizontal = true;
@@ -103,24 +106,46 @@ public abstract class Entity {
 			flipHorizontal = false;
 		}
 		setXpos(px + vx);
-		setYpos(py + vy);
 
-		onPlatform = container.getPlatformBelow(this) != null;
-		if (onPlatform) vy = 0;
-		if (terrainCollidable && !onPlatform && vy < TERMINAL_VELOCITY) vy++; // TODO gravity
+		if(container.collidesWithRightOf(this) != null){
+			if(this.toString() == "Player");
+				System.out.println("Collider: "+container.collidesWithRightOf(this).getXpos()+" Player: "+(this.getXpos()+this.getXsize()));
+			this.setXpos(container.collidesWithRightOf(this).getXpos() - this.getXsize());
+		}
+		if(container.collidesWithLeftOf(this) != null){
+			if(this.toString() == "Player");
+				System.out.println("Collider: "+(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize())+" Player: "+this.getXpos());
+			this.setXpos(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize());
+		}
+		setYpos(py + vy);
+		// prevent falling through platforms
+		onPlatform = (container.collidesWithBottomOf(this) != null);
+		if (onPlatform && vy != 0){
+			vy = 0;
+			this.setYpos(container.collidesWithBottomOf(this).getYpos() - this.getYsize());
+		}
+		// acceleration due to gravity
+		if (terrainCollidable && !onPlatform && vy < TERMINAL_VELOCITY){
+			vy++;
+		}
+		
+			
+		
+		
 		postDt();
 	}
 	protected void postDt() { }
 
 	// Rectangle collision check
 	public boolean collidesWith(Entity other) {
-//		if (((other.px<=this.px+this.sx&&other.px+other.sx>=this.px+this.sx)||
-//				(other.px<=this.px&&other.px+other.sx>=this.px)||
-//				(other.px>=this.px&&other.px+other.sx<=this.px+this.sx))&&
-//				((other.py<=this.py&&other.py+other.sy>=this.py)||
-//						(other.py>=this.py&&other.py+other.sy<=this.py+this.sy))) {
 		return hitbox.intersects(other.hitbox);
 	}
+	public boolean futureCollidesWith(Entity other, float xmod, float ymod) {
+		Rectangle2D.Float temp = (Float) other.hitbox.clone();
+		temp.setFrame(temp.getX() + xmod, temp.getY()+ymod, temp.getWidth(), temp.getHeight());
+		return temp.intersects(this.hitbox);
+	}
+
 	public void hitBy(Entity attacker, int damage) { }
 
 	public Zone getZone() { return container; }
@@ -144,6 +169,7 @@ public abstract class Entity {
 	public void setTerrainCollidable(boolean collidability) { terrainCollidable = collidability; }
 	public void setOnPlatform(boolean newState) { onPlatform = newState; }
 
+	@Override
 	public String toString() {
 		return this.getClass().getSimpleName();
 	}

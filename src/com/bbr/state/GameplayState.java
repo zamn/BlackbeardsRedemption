@@ -1,6 +1,5 @@
 package com.bbr.state;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -13,14 +12,14 @@ import com.bbr.core.Zone;
 import com.bbr.enemy.GhostPirate;
 import com.bbr.enemy.Snake;
 import com.bbr.entity.Entity;
+import com.bbr.entity.player.Pirate;
+import com.bbr.entity.player.Player;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.BbrGameState;
-import com.bbr.health.HealthController;
+import com.bbr.gui.HealthController;
 import com.bbr.level.Level;
 import com.bbr.level.LevelHandler;
 import com.bbr.main.BlackbeardsRedemption;
-import com.bbr.player.Pirate;
-import com.bbr.player.Player;
 
 public class GameplayState extends BbrGameState implements LevelHandler, TickHandler {
 
@@ -35,12 +34,13 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	protected long tickCount = 0; // used for animation
 
 	public GameplayState() throws SlickException {
-		super(BlackbeardsRedemption.GAMEPLAYSTATE);
+		super(BlackbeardsRedemption.States.GAME.ordinal());
 		Animation.setFrameHandler(this);
 	}
 
+	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		backgroundTest = new Image("res/levels/lvl1.png");
+		//backgroundTest = new Image("res/levels/lvl1.png");
 		//gc.getGraphics().setBackground(new Color(128,128,128));
 		zone = new Zone(this);
 		curLevel = Level.getFirstLevel();
@@ -71,6 +71,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		
 	}
 
+	@Override
 	public void nextLevel() {
 		Level nextLevel = Level.getNextLevel(curLevel);
 		if (nextLevel != null) {
@@ -86,30 +87,49 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		zone.clear();
 		curLevel.loadInto(zone);
 		p=zone.getPlayer();
+		if (health == null)
+			health = new HealthController("Heart", "BlackHeart", p);
 		health.changeUnit(p);
 		p.setGameplayState(this);
 	}
+	
+	public void gameOver() {
+		health = null;
+		Level.gameOver().loadInto(zone);
+		zone.clear();
+		
+	}
+	
+	public Level getCurLevel(){
+		return curLevel;
+	}
+	
+	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		//backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
 		//backgroundTest.draw();
-		backgroundTest.draw(0, 0);
+		//backgroundTest.draw(0, 0);
 		zone.draw(g);
 		if(health != null)
 			health.draw();
 		
 
 	}
+	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		zone.dt();
 		tickCount++;
 	}
+	@Override
 	public long getTickCount() {
 		return tickCount;
 	}
 
+	@Override
 	public void keyPressed(int key, char c) {
 		p.keyPressed(key);
 	}
+	@Override
 	public void keyReleased(int key, char c) {
 		p.keyReleased(key);
 	}

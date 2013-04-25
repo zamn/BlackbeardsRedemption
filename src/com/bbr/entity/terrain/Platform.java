@@ -12,6 +12,7 @@ public class Platform extends Entity {
 		terrainCollidable = false;
 		tiledHorizontally = true;
 	}
+	@Override
 	public void preDt() {
 		List<Entity> entities = container.getTerrainCollided(this);
 		//if (entities.size() > 0) System.out.println(entities.size());

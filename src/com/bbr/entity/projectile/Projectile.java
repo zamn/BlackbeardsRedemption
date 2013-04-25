@@ -1,5 +1,6 @@
 package com.bbr.entity.projectile;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import com.bbr.entity.Enemy;
@@ -9,6 +10,10 @@ import com.bbr.entity.terrain.BreakablePlatform;
 import com.bbr.entity.terrain.FallingPlatform;
 import com.bbr.player.Player;
 import com.bbr.resource.Settings;
+=======
+import com.bbr.entity.Entity;
+import com.bbr.entity.Unit;
+>>>>>>> 623cedef8034dba844c26b58b59bae66298db752
 
 public abstract class Projectile extends Entity {
 	protected Entity owner;
@@ -38,6 +43,7 @@ public abstract class Projectile extends Entity {
 		return (attributes & attributeFlag) != 0;
 	}
 
+	@Override
 	public void dt() {
 		if (duration == 0) {
 			container.removeEntity(this);
@@ -94,18 +100,13 @@ public abstract class Projectile extends Entity {
 	protected void hit(Entity collided) {
 		if (collided instanceof Unit) {
 			collided.hitBy(this.owner, damage);
-			if (collided instanceof Player && ((Player)collided).getHealth() <= 0 && !Settings.valueBoolean("undying")) {
-				return; // let player realize the cause of their loss
+			if (!hasAttribute(ATT_PIERCE)) {
+				container.removeEntity(this);
 			}
-			if (collided instanceof Enemy && ((Enemy)collided).getHealth() <= 0)
-				container.removeEntity(collided);
 			// No longer need this
 //			if (this instanceof ExplosiveProjectile) {
 //				((ExplosiveProjectile)this).explode();
 //			}
-			if (!hasAttribute(ATT_PIERCE)) {
-				container.removeEntity(this);
-			}
 		}
 	}
 	public void boostDmg(int boost) {
@@ -113,21 +114,5 @@ public abstract class Projectile extends Entity {
 	}
 	public void multDmg(double boost) {
 		damage = (int)(damage * boost);
-	}
-
-	public static abstract class ExplosiveProjectile extends Projectile {
-		protected int explosionSize;
-		protected int explosionDamage;
-
-		public ExplosiveProjectile(Entity owner, float xpos, float ypos) {
-			super(owner, xpos, ypos);
-			explosionSize = 0;
-			explosionDamage = 0;
-		}
-		public void explode() {
-			Explosion e = new Explosion(owner, px+sx/2, py+sy/2,
-					explosionSize, explosionDamage);
-			container.addEntity(e);
-		}
 	}
 }

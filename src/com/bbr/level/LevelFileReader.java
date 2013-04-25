@@ -11,7 +11,7 @@ public class LevelFileReader extends SequentialFileReader {
 	public static final Pattern REGEX_PLAYER_START = Pattern.compile("spawn at ([0-9]+),([0-9]+)");
 	public static final Pattern REGEX_POS = Pattern.compile("([a-zA-Z0-9]+) at ([0-9]+),([0-9]+)");
 	public static final Pattern REGEX_SIZE_POS = Pattern.compile("([a-zA-Z0-9]+) ([0-9]+)x([0-9]+) at ([0-9]+),([0-9]+)");
-
+	public static final Pattern REGEX_BACKGROUND = Pattern.compile("Background ([a-zA-Z0-9]+)");
 	protected Level level = new Level();
 
 	public LevelFileReader(File file) {
@@ -22,15 +22,19 @@ public class LevelFileReader extends SequentialFileReader {
 
 	public Level getLevel() { return level; }
 
+	@Override
 	protected void processLine(String curLine, int lineNumber) {
+		Matcher sizePosMatcher = REGEX_SIZE_POS.matcher(curLine);
 		Matcher spawnMatcher = REGEX_PLAYER_START.matcher(curLine);
 		Matcher posMatcher = REGEX_POS.matcher(curLine);
-		Matcher sizePosMatcher = REGEX_SIZE_POS.matcher(curLine);
+		Matcher backgroundMatcher = REGEX_BACKGROUND.matcher(curLine);
 
 		String entityName;
 		int px, py;
 		int sx, sy;
-		if (spawnMatcher.matches()) {
+		if(backgroundMatcher.matches()){
+			level.setBackground(backgroundMatcher.group(1));
+		} else if (spawnMatcher.matches()) {
 			px = Utility.getInt(spawnMatcher.group(1), -1);
 			py = Utility.getInt(spawnMatcher.group(2), -1);
 			level.setSpawnPoint(px, py);
