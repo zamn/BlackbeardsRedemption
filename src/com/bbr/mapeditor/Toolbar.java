@@ -23,7 +23,7 @@ public class Toolbar extends JPanel implements MouseListener {
 		"res/levels/level1/platform/platform.png", 
 		"res/terrain/dirt-platform-red.png", "res/ui/editor/exitIcon.png" 
 	};
-	private static final String GLOW_PATH = "res/ui/edtor/yellow_glow.png";
+	private static final String GLOW_PATH = "res/ui/editor/yellow_glow.png";
 
 	private SwingMenu toolbar;
 	private Tools currentTool = Tools.SPAWN;
