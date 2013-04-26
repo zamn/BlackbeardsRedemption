@@ -38,7 +38,7 @@ res/Laser.png
 
 // Terrain
 BreakablePlatform
-res/dirt-platform.png
+res/terrain/dirt-platform.png
 
 Exit
 res/terrain/Exit.png

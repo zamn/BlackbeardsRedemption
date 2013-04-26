@@ -1,6 +1,5 @@
 package com.bbr.entity.projectile;
 
-<<<<<<< HEAD
 import java.util.List;
 
 import com.bbr.entity.Enemy;
@@ -8,12 +7,7 @@ import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 import com.bbr.entity.terrain.BreakablePlatform;
 import com.bbr.entity.terrain.FallingPlatform;
-import com.bbr.player.Player;
 import com.bbr.resource.Settings;
-=======
-import com.bbr.entity.Entity;
-import com.bbr.entity.Unit;
->>>>>>> 623cedef8034dba844c26b58b59bae66298db752
 
 public abstract class Projectile extends Entity {
 	protected Entity owner;
