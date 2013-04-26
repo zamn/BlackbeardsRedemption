@@ -33,14 +33,21 @@ res/ui/titlescreen/credits_mouseover.png
 ExitButton_mouse
 res/ui/titlescreen/exit_mouseover.png
 
+// HUD
+
 Heart
 res/ui/heart.png
 
 BlackHeart
 res/ui/blackheart.png
 
+// Levels
+
 Level1Background
 res/levels/lvl1.png
 
 GameOverBackground
 res/levels/gameover.png
+
+VoidBackground
+res/levels/void.png

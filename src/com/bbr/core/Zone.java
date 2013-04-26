@@ -128,7 +128,7 @@ public class Zone implements Drawable {
 	@Override
 	public void draw(Graphics g) {
 		updateScrolling();
-		background.draw(0, 0);
+		if (background != null) background.draw(0, 0);
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).draw(g);
 		}

@@ -1,0 +1,13 @@
+
+// Nothing except for comments
+
+Background VoidBackground
+// a glimmer of light against darkness
+
+platform 400x50 at 400,400
+// the last bedrock of a forgotten world
+
+spawn at 512,0
+// and the renowned pirate, Blackbeard
+
+// Here, the Shapers Beyond Human Understanding enact "tests" upon our world
