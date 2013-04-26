@@ -11,6 +11,10 @@ public final class Utility {
 		System.err.println("[ERR] " + error);
 	}
 
+	public static <E> void log(E msg) { // magic of generics: works for objects & primitives
+		if (Settings.valueBoolean("debug")) System.out.println(msg);
+	}
+
 	/**
 	 * Removes comments and trims a <code>String</code>.<br>
 	 * Intended to be used on <code>String</code>s parsed from text data files.

@@ -3,6 +3,7 @@ package com.bbr.entity;
 import org.newdawn.slick.Graphics;
 
 import com.bbr.core.Zone;
+import com.bbr.resource.Utility;
 public abstract class Unit extends Entity {
 	public static final int BASE_COLLISION_DAMAGE = 25;
 	protected int health = 0; 
@@ -29,7 +30,7 @@ public abstract class Unit extends Entity {
 
 	@Override
 	public void hitBy(Entity attacker, int damage) {
-		//System.out.println(this + " was hit by: " + attacker + " for: " + damage);
+		//Utility.log(this + " was hit by: " + attacker + " for: " + damage);
 		if(damage > 0)
 			health -= damage;
 		//if the attacker is to the left, get knocked to the right
@@ -62,7 +63,7 @@ public abstract class Unit extends Entity {
 	
 	@Override
 	public void draw(Graphics g) {
-		System.out.println("Unit draw");
+		Utility.log("Unit draw");
 		super.draw(g);
 	}
 }

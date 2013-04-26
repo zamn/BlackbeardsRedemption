@@ -42,8 +42,8 @@ public final class Song {
 	}
 	
 	protected static Music loadSong(String songName) throws SlickException {
-		//System.out.println("loading "+ songName);
-		//System.out.println(songName);
+		//Utility.log("loading "+ songName);
+		//Utility.log(songName);
 		
 		return new Music(songName);
 	}

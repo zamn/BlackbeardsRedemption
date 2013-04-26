@@ -40,8 +40,8 @@ public class LevelFileReader extends SequentialFileReader {
 		int sx, sy;
 
 		if(musicMatcher.matches()){
-			System.out.println(musicMatcher.group(1));
-			System.out.println(musicMatcher.group(1));
+			Utility.log(musicMatcher.group(1));
+			Utility.log(musicMatcher.group(1));
 			level.setMusic(musicMatcher.group(1));
 		} else if(backgroundMatcher.matches()){
 			level.setBackground(backgroundMatcher.group(1));

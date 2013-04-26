@@ -14,7 +14,6 @@ import com.bbr.enemy.Snake;
 import com.bbr.entity.Entity;
 import com.bbr.entity.player.Pirate;
 import com.bbr.entity.player.Player;
-import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.BbrGameState;
 import com.bbr.gui.HealthController;
 import com.bbr.level.Level;

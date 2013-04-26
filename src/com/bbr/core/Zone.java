@@ -51,7 +51,7 @@ public class Zone implements Drawable {
 			collided = entities.get(i);
 			if (collided != mover) {
 				if (collided instanceof Platform && collided.collidesWith(mover)) {
-//					System.out.println(mover.getYpos() + mover.getYsize() - collided.getYpos());
+//					Utility.log(mover.getYpos() + mover.getYsize() - collided.getYpos());
 //					if (mover.getYpos() + mover.getYsize() - collided.getYpos() < 0.001) {
 						return (Platform)collided;
 //					}

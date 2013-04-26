@@ -16,6 +16,7 @@ public final class Art {
 	public static final File IMAGE_LIST = new File("data/imagelist.txt");
 	protected static HashMap<String, ArrayList<Sprite>> sprites = new HashMap<String, ArrayList<Sprite>>();
 	protected static HashMap<String, Image> images = new HashMap<String, Image>();
+	protected static HashMap<String, Image> loadedImages = new HashMap<String, Image>();
 
 	private static boolean loaded = false;
 
@@ -69,7 +70,12 @@ public final class Art {
 	}
 	
 	protected static Image loadImage(String imagename) throws SlickException {
-		return new Image(imagename);
+		Image image = loadedImages.get(imagename);
+		if (image == null) {
+			image = new Image(imagename);
+			loadedImages.put(imagename, image);
+		}
+		return image;
 	}
 
 	public static Sprite getSprite(Entity entity) {

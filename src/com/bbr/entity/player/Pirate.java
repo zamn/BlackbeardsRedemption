@@ -3,9 +3,10 @@ package com.bbr.entity.player;
 import org.newdawn.slick.Image;
 
 import com.bbr.core.Zone;
-import com.bbr.entity.projectile.SwordAttack;
 import com.bbr.entity.projectile.Projectile;
+import com.bbr.entity.projectile.SwordAttack;
 import com.bbr.resource.Settings;
+import com.bbr.resource.Utility;
 public class Pirate extends Player {
 	@Override
 	public int getBaseHealth() { return 1000; }
@@ -40,7 +41,7 @@ public class Pirate extends Player {
 	@Override
 	public Image getFrameToDraw() {
 		if (attackingFrames > 0) {
-			System.out.println("Pirate attack");
+			Utility.log("Pirate attack");
 			float oldXpos = px + sx;
 			float oldHeight = sy;
 			autoResize(sprite.getFrame("attack"));
@@ -50,15 +51,15 @@ public class Pirate extends Player {
 			}
 			return sprite.getFrame("attack");
 		} else if (vy < 0) {
-			System.out.println("Pirate jump");
+			Utility.log("Pirate jump");
 			autoResize(sprite.getFrame("jump"));
 			return sprite.getFrame("jump");
 		} else if (Math.abs(vx) > 0.01) {
-			System.out.println("Pirate move");
+			Utility.log("Pirate move");
 			autoResize(sprite.getFrame("move"));
 			return sprite.getFrame("move");
 		}
-		System.out.println("Pirate normal");
+		Utility.log("Pirate normal");
 		autoResize(sprite.getFrame());
 		return super.getFrameToDraw();
 	}

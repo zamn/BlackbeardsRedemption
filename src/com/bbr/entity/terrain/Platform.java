@@ -6,6 +6,7 @@ import org.newdawn.slick.Graphics;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
+import com.bbr.resource.Utility;
 
 // solid platform
 public class Platform extends Entity {
@@ -17,7 +18,7 @@ public class Platform extends Entity {
 	@Override
 	public void preDt() {
 		List<Entity> entities = container.getTerrainCollided(this);
-		//if (entities.size() > 0) System.out.println(entities.size());
+		//if (entities.size() > 0) Utility.log(entities.size());
 		for (Entity e : entities) {
 				// float startX = px, endX = px + sx;
 				// float startY = py, endY = py + sy;
@@ -58,7 +59,7 @@ public class Platform extends Entity {
 	
 	@Override
 	public void draw(Graphics g) {
-		System.out.println("Platform draw");
+		Utility.log("Platform draw");
 		super.draw(g);
 	}
 }

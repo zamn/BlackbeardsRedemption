@@ -9,10 +9,10 @@ import com.bbr.entity.Entity;
 import com.bbr.entity.terrain.BreakablePlatform;
 import com.bbr.entity.terrain.Exit;
 import com.bbr.entity.terrain.FakeSpike;
+import com.bbr.entity.terrain.FallingPlatform;
 import com.bbr.entity.terrain.Ground;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.entity.terrain.Spike;
-import com.bbr.entity.terrain.FallingPlatform;
 /*
  * This class spawns entities that you add. In order to add an entity you must:
  * 	- Add the entity as an enum value in EntityType

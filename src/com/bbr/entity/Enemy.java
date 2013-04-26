@@ -3,6 +3,7 @@ package com.bbr.entity;
 import org.newdawn.slick.Graphics;
 
 import com.bbr.core.Zone;
+import com.bbr.resource.Utility;
 
 public abstract class Enemy extends Unit {
 	public Enemy(Zone zone, float x, float y) {
@@ -11,7 +12,7 @@ public abstract class Enemy extends Unit {
 	
 	@Override
 	public void draw(Graphics g) {
-		System.out.println("Enemy draw");
+		Utility.log("Enemy draw");
 		super.draw(g);
 	}
 }

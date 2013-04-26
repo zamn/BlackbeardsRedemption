@@ -1,11 +1,9 @@
 package com.bbr.entity.terrain;
 
-import java.util.List;
-
 import org.newdawn.slick.Graphics;
 
 import com.bbr.core.Zone;
-import com.bbr.entity.Entity;
+import com.bbr.resource.Utility;
 
 
 public class Ground extends Platform {
@@ -18,7 +16,7 @@ public class Ground extends Platform {
 	
 	@Override
 	public void draw(Graphics g) {
-		System.out.println("Ground draw");
+		Utility.log("Ground draw");
 		super.draw(g);
 	}
 }

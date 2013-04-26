@@ -12,6 +12,7 @@ import com.bbr.core.Sprite;
 import com.bbr.core.Zone;
 import com.bbr.resource.Art;
 import com.bbr.resource.Settings;
+import com.bbr.resource.Tuple;
 
 // represents a game entity with position and image
 public abstract class Entity {
@@ -65,43 +66,58 @@ public abstract class Entity {
 	}
 	public void draw(Graphics g) {
 		Image toDraw = getFrameToDraw();
+		int imageWidth = toDraw.getWidth();
+		int imageHeight = toDraw.getHeight();
 		if (tiledHorizontally || tiledVertically) {
-			int width = toDraw.getWidth();
-			width = width > sx ? sx : width;
-			int height = toDraw.getHeight();
-			height = height > sy ? sy : height;
+			imageWidth = imageWidth > sx ? sx : imageWidth;
+			imageHeight = imageHeight > sy ? sy : imageHeight;
 			//goes through and draws all ground sprites until it reaches the necessary width
 			int cropWidth, cropHeight; // for cropping
 			int drawWidth, drawHeight; // for cropping
-			for (int i = 0; i < sx/width + (sx%width==0 ? 0 : 1); i++) {
-				for (int j = 0; j < sy/height + (sy%height==0 ? 0 : 1); j++) {
-					cropWidth = width; drawWidth = width;
-					cropHeight = height; drawHeight = height;
-					if (i == sx/width && sx%width != 0) {
-						drawWidth = sx%width; // horizontal leftover
+			for (int i = 0; i < sx/imageWidth + (sx%imageWidth==0 ? 0 : 1); i++) {
+				for (int j = 0; j < sy/imageHeight + (sy%imageHeight==0 ? 0 : 1); j++) {
+					cropWidth = imageWidth; drawWidth = imageWidth;
+					cropHeight = imageHeight; drawHeight = imageHeight;
+					if (i == sx/imageWidth && sx%imageWidth != 0) {
+						drawWidth = sx%imageWidth; // horizontal leftover
 						if (tiledHorizontally) {
 							cropWidth = drawWidth;
 						}
 					}
-					if (j == sy/height && sy%height != 0) {
-						drawHeight = sy%height; // vertical leftover
+					if (j == sy/imageHeight && sy%imageHeight != 0) {
+						drawHeight = sy%imageHeight; // vertical leftover
 						if (tiledVertically) {
 							cropHeight = drawHeight;
 						}
 					}
 
-					toDraw.draw(px+width*(i)-this.container.getXscroll(),
-							py+height*(j)-this.container.getYscroll(),
-							px+width*(i)-this.container.getXscroll()+drawWidth,
-							py+height*(j)-this.container.getYscroll()+drawHeight,
+					toDraw.draw(px+imageWidth*(i)-this.container.getXscroll(),
+							py+imageHeight*(j)-this.container.getYscroll(),
+							px+imageWidth*(i)-this.container.getXscroll()+drawWidth,
+							py+imageHeight*(j)-this.container.getYscroll()+drawHeight,
 							0, 0, cropWidth, cropHeight);
 				}
 			}
-		} else { // sprite flipping added for non-tiling
-			toDraw.draw(px-this.container.getXscroll()+(flipHorizontal?sx:0),
-					py-this.container.getYscroll(), (flipHorizontal?-sx:sx), sy);
+		} else { // sprite flipping and offsets added for non-tiling
+			float offsetX = 0, offsetY = 0;
+			int drawSizeX = (flipHorizontal?-sx:sx);
+			int drawSizeY = sy;
+
+			Tuple<Integer, Integer> offsets = sprite.getOffsets(toDraw); // note: offsets default to negative
+			if (offsets != null) {
+				offsetX = offsets.left;
+				offsetY = offsets.right;
+				drawSizeX = (flipHorizontal?-imageWidth:imageWidth);
+				drawSizeY = imageHeight;
+			}
+			float drawStartX = px-offsetX-this.container.getXscroll()+(flipHorizontal?sx:0);
+			float drawStartY = py-offsetY-this.container.getYscroll();
+			
+			toDraw.draw(drawStartX, drawStartY, drawSizeX, drawSizeY);
+//			toDraw.draw(px-this.container.getXscroll()+(flipHorizontal?sx:0),
+//					py-this.container.getYscroll(), (flipHorizontal?-sx:sx), sy);
 		}
-		if (Settings.valueBoolean("showHitbox")) {
+		if (Settings.valueBoolean("showHitbox")) { // shows entity hitbox, not frame drawbox
 			g.setColor(Color.red);
 			g.drawRect(px-this.container.getXscroll(), py-this.container.getYscroll(), sx, sy);
 		}
@@ -118,12 +134,12 @@ public abstract class Entity {
 
 		if(container.collidesWithRightOf(this) != null){
 			if(this.toString() == "Player");
-				//System.out.println("Collider: "+container.collidesWithRightOf(this).getXpos()+" Player: "+(this.getXpos()+this.getXsize()));
+				//Utility.log("Collider: "+container.collidesWithRightOf(this).getXpos()+" Player: "+(this.getXpos()+this.getXsize()));
 			this.setXpos(container.collidesWithRightOf(this).getXpos() - this.getXsize());
 		}
 		if(container.collidesWithLeftOf(this) != null){
 			if(this.toString() == "Player");
-				//System.out.println("Collider: "+(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize())+" Player: "+this.getXpos());
+				//Utility.log("Collider: "+(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize())+" Player: "+this.getXpos());
 			this.setXpos(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize());
 		}
 		setYpos(py + vy);

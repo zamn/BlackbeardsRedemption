@@ -244,7 +244,7 @@ public abstract class Player extends Unit {
 	}
 	@Override
 	public void die(){
-		System.out.println("GAME OVER");
+		Utility.log("GAME OVER");
 		health = 0;
 		deadLevel = state.getCurLevel();
 		state.gameOver();
@@ -259,7 +259,7 @@ public abstract class Player extends Unit {
 	
 	@Override
 	public void draw(Graphics g) {
-		System.out.println("Player draw");
+		Utility.log("Player draw");
 		super.draw(g);
 	}
 }

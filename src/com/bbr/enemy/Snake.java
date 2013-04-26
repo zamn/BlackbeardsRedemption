@@ -4,6 +4,7 @@ import org.newdawn.slick.Image;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Enemy;
+import com.bbr.resource.Utility;
 
 public class Snake extends Enemy {
 	@Override
@@ -23,10 +24,10 @@ public class Snake extends Enemy {
 	@Override
 	public Image getFrameToDraw() {
 		if (Math.abs(vx) > 0.01) {
-			System.out.println("Snake move");
+			Utility.log("Snake move");
 			return sprite.getFrame("snakeMove");
 		}
-		System.out.println("Snake normal");
+		Utility.log("Snake normal");
 		return super.getFrameToDraw();
 	}
 

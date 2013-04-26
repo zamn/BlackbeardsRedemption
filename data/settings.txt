@@ -13,4 +13,5 @@ windowWidth=1024
 windowHeight=768
 fullScreen=false
 
-showHitbox=false
+showHitbox=true
+debug=true // shows Utility.log messages

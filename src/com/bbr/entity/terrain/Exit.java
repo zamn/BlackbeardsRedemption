@@ -7,6 +7,7 @@ import org.newdawn.slick.Graphics;
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 import com.bbr.entity.player.Pirate;
+import com.bbr.resource.Utility;
 
 public class Exit extends Entity {
 
@@ -28,7 +29,7 @@ public class Exit extends Entity {
 	
 	@Override
 	public void draw(Graphics g) {
-		System.out.println("Exit draw");
+		Utility.log("Exit draw");
 		super.draw(g);
 	}
 }
