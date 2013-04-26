@@ -56,6 +56,9 @@ res/levels/level1/ground/botmid.png
 Spike
 res/terrain/spike.png
 
+FakeSpike
+res/terrain/spike.png
+
 // Enemies
 
 GhostPirate

@@ -31,7 +31,7 @@ public class Snake extends Enemy {
 	@Override
 	public void preDt() {
 		if(Math.abs(px - startX) > 300){
-			vx = -vx;
+			//vx = -vx;
 		}
 		
 		if (container.getPlayer().collidesWith(this) && hitDelay <=0) {
