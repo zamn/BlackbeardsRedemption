@@ -9,6 +9,7 @@ import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 import com.bbr.level.Level;
+import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.resource.Settings;
 import com.bbr.resource.Utility;
 import com.bbr.state.GameplayState;
@@ -29,9 +30,9 @@ public abstract class Player extends Unit {
 //	protected double slowFactor = 0;
 //	protected int slowDuration = 0;
 //	protected int snareDuration = 0;
-	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, TPHOME, NLEVEL, RESTART};
+	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, TPHOME, NLEVEL, RESTART, PAUSE};
 	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT,
-		Input.KEY_X, Input.KEY_K, Input.KEY_N, Input.KEY_R};
+		Input.KEY_X, Input.KEY_K, Input.KEY_N, Input.KEY_R, Input.KEY_P};
 	// Controls
 	private ArrayList<Action> controlAction = new ArrayList<Action>();
 	private ArrayList<Integer> controlKey = new ArrayList<Integer>();
@@ -92,6 +93,10 @@ public abstract class Player extends Unit {
 				state.resetLevel();
 			}
 
+			break;
+			
+		case PAUSE:
+			state.pause();
 			break;
 
 		}
