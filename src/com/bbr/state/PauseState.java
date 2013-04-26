@@ -7,10 +7,8 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import com.bbr.core.TickHandler;
 import com.bbr.gui.BbrGameState;
 import com.bbr.gui.Button;
-import com.bbr.level.LevelHandler;
 import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.resource.Art;
 import com.bbr.resource.Settings;
