@@ -251,8 +251,9 @@ public abstract class Player extends Unit {
 	}
 	
 	public void resetKeys() {
-		for (boolean b : controlHeld){
-			b = false;
+		for (Action action: controlAction){
+			releaseKey(action);
 		}			
+		vx = 0;
 	}
 }
