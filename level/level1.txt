@@ -9,7 +9,7 @@
 //background
 Background Level1Background
 
-
+Music TestMusic
 
 //player
 spawn at 0,50

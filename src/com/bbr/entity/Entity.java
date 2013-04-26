@@ -109,12 +109,12 @@ public abstract class Entity {
 
 		if(container.collidesWithRightOf(this) != null){
 			if(this.toString() == "Player");
-				System.out.println("Collider: "+container.collidesWithRightOf(this).getXpos()+" Player: "+(this.getXpos()+this.getXsize()));
+				//System.out.println("Collider: "+container.collidesWithRightOf(this).getXpos()+" Player: "+(this.getXpos()+this.getXsize()));
 			this.setXpos(container.collidesWithRightOf(this).getXpos() - this.getXsize());
 		}
 		if(container.collidesWithLeftOf(this) != null){
 			if(this.toString() == "Player");
-				System.out.println("Collider: "+(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize())+" Player: "+this.getXpos());
+				//System.out.println("Collider: "+(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize())+" Player: "+this.getXpos());
 			this.setXpos(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize());
 		}
 		setYpos(py + vy);

@@ -7,6 +7,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import com.bbr.resource.Art;
 import com.bbr.resource.Settings;
+import com.bbr.resource.Song;
 import com.bbr.state.GameplayState;
 import com.bbr.state.MainMenuState;
 import com.bbr.state.PauseState;
@@ -33,6 +34,7 @@ public class BlackbeardsRedemption extends StateBasedGame {
 	public void initStatesList(GameContainer gameContainer) 
 			throws SlickException {
 		Art.load();
+		Song.load();
 		
 		/* Note: States MUST be added in the same order 
 		 * as they appear in the enum BlackbeardsRedemption.States 

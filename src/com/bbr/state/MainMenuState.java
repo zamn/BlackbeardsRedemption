@@ -12,6 +12,7 @@ import com.bbr.gui.Button;
 import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.resource.Art;
 import com.bbr.resource.Settings;
+import com.bbr.resource.Song;
 
 public class MainMenuState extends BbrGameState {
 	private static final int TITLE_X = 150, TITLE_Y = 50;
@@ -36,7 +37,7 @@ public class MainMenuState extends BbrGameState {
 	private static final int EXIT_X = BUTTON_X, EXIT_Y = BUTTON_Y
 			+ BUTTON_HEIGHT * 4;
 
-	private static final String MENU_MUSIC_PATH = "res/audio/music/menu_music.aiff";
+	private static final String MENU_MUSIC_NAME = "Menu";
 	private static final int FADE_TIME = 5000; // Time(ms) to fade out menu
 												// music
 
@@ -98,7 +99,7 @@ public class MainMenuState extends BbrGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		menuMusic = new Music(MENU_MUSIC_PATH);
+		menuMusic = Song.getMusic(MENU_MUSIC_NAME);
 		menuMusic.loop();
 	}
 
