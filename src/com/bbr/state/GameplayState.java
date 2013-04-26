@@ -29,7 +29,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	protected Level curLevel;
 	protected Player p;
 	protected HealthController health;
-
+	private StateBasedGame statebg;
 	protected Image backgroundTest;
 	protected long tickCount = 0; // used for animation
 
@@ -42,6 +42,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		//backgroundTest = new Image("res/levels/lvl1.png");
 		//gc.getGraphics().setBackground(new Color(128,128,128));
+		statebg = sbg;
 		zone = new Zone(this);
 		curLevel = Level.getFirstLevel();
 		curLevel.loadInto(zone);
@@ -109,6 +110,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		//backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
 		//backgroundTest.draw();
 		//backgroundTest.draw(0, 0);
+		statebg = sbg;
 		zone.draw(g);
 		if(health != null)
 			health.draw();
@@ -117,6 +119,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	}
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		statebg = sbg;
 		zone.dt();
 		tickCount++;
 	}
@@ -132,5 +135,9 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	@Override
 	public void keyReleased(int key, char c) {
 		p.keyReleased(key);
+	}
+	
+	public void pause(){
+		statebg.enterState(BlackbeardsRedemption.States.PAUSE.ordinal());
 	}
 }
