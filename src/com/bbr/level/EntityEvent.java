@@ -26,36 +26,38 @@ public class EntityEvent {
 	protected EntityType entityType;
 	protected int sx, sy;
 	protected int px, py;
+	protected String type = "";
 
-	protected EntityEvent(String entityName, int sx, int sy, int px, int py) {
+	protected EntityEvent(String entityName, String type, int sx, int sy, int px, int py) {
 		this.entityType = EntityType.valueOf(entityName.toUpperCase());
 		this.sx = sx;
 		this.sy = sy;
 		this.px = px;
 		this.py = py;
+		this.type = type;
 	}
 
 	public void trigger(Zone zone) {
 		Entity e = null;
 		switch (entityType) {
 		case BREAKABLEPLATFORM:
-			e = new BreakablePlatform(zone, px, py);
+			e = new BreakablePlatform(zone, type, px, py);
 			zone.addEntity(e);
 			break;
 		case FALLINGPLATFORM:
-			e = new FallingPlatform(zone, px, py);
+			e = new FallingPlatform(zone, type, px, py);
 			zone.addEntity(e);
 			break;
 		case PLATFORM:
-			e = new Platform(zone, px, py);
+			e = new Platform(zone, type, px, py);
 			zone.addEntity(e);
 			break;
 		case SPIKE:
-			e = new Spike (zone, px, py);
+			e = new Spike (zone, type, px, py);
 			zone.addEntity(e);
 			break;
 		case EXIT:
-			e = new Exit(zone, px, py);
+			e = new Exit(zone, type, px, py);
 			zone.addEntity(e);
 			break;
 
@@ -76,7 +78,7 @@ public class EntityEvent {
 			zone.addEntity(e);
 			break;
 		case GROUND:
-			e = new Ground(zone, px, py);
+			e = new Ground(zone, type, px, py);
 			zone.addEntity(e);
 			break;
 		}

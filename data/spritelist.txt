@@ -51,7 +51,15 @@ Platform
 res/terrain/dirt-platform.png
 
 Ground
-res/levels/level1/ground/botmid.png
+Ground res/levels/level1/ground/botleft.png
+Ground res/levels/level1/ground/botmid.png
+Ground res/levels/level1/ground/botright.png
+Ground res/levels/level1/ground/midleft.png
+Ground res/levels/level1/ground/midmid.png
+Ground res/levels/level1/ground/midright.png
+Ground res/levels/level1/ground/topleft.png
+Ground res/levels/level1/ground/topmid.png
+Ground res/levels/level1/ground/topright.png
 
 Spike
 res/terrain/spike.png

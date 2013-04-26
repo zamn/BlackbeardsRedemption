@@ -5,8 +5,8 @@ import com.bbr.entity.Entity;
 
 public class Spike extends Entity{
 
-	public Spike(Zone container, float xpos, float ypos) {
-		super(container, xpos, ypos);
+	public Spike(Zone container, String type, float xpos, float ypos) {
+		super(container, type, xpos, ypos);
 		// TODO Auto-generated constructor stub
 		terrainCollidable = false;
 		tiledHorizontally = true;

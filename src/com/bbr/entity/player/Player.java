@@ -44,7 +44,7 @@ public abstract class Player extends Unit {
 
 
 	public Player(Zone container, float xpos, float ypos) {
-		super(container, xpos, ypos);
+		super(container, null, xpos, ypos);
 		for (int i = 0; i < Action.values().length; i++) {
 			controlAction.add(Action.values()[i]);
 			controlKey.add(DEFAULT_KEYS[i]);

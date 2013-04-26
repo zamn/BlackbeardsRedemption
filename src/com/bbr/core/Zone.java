@@ -175,8 +175,8 @@ public class Zone implements Drawable {
 				xPos += followed.getXsize();
 			} else {
 				xPos += followed.getXsize();
-				System.out.println(followed.getXsize());
-				System.out.println(xPos);
+//				System.out.println(followed.getXsize());
+//				System.out.println(xPos);
 			}
 			xScrollTarget = (int)(xPos - Settings.valueInt("windowWidth")/2);
 			//float yCenter = followed.getYpos() + followed.getYsize() / 2;

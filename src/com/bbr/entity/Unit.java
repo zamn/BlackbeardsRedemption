@@ -6,8 +6,8 @@ public abstract class Unit extends Entity {
 	protected int health = 0; 
 	protected int collisionDamage = BASE_COLLISION_DAMAGE;
 	//private HealthController healthBar;
-	public Unit(Zone zone, float x, float y) {
-		super(zone, x, y);
+	public Unit(Zone zone, String type, float x, float y) {
+		super(zone, type, x, y);
 		health = getBaseHealth();
 	}
 	public abstract int getBaseHealth();

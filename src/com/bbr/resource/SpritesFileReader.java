@@ -37,7 +37,14 @@ public class SpritesFileReader extends SequentialFileReader {
 
 		if (specificFrameMatcher.matches()) {
 			try {
-				curSprite.addFrame(specificFrameMatcher.group(1), Art.loadImage(specificFrameMatcher.group(2)));
+				if (specificFrameMatcher.group(1).equals(curName)) {
+					curSprite = new Sprite();
+					curSprite.addFrame(Art.loadImage(specificFrameMatcher.group(2)));
+					Art.addSprite(curName, curSprite);
+				} 
+				else {
+					curSprite.addFrame(specificFrameMatcher.group(1), Art.loadImage(specificFrameMatcher.group(2)));
+				}
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}
@@ -52,7 +59,8 @@ public class SpritesFileReader extends SequentialFileReader {
 			}
 		} else if (spriteNameMatcher.matches()) {
 			if (curName != null) {
-				Art.sprites.put(curName, curSprite);
+				Art.addSprite(curName, curSprite);
+//				System.out.println("curName: " + curName + " - sprites: " + Art.getSprites(curName));
 				curSprite = new Sprite();
 			}
 			curName = spriteNameMatcher.group(1);
@@ -61,7 +69,7 @@ public class SpritesFileReader extends SequentialFileReader {
 	@Override
 	protected void endOfFile() {
 		if (curName != null) {
-			Art.sprites.put(curName, curSprite);
+			Art.addSprite(curName, curSprite);
 			curSprite = null;
 		}
 	}

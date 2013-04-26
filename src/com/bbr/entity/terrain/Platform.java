@@ -7,8 +7,8 @@ import com.bbr.entity.Entity;
 
 // solid platform
 public class Platform extends Entity {
-	public Platform(Zone container, float xpos, float ypos) {
-		super(container, xpos, ypos);
+	public Platform(Zone container, String type, float xpos, float ypos) {
+		super(container, type, xpos, ypos);
 		terrainCollidable = false;
 		tiledHorizontally = true;
 	}

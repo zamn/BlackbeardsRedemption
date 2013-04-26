@@ -2,6 +2,7 @@ package com.bbr.resource;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.newdawn.slick.Image;
@@ -13,7 +14,7 @@ import com.bbr.entity.Entity;
 public final class Art {
 	public static final String SPRITE_LIST = "data/spritelist.txt";
 	public static final File IMAGE_LIST = new File("data/imagelist.txt");
-	protected static HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
+	protected static HashMap<String, ArrayList<Sprite>> sprites = new HashMap<String, ArrayList<Sprite>>();
 	protected static HashMap<String, Image> images = new HashMap<String, Image>();
 
 	private static boolean loaded = false;
@@ -55,19 +56,43 @@ public final class Art {
 		}
 	}
 	
+	public static void addSprite(String spriteName, Sprite sprite) {
+		if (sprites.get(spriteName) != null) {
+			if (!sprites.get(spriteName).contains(sprite))
+				sprites.get(spriteName).add(sprite);
+		}
+		else {
+			ArrayList<Sprite> temp = new ArrayList<Sprite>();
+			temp.add(sprite);
+			sprites.put(spriteName, temp);
+		}	
+	}
+	
 	protected static Image loadImage(String imagename) throws SlickException {
-		//System.out.println("loading "+ imagename);
-		//System.out.println(imagename);
-		
 		return new Image(imagename);
 	}
 
 	public static Sprite getSprite(Entity entity) {
-		return sprites.get(entity.getClass().getSimpleName());
+		return sprites.get(entity.getClass().getSimpleName()).get(0);
 	}
+	
+	public static Sprite getSprite(Entity entity, String type) {
+		ArrayList<Sprite> spriteList = sprites.get(entity.getClass().getSimpleName());
+		for (int i = 0; i < spriteList.size(); i++) {
+			if (spriteList.get(i).getName().equalsIgnoreCase(type))
+				return spriteList.get(i);
+		}
+		return null;
+	}
+	
 	public static Sprite getSprite(String spriteName) {
+		return sprites.get(spriteName).get(0);
+	}
+	
+	public static ArrayList<Sprite> getSprites(String spriteName) {
 		return sprites.get(spriteName);
 	}
+	
 	public static Image getImage(String imageName) {
 		return images.get(imageName);
 	}

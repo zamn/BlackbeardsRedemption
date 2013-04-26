@@ -7,7 +7,7 @@
 // ghostpirate at x,y				- creates ghost pirate
 Background Level1Background
 spawn at 500,300
-ground 10x10 at 500,300
+ground botright at 500,300
 ground 10x10 at 500,201
 ground 10x10 at 500,202
 ground 10x10 at 500,100

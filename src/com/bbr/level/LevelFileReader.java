@@ -11,6 +11,8 @@ public class LevelFileReader extends SequentialFileReader {
 	public static final Pattern REGEX_PLAYER_START = Pattern.compile("spawn at ([0-9]+),([0-9]+)");
 	public static final Pattern REGEX_POS = Pattern.compile("([a-zA-Z0-9]+) at ([0-9]+),([0-9]+)");
 	public static final Pattern REGEX_SIZE_POS = Pattern.compile("([a-zA-Z0-9]+) ([0-9]+)x([0-9]+) at ([0-9]+),([0-9]+)");
+	public static final Pattern REGEX_POS_TYPE = Pattern.compile("([a-zA-Z0-9]+) ([a-zA-Z0-9]+) at ([0-9]+),([0-9]+)"); // object word at position,position
+	public static final Pattern REGEX_SIZE_POS_TYPE = Pattern.compile("([a-zA-Z0-9]+) ([a-zA-Z0-9]+) ([0-9]+)x([0-9]+) at ([0-9]+),([0-9]+)"); // object word size at position
 	public static final Pattern REGEX_BACKGROUND = Pattern.compile("Background ([a-zA-Z0-9]+)");
 	protected Level level = new Level();
 
@@ -28,11 +30,13 @@ public class LevelFileReader extends SequentialFileReader {
 		Matcher spawnMatcher = REGEX_PLAYER_START.matcher(curLine);
 		Matcher posMatcher = REGEX_POS.matcher(curLine);
 		Matcher backgroundMatcher = REGEX_BACKGROUND.matcher(curLine);
+		Matcher posTypeMatcher = REGEX_POS_TYPE.matcher(curLine);
+		Matcher sizePosTypeMatcher = REGEX_SIZE_POS_TYPE.matcher(curLine);
 
 		String entityName;
 		int px, py;
 		int sx, sy;
-		if(backgroundMatcher.matches()){
+		if (backgroundMatcher.matches()) {
 			level.setBackground(backgroundMatcher.group(1));
 		} else if (spawnMatcher.matches()) {
 			px = Utility.getInt(spawnMatcher.group(1), -1);
@@ -42,14 +46,26 @@ public class LevelFileReader extends SequentialFileReader {
 			entityName = posMatcher.group(1);
 			px = Utility.getInt(posMatcher.group(2), -1);
 			py = Utility.getInt(posMatcher.group(3), -1);
-			level.addEntityEvent(entityName, px, py);
+			level.addEntityEvent(entityName, null, px, py);
 		} else if (sizePosMatcher.matches()) {
 			entityName = sizePosMatcher.group(1);
 			sx = Utility.getInt(sizePosMatcher.group(2), -1);
 			sy = Utility.getInt(sizePosMatcher.group(3), -1);
 			px = Utility.getInt(sizePosMatcher.group(4), -1);
 			py = Utility.getInt(sizePosMatcher.group(5), -1);
-			level.addEntityEvent(entityName, sx, sy, px, py);
+			level.addEntityEvent(entityName, null, sx, sy, px, py);
+		} else if (sizePosTypeMatcher.matches()) {
+			entityName = sizePosTypeMatcher.group(1);
+			sx = Utility.getInt(sizePosTypeMatcher.group(3), -1);
+			sy = Utility.getInt(sizePosTypeMatcher.group(4), -1);
+			px = Utility.getInt(sizePosTypeMatcher.group(5), -1);
+			py = Utility.getInt(sizePosTypeMatcher.group(6), -1);
+			level.addEntityEvent(entityName, posTypeMatcher.group(2), px, py);
+		} else if (posTypeMatcher.matches()) {
+			entityName = posTypeMatcher.group(1);
+			px = Utility.getInt(posTypeMatcher.group(3), -1);
+			py = Utility.getInt(posTypeMatcher.group(4), -1);
+			level.addEntityEvent(entityName, posTypeMatcher.group(2), px, py);
 		}
 	}
 }

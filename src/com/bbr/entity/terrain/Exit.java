@@ -8,8 +8,8 @@ import com.bbr.entity.player.Pirate;
 
 public class Exit extends Entity{
 
-	public Exit(Zone container, float xpos, float ypos) {
-		super(container, xpos, ypos);
+	public Exit(Zone container, String type, float xpos, float ypos) {
+		super(container, type, xpos, ypos);
 		terrainCollidable = false;
 		tiledHorizontally = false;
 	}

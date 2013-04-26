@@ -48,6 +48,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		p = zone.getPlayer();
 		health = new HealthController("Heart", "BlackHeart", p);
 		p.setGameplayState(this);
+		
 		// testInit(zone);
 	}
 	// Hardcoded level, remove later and use level text files
@@ -61,10 +62,10 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		zone.addEntity(e);
 		zone.addEntity(new GhostPirate(zone, 280, 100));
 		// Terrain test
-		e = new Platform(zone, 300, 400);
+//		e = new Platform(zone, 300, 400);
 		e.setXsize(e.getXsize() * 90);
 		zone.addEntity(e);
-		e = new Platform(zone, 500, (400 - e.getYsize()));
+//		e = new Platform(zone, 500, (400 - e.getYsize()));
 		e.setXsize(e.getXsize() * 3);
 		zone.addEntity(e);
 		

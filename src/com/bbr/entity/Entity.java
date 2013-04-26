@@ -30,9 +30,11 @@ public abstract class Entity {
 	protected Sprite sprite;
 	protected boolean flipHorizontal = false; // facing right by default
 	protected boolean tiledHorizontally = false, tiledVertically = false;
+	protected String type = "rawr";
 
-	public Entity(Zone container, float xpos, float ypos) {
+	public Entity(Zone container, String type, float xpos, float ypos) {
 		this.container = container;
+		this.type = type;
 		setXpos(xpos);
 		setYpos(ypos);
 		loadSprite();
@@ -40,7 +42,14 @@ public abstract class Entity {
 	}
 
 	private void loadSprite() {
-		sprite = Art.getSprite(this);
+		if (type != null && !type.equals("")) {
+			sprite = Art.getSprite(this, type);
+			if (sprite == null)
+				System.err.println("Cannot find specified sprite for: " + this);
+		}
+		else {
+			sprite = Art.getSprite(this);
+		}
 	}
 	protected void autoResize() { // resize to match image size
 		if (sprite == null) return;
