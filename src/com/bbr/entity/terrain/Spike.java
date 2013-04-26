@@ -1,5 +1,7 @@
 package com.bbr.entity.terrain;
 
+import org.newdawn.slick.Graphics;
+
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 
@@ -23,6 +25,12 @@ public class Spike extends Entity{
 		if(this.StartY != this.py) this.py = this.StartY;
 		if (container.getPlayer().collidesWith(this)) 
 			container.getPlayer().hitBy(this, 100);
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+		System.out.println("Spike draw");
+		super.draw(g);
 	}
 
 }

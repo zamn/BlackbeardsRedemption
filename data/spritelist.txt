@@ -69,8 +69,8 @@ res/ghost-rock.png
 
 Snake
 res/enemy/snake/idle.png
-move res/enemy/snake/idle.png
-move res/enemy/snake/move.png
+snakeMove res/enemy/snake/idle.png
+snakeMove res/enemy/snake/move.png
 
 Arboc
 res/Arboc.png

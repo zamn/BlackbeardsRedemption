@@ -1,5 +1,7 @@
 package com.bbr.entity;
 
+import org.newdawn.slick.Graphics;
+
 import com.bbr.core.Zone;
 public abstract class Unit extends Entity {
 	public static final int BASE_COLLISION_DAMAGE = 25;
@@ -56,5 +58,11 @@ public abstract class Unit extends Entity {
 	}
 	public void setCollisionDamage(int newDamage) {
 		collisionDamage = newDamage;
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+		System.out.println("Unit draw");
+		super.draw(g);
 	}
 }

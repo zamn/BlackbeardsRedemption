@@ -2,12 +2,12 @@ package com.bbr.entity.projectile;
 
 import java.util.List;
 
-import com.bbr.entity.Enemy;
+import org.newdawn.slick.Graphics;
+
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 import com.bbr.entity.terrain.BreakablePlatform;
 import com.bbr.entity.terrain.FallingPlatform;
-import com.bbr.resource.Settings;
 
 public abstract class Projectile extends Entity {
 	protected Entity owner;
@@ -108,5 +108,11 @@ public abstract class Projectile extends Entity {
 	}
 	public void multDmg(double boost) {
 		damage = (int)(damage * boost);
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+		System.out.println("Projectile draw");
+		super.draw(g);
 	}
 }

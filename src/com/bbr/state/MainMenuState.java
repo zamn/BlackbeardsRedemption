@@ -38,8 +38,6 @@ public class MainMenuState extends BbrGameState {
 			+ BUTTON_HEIGHT * 4;
 
 	private static final String MENU_MUSIC_NAME = "Menu";
-	private static final int FADE_TIME = 5000; // Time(ms) to fade out menu
-												// music
 
 	private static Music menuMusic;
 	protected Image imageTitle;
@@ -134,7 +132,7 @@ public class MainMenuState extends BbrGameState {
 			throws SlickException {
 		if (goingToStart) {
 			goingToStart = false;
-			menuMusic.fade(FADE_TIME, 0, true);
+			menuMusic.stop();
 			sbg.enterState(BlackbeardsRedemption.States.GAME.ordinal());
 		}
 		

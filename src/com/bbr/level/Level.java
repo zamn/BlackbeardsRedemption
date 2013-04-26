@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Music;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.player.Pirate;
 import com.bbr.resource.Art;
 import com.bbr.resource.Song;
-
-import org.newdawn.slick.Music;
 
 // TODO some way to finalize a level to prevent changes. Don't call it finalize()
 // TODO have level bounds?

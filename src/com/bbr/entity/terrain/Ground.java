@@ -2,6 +2,8 @@ package com.bbr.entity.terrain;
 
 import java.util.List;
 
+import org.newdawn.slick.Graphics;
+
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 
@@ -38,5 +40,10 @@ public class Ground extends Entity {
 				// }
 		}
 	}
-
+	
+	@Override
+	public void draw(Graphics g) {
+		System.out.println("Ground draw");
+		super.draw(g);
+	}
 }

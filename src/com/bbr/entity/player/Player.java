@@ -3,13 +3,13 @@ package com.bbr.entity.player;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 import com.bbr.level.Level;
-import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.resource.Settings;
 import com.bbr.resource.Utility;
 import com.bbr.state.GameplayState;
@@ -255,5 +255,11 @@ public abstract class Player extends Unit {
 			releaseKey(action);
 		}			
 		vx = 0;
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+		System.out.println("Player draw");
+		super.draw(g);
 	}
 }

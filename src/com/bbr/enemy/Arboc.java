@@ -131,6 +131,4 @@ public class Arboc extends Enemy {
 		container.addEntity(stare);
 	}
 	
-	
-	
 }

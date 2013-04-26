@@ -23,8 +23,10 @@ public class Snake extends Enemy {
 	@Override
 	public Image getFrameToDraw() {
 		if (Math.abs(vx) > 0.01) {
-			return sprite.getFrame("move");
+			System.out.println("Snake move");
+			return sprite.getFrame("snakeMove");
 		}
+		System.out.println("Snake normal");
 		return super.getFrameToDraw();
 	}
 
