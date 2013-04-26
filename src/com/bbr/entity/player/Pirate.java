@@ -11,20 +11,13 @@ public class Pirate extends Player {
 	@Override
 	public int getBaseHealth() { return 1000; }
 	public static final int BASE_FIREDELAY = Settings.valueInt("fps")/2;
-//	public static final int BASE_SPECIALDELAY = Settings.valueInt("fps");
 	public static final int BASE_MOVESPEED = 10;
-	// Special Ability: Charge
-//	protected static final float CHARGE_FACTOR = 2.5f;
-//	protected static final int CONTROL_LOCK_DURATION = Settings.valueInt("fps")/2; // minimum charge time before controls unlocked
-//	protected int chargeTime = 0;
-//	protected boolean charging = false;
 
 	protected int attackingFrames = 0; // for animation
 
 	public Pirate(Zone container, float xpos, float ypos) {
 		super(container, xpos, ypos);
 		fireDelay = BASE_FIREDELAY;
-//		specialDelay = BASE_SPECIALDELAY;
 		moveSpeed = BASE_MOVESPEED;
 	}
 
@@ -42,25 +35,15 @@ public class Pirate extends Player {
 	public Image getFrameToDraw() {
 		if (attackingFrames > 0) {
 			Utility.log("Pirate attack");
-//			float oldXpos = px + sx;
-//			float oldHeight = sy;
-//			autoResize(sprite.getFrame("attack"));
-//			setYpos(py - sy + oldHeight);
-//			if (flipHorizontal) {
-//				setXpos(oldXpos - sx);
-//			}
 			return sprite.getFrame("attack");
 		} else if (vy < 0) {
 			Utility.log("Pirate jump");
-//			autoResize(sprite.getFrame("jump"));
 			return sprite.getFrame("jump");
 		} else if (Math.abs(vx) > 0.01) {
 			Utility.log("Pirate move");
-//			autoResize(sprite.getFrame("move"));
 			return sprite.getFrame("move");
 		}
 		Utility.log("Pirate normal");
-//		autoResize(sprite.getFrame());
 		return super.getFrameToDraw();
 	}
 
@@ -77,36 +60,6 @@ public class Pirate extends Player {
 				setXpos(oldXpos - sx);
 			}
 		}
-//		if (charging) {
-//			if (chargeTime < CONTROL_LOCK_DURATION) {
-//				chargeTime++;
-//			} else { // allow controls
-//				this.preventMovement = false;
-//			}
-//		}
 		super.preDt();
 	}
-
-	@Override
-	protected void moved() {
-//		stopCharging();
-	}
-//	protected void stopCharging() {
-//		if (charging) {
-//			charging = false;
-//		}
-//	}
-//	@Override
-//	protected void useSpecial() { // Rush: charges forward
-//		chargeTime = 0;
-//		if (vy != 0 || (vx == 0 && vy == 0)) {
-//			vy = moveSpeed * CHARGE_FACTOR * (vy <= 0 ? -1 : 1); // charge backwards if moving backwards
-//		}
-//		if (vx != 0) {
-//			vx = moveSpeed * CHARGE_FACTOR * (vx <= 0 ? -1 : 1);
-//		}
-//		applyMovementModifiers();
-//		this.preventMovement = true;
-//		charging = true;
-//	}
 }
