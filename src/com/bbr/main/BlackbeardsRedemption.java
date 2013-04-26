@@ -11,7 +11,7 @@ import com.bbr.state.GameplayState;
 import com.bbr.state.MainMenuState;
 
 public class BlackbeardsRedemption extends StateBasedGame {
-	public enum States {MENU, GAME, SETTINGS, CREDITS};
+	public enum States {MENU, GAME, HELP, SETTINGS, CREDITS};
 
 	public BlackbeardsRedemption() {
 		super("Blackbeards Redemption");

@@ -4,7 +4,34 @@ TitleImage
 res/blackbeard/standing.png
 
 StartButton
-res/ui/start.png
+res/ui/titlescreen/start.png
+
+HelpButton
+res/ui/titlescreen/help.png
+
+SettingsButton
+res/ui/titlescreen/settings.png
+
+CreditsButton
+res/ui/titlescreen/credits.png
+
+ExitButton
+res/ui/titlescreen/exit.png
+
+StartButton_mouse
+res/ui/titlescreen/start_mouseover.png
+
+HelpButton_mouse
+res/ui/titlescreen/help_mouseover.png
+
+SettingsButton_mouse
+res/ui/titlescreen/settings_mouseover.png
+
+CreditsButton_mouse
+res/ui/titlescreen/credits_mouseover.png
+
+ExitButton_mouse
+res/ui/titlescreen/exit_mouseover.png
 
 Heart
 res/ui/heart.png
