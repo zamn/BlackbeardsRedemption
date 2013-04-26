@@ -12,6 +12,7 @@ public class LevelFileReader extends SequentialFileReader {
 	public static final Pattern REGEX_POS = Pattern.compile("([a-zA-Z0-9]+) at ([0-9]+),([0-9]+)");
 	public static final Pattern REGEX_SIZE_POS = Pattern.compile("([a-zA-Z0-9]+) ([0-9]+)x([0-9]+) at ([0-9]+),([0-9]+)");
 	public static final Pattern REGEX_BACKGROUND = Pattern.compile("Background ([a-zA-Z0-9]+)");
+	public static final Pattern REGEX_MUSIC = Pattern.compile("Music ([a-zA-Z0-9]+)");
 	protected Level level = new Level();
 
 	public LevelFileReader(File file) {
@@ -28,11 +29,15 @@ public class LevelFileReader extends SequentialFileReader {
 		Matcher spawnMatcher = REGEX_PLAYER_START.matcher(curLine);
 		Matcher posMatcher = REGEX_POS.matcher(curLine);
 		Matcher backgroundMatcher = REGEX_BACKGROUND.matcher(curLine);
-
+		Matcher musicMatcher = REGEX_MUSIC.matcher(curLine);
 		String entityName;
 		int px, py;
 		int sx, sy;
-		if(backgroundMatcher.matches()){
+		if(musicMatcher.matches()){
+			System.out.println(musicMatcher.group(1));
+			System.out.println(musicMatcher.group(1));
+			level.setMusic(musicMatcher.group(1));
+		} else if(backgroundMatcher.matches()){
 			level.setBackground(backgroundMatcher.group(1));
 		} else if (spawnMatcher.matches()) {
 			px = Utility.getInt(spawnMatcher.group(1), -1);

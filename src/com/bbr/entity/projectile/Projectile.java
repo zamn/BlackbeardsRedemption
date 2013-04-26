@@ -72,7 +72,7 @@ public abstract class Projectile extends Entity {
 			break;
 		case ENEMY:
 			collided = container.getEnemyCollided(this);
-			System.out.print("Attacking...\n");
+			//System.out.print("Attacking...\n");
 			if(collided == null) {
 				List<Entity> platforms = container.getTerrainCollided(this);
 				for(Entity e : platforms) {
