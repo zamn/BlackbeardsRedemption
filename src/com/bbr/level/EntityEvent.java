@@ -6,6 +6,7 @@ import com.bbr.enemy.GhostPirate;
 import com.bbr.enemy.SenorRat;
 import com.bbr.enemy.Snake;
 import com.bbr.entity.Entity;
+import com.bbr.entity.terrain.BreakablePlatform;
 import com.bbr.entity.terrain.Exit;
 import com.bbr.entity.terrain.Ground;
 import com.bbr.entity.terrain.Platform;
@@ -19,7 +20,7 @@ import com.bbr.entity.terrain.FallingPlatform;
  * 	- Add a block in the case statement in trigger spawning it into zone.
  */
 public class EntityEvent {
-	public enum EntityType { FALLINGPLATFORM, PLATFORM, SPIKE, EXIT,
+	public enum EntityType { BREAKABLEPLATFORM, FALLINGPLATFORM, PLATFORM, SPIKE, EXIT,
 		GHOSTPIRATE, SNAKE,
 		ARBOC, SENORRAT, BACKGROUND, GROUND }
 	protected EntityType entityType;
@@ -37,6 +38,10 @@ public class EntityEvent {
 	public void trigger(Zone zone) {
 		Entity e = null;
 		switch (entityType) {
+		case BREAKABLEPLATFORM:
+			e = new BreakablePlatform(zone, px, py);
+			zone.addEntity(e);
+			break;
 		case FALLINGPLATFORM:
 			e = new FallingPlatform(zone, px, py);
 			zone.addEntity(e);

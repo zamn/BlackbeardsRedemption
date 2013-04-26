@@ -41,6 +41,7 @@ public class Platform extends Entity {
 				if (e.getXvel() > 0) { // left dash to right
 					newX = px - e.getXsize();
 					if (newX > eX) newX = eX;
+					e.setXvel(0);
 				} else if (e.getXvel() < 0) { // right dash to left
 					newX = px + sx;
 					if (newX < eX) newX = eX;

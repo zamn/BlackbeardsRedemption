@@ -1,7 +1,13 @@
 package com.bbr.entity.projectile;
 
+import java.util.List;
+
+import com.bbr.entity.Enemy;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
+import com.bbr.entity.terrain.BreakablePlatform;
+import com.bbr.entity.terrain.FallingPlatform;
+import com.bbr.resource.Settings;
 
 public abstract class Projectile extends Entity {
 	protected Entity owner;
@@ -56,9 +62,28 @@ public abstract class Projectile extends Entity {
 		switch (targetting) {
 		case ALL:
 			collided = container.getUnitCollided(this);
+			if(collided == null) {
+				List<Entity> platforms = container.getTerrainCollided(this);
+				for(Entity e : platforms) {
+					if(e instanceof BreakablePlatform)
+						container.removeEntity(e);
+				}
+			}
 			break;
 		case ENEMY:
 			collided = container.getEnemyCollided(this);
+			System.out.print("Attacking...\n");
+			if(collided == null) {
+				List<Entity> platforms = container.getTerrainCollided(this);
+				for(Entity e : platforms) {
+					String type = (e instanceof BreakablePlatform) ? "Breakable" : "";
+					if(!(e instanceof BreakablePlatform))
+						type = (e instanceof FallingPlatform) ? "Falling" : "Normal";
+					System.out.print("Platform: " + type + "\n");
+					if(e instanceof BreakablePlatform)
+						container.removeEntity(e);
+				}
+			} else System.out.print("Hit enemy!\n");
 			break;
 		case PLAYER:
 			collided = container.getPlayerCollided(this);
