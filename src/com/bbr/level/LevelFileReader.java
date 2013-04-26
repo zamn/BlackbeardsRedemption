@@ -67,7 +67,7 @@ public class LevelFileReader extends SequentialFileReader {
 			sy = Utility.getInt(sizePosTypeMatcher.group(4), -1);
 			px = Utility.getInt(sizePosTypeMatcher.group(5), -1);
 			py = Utility.getInt(sizePosTypeMatcher.group(6), -1);
-			level.addEntityEvent(entityName, posTypeMatcher.group(2), px, py);
+			level.addEntityEvent(entityName, sizePosTypeMatcher.group(2), sx, sy, px, py);
 		} else if (posTypeMatcher.matches()) {
 			entityName = posTypeMatcher.group(1);
 			px = Utility.getInt(posTypeMatcher.group(3), -1);

@@ -33,7 +33,7 @@ public class Platform extends Entity {
 					newY = py + sy;
 					if (newY < eY) newY = eY;
 				}
-				if (newY != eY) changed = true;
+			 	if (newY != eY) changed = true;
 				e.setYpos(newY);
 				if (changed) return;
 				// }

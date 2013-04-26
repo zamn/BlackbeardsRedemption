@@ -13,4 +13,4 @@ windowWidth=1024
 windowHeight=768
 fullScreen=false
 
-showHitbox=true
+showHitbox=false
