@@ -249,4 +249,10 @@ public abstract class Player extends Unit {
 		deadLevel = state.getCurLevel();
 		state.gameOver();
 	}
+	
+	public void resetKeys() {
+		for (boolean b : controlHeld){
+			b = false;
+		}			
+	}
 }

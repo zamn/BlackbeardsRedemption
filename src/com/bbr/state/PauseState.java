@@ -7,6 +7,7 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.bbr.entity.player.Player;
 import com.bbr.gui.BbrGameState;
 import com.bbr.gui.Button;
 import com.bbr.main.BlackbeardsRedemption;
@@ -90,6 +91,7 @@ public class PauseState extends BbrGameState {
 		if (goingToStart) {
 			goingToStart = false;
 			menuMusic.fade(FADE_TIME, 0, true);
+			GameplayState.getPlayer().resetKeys();
 			sbg.enterState(BlackbeardsRedemption.States.GAME.ordinal());
 		}
 		

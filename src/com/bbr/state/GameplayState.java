@@ -28,8 +28,9 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	protected Zone zone;
 	protected Level curLevel;
 	protected Player p;
+	protected static Player player;
 	protected HealthController health;
-	private StateBasedGame statebg;
+	protected StateBasedGame statebg;
 	protected Image backgroundTest;
 	protected long tickCount = 0; // used for animation
 
@@ -47,6 +48,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		curLevel = Level.getFirstLevel();
 		curLevel.loadInto(zone);
 		p = zone.getPlayer();
+		player = p;
 		health = new HealthController("Heart", "BlackHeart", p);
 		p.setGameplayState(this);
 		// testInit(zone);
@@ -55,6 +57,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	public void testInit(Zone zone) {
 		// Player
 		p = new Pirate(zone, 300, 300);
+		player = p;
 		zone.addEntity(p);
 		zone.follow(p);
 		// Enemy test
@@ -80,6 +83,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 			zone.clear();
 			curLevel.loadInto(zone);
 			p = zone.getPlayer();
+			player = p;
 			health.changeUnit(p);
 			p.setGameplayState(this);
 		}
@@ -88,6 +92,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		zone.clear();
 		curLevel.loadInto(zone);
 		p=zone.getPlayer();
+		player = p;
 		if (health == null)
 			health = new HealthController("Heart", "BlackHeart", p);
 		health.changeUnit(p);
@@ -139,5 +144,13 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	
 	public void pause(){
 		statebg.enterState(BlackbeardsRedemption.States.PAUSE.ordinal());
+	}
+	
+	public Zone getZone(){
+		return zone;
+	}
+	
+	public static Player getPlayer(){
+		return player;
 	}
 }
