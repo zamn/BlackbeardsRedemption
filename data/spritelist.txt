@@ -17,6 +17,16 @@ attack res/blackbeard/attack1.png
 attack res/blackbeard/attack2.png
 attack .33
 jump res/blackbeard/jump2.png
+// offsets
+res/blackbeard/standing.png offsets:0,0
+res/blackbeard/run1.png offsets:0,0
+res/blackbeard/run2.png offsets:0,0
+res/blackbeard/run3.png offsets:0,0
+res/blackbeard/attack1.png offsets:0,-63
+res/blackbeard/attack2.png offsets:0,46
+res/blackbeard/jump2.png offsets:0,0
+
+// Projectile
 
 SwordAttack
 res/invismissile.png

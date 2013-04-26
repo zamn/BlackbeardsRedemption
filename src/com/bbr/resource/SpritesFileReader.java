@@ -11,7 +11,7 @@ import com.bbr.core.Sprite;
 // File reader for sprites file
 public class SpritesFileReader extends SequentialFileReader {
 	public static final Pattern REGEX_SPRITE_NAME = Pattern.compile("(\\w+)"); // name
-	public static final Pattern REGEX_FRAME_HITBOX = Pattern.compile("([^\\.]+\\.[a-zA-Z]+)\\s+offsets:(\\d+),(\\d+)"); // filename hitbox
+	public static final Pattern REGEX_FRAME_OFFSETS = Pattern.compile("([^\\.]+\\.[a-zA-Z]+)\\s+offsets:([-]?\\d+),([-]?\\d+)"); // filename hitbox
 	public static final Pattern REGEX_DEFAULT_FRAME = Pattern.compile("([^\\.]+\\.[a-zA-Z]+)"); // filename
 	public static final Pattern REGEX_SPECIFIC_FRAME = Pattern.compile("(\\w+)\\s+([^\\.]+\\.[a-zA-Z]+)"); // category filename
 	public static final Pattern REGEX_SPECIFIC_DELAY = Pattern.compile("(\\w+)\\s+(\\d*\\.?\\d*)"); // category delay
@@ -28,7 +28,7 @@ public class SpritesFileReader extends SequentialFileReader {
 	@Override
 	protected void processLine(String curLine, int lineNumber) {
 		Matcher spriteNameMatcher = REGEX_SPRITE_NAME.matcher(curLine);
-		Matcher frameHitboxMatcher = REGEX_FRAME_HITBOX.matcher(curLine);
+		Matcher frameOffsetsMatcher = REGEX_FRAME_OFFSETS.matcher(curLine);
 		Matcher defaultFrameMatcher = REGEX_DEFAULT_FRAME.matcher(curLine);
 		Matcher specificFrameMatcher = REGEX_SPECIFIC_FRAME.matcher(curLine);
 		Matcher specificDelayMatcher = REGEX_SPECIFIC_DELAY.matcher(curLine);
@@ -37,11 +37,11 @@ public class SpritesFileReader extends SequentialFileReader {
 			curSprite = new Sprite();
 		}
 
-		if (frameHitboxMatcher.matches()) {
-			int offsetX = Utility.getInt(frameHitboxMatcher.group(2), 0);
-			int offsetY = Utility.getInt(frameHitboxMatcher.group(3), 0);
+		if (frameOffsetsMatcher.matches()) {
+			int offsetX = Utility.getInt(frameOffsetsMatcher.group(2), 0);
+			int offsetY = Utility.getInt(frameOffsetsMatcher.group(3), 0);
 			try {
-				curSprite.setOffsets(Art.loadImage(frameHitboxMatcher.group(1)), offsetX, offsetY);
+				curSprite.setOffsets(Art.loadImage(frameOffsetsMatcher.group(1)), offsetX, offsetY);
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}

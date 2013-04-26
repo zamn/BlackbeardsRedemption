@@ -103,15 +103,15 @@ public abstract class Entity {
 			int drawSizeX = (flipHorizontal?-sx:sx);
 			int drawSizeY = sy;
 
-			Tuple<Integer, Integer> offsets = sprite.getOffsets(toDraw); // note: offsets default to negative
+			Tuple<Integer, Integer> offsets = sprite.getOffsets(toDraw);
 			if (offsets != null) {
 				offsetX = offsets.left;
 				offsetY = offsets.right;
 				drawSizeX = (flipHorizontal?-imageWidth:imageWidth);
 				drawSizeY = imageHeight;
 			}
-			float drawStartX = px-offsetX-this.container.getXscroll()+(flipHorizontal?sx:0);
-			float drawStartY = py-offsetY-this.container.getYscroll();
+			float drawStartX = px-this.container.getXscroll()+(flipHorizontal?sx:0)+offsetX;
+			float drawStartY = py-this.container.getYscroll()+offsetY;
 			
 			toDraw.draw(drawStartX, drawStartY, drawSizeX, drawSizeY);
 //			toDraw.draw(px-this.container.getXscroll()+(flipHorizontal?sx:0),

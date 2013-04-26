@@ -42,25 +42,25 @@ public class Pirate extends Player {
 	public Image getFrameToDraw() {
 		if (attackingFrames > 0) {
 			Utility.log("Pirate attack");
-			float oldXpos = px + sx;
-			float oldHeight = sy;
-			autoResize(sprite.getFrame("attack"));
-			setYpos(py - sy + oldHeight);
-			if (flipHorizontal) {
-				setXpos(oldXpos - sx);
-			}
+//			float oldXpos = px + sx;
+//			float oldHeight = sy;
+//			autoResize(sprite.getFrame("attack"));
+//			setYpos(py - sy + oldHeight);
+//			if (flipHorizontal) {
+//				setXpos(oldXpos - sx);
+//			}
 			return sprite.getFrame("attack");
 		} else if (vy < 0) {
 			Utility.log("Pirate jump");
-			autoResize(sprite.getFrame("jump"));
+//			autoResize(sprite.getFrame("jump"));
 			return sprite.getFrame("jump");
 		} else if (Math.abs(vx) > 0.01) {
 			Utility.log("Pirate move");
-			autoResize(sprite.getFrame("move"));
+//			autoResize(sprite.getFrame("move"));
 			return sprite.getFrame("move");
 		}
 		Utility.log("Pirate normal");
-		autoResize(sprite.getFrame());
+//		autoResize(sprite.getFrame());
 		return super.getFrameToDraw();
 	}
 
