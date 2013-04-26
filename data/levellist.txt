@@ -1,7 +1,8 @@
 // List of levels
 
-level/void.txt
 level/level1.txt
 level/level2.txt
 level/level3.txt
 level/gameover.txt
+
+//level/void.txt
