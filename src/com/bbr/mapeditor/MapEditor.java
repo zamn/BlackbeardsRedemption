@@ -244,13 +244,10 @@ public class MapEditor extends JPanel
 			if(choice == JFileChooser.APPROVE_OPTION) {
 				try {
 					fout = new PrintWriter(fc.getSelectedFile());
-				} catch (FileNotFoundException e1) {
-					throw new RuntimeException("Cannot find selected file", e1);
-				}
-			
-				if(fout != null) {
 					fout.print(level);
 					fout.close();
+				} catch (FileNotFoundException e1) {
+					throw new RuntimeException("Cannot find selected file", e1);
 				}
 			}
 		}
@@ -262,24 +259,19 @@ public class MapEditor extends JPanel
 			try {
 				fin = new BufferedReader(
 						new FileReader("data/imagelist.txt"));
+				while((line = fin.readLine()) != null) {
+					if(line.equals(input)) {
+						line = fin.readLine();
+						background = ImageIO.read(new File(line));
+						level += "Background " + input + NEWLINE;
+						fin.close();
+						return;
+					}
+				}
 			} catch (FileNotFoundException e1) {
 				throw new RuntimeException("Wrong path to imagelist", e1);
-			}
-			
-			if(fin != null) {
-				try {
-					while((line = fin.readLine()) != null) {
-						if(line.equals(input)) {
-							line = fin.readLine();
-							background = ImageIO.read(new File(line));
-							level += "Background " + input + NEWLINE;
-							fin.close();
-							return;
-						}
-					}
-				} catch (IOException e2) {
-					e2.printStackTrace();
-				}
+			} catch (IOException e2) {
+				e2.printStackTrace();
 			}
 			
 			JOptionPane.showMessageDialog(this, 
