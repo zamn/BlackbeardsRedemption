@@ -28,10 +28,15 @@ public class Zone implements Drawable {
 	protected Entity followed;
 	protected int xScroll = 0, yScroll = 0;
 	protected int xScrollTarget = 0, yScrollTarget = 0; // further = faster scroll
+	// Multimedia Experience
 	protected Image background;
 	protected Music song;
+
 	public Zone(LevelHandler levelHandler) {
 		this.levelHandler = levelHandler;
+	}
+	public void nextLevel() {
+		levelHandler.nextLevel();
 	}
 
 	public void addEntity(Entity entity) {
@@ -45,6 +50,66 @@ public class Zone implements Drawable {
 		return entities.contains(entity);
 	}
 
+	@Override
+	public void draw(Graphics g) {
+		updateScrolling();
+		if (background != null) background.draw(0, 0);
+		for (int i = 0; i < entities.size(); i++) {
+			entities.get(i).draw(g);
+		}
+	}
+	public void dt() {
+		if(song != null && !song.playing())
+			song.loop();
+		updateEntities();
+
+		Entity flyer;
+		for (int i = 0; i < entities.size(); i++) {
+			flyer = entities.get(i);
+			flyer.dt();
+		}
+
+		updateEntities();
+		// scrolling velocity
+		float xScrollDelta = (xScrollTarget - xScroll) * .1f;
+		float yScrollDelta = (yScrollTarget - yScroll) * .1f;
+		xScroll += xScrollDelta;
+		yScroll += yScrollDelta;
+	}
+
+	private void updateEntities() {
+		entities.addAll(entitiesToAdd);
+		entitiesToAdd.clear();
+		entities.removeAll(entitiesToRemove);
+		entitiesToRemove.clear();
+	}
+
+	public void clear() {
+		entitiesToAdd.clear();
+		entitiesToRemove.addAll(entities);
+	}
+	// Scrolling
+	public void follow(Entity entity) {
+		followed = entity;
+	}
+	private void updateScrolling() {
+		if (followed != null) {
+//			float xCenter = followed.getXpos() + followed.getXsize() / 2;
+//			xScroll = (int)(xCenter - Settings.valueInt("windowWidth")/2);
+			float xPos = followed.getXpos();// + followed.getXsize() / 2;
+			if (!followed.isFacingRight()) {
+				xPos += followed.getXsize();
+			} else {
+				xPos += followed.getXsize();
+			}
+			xScrollTarget = (int)(xPos - Settings.valueInt("windowWidth")/2);
+			//float yCenter = followed.getYpos() + followed.getYsize() / 2;
+			//yScroll = (int)(yCenter - Settings.valueInt("windowHeight")/2);
+		}
+	}
+	public int getXscroll() { return xScroll; }
+	public int getYscroll() { return yScroll; }
+	// collision detection
 	public Platform getPlatformBelow(Entity mover) {
 		Entity collided;
 		for (int i = 0; i < entities.size(); i++) {
@@ -124,69 +189,6 @@ public class Zone implements Drawable {
 		}
 		return null;
 	}
-
-	@Override
-	public void draw(Graphics g) {
-		updateScrolling();
-		if (background != null) background.draw(0, 0);
-		for (int i = 0; i < entities.size(); i++) {
-			entities.get(i).draw(g);
-		}
-	}
-	public void dt() {
-		if(song != null && !song.playing())
-			song.loop();
-		updateEntities();
-
-		Entity flyer;
-		for (int i = 0; i < entities.size(); i++) {
-			flyer = entities.get(i);
-			flyer.dt();
-		}
-
-		updateEntities();
-		// scrolling velocity
-		float xScrollDelta = (xScrollTarget - xScroll) * .1f;
-		float yScrollDelta = (yScrollTarget - yScroll) * .1f;
-		xScroll += xScrollDelta;
-		yScroll += yScrollDelta;
-	}
-
-	private void updateEntities() {
-		entities.addAll(entitiesToAdd);
-		entitiesToAdd.clear();
-		entities.removeAll(entitiesToRemove);
-		entitiesToRemove.clear();
-	}
-
-	public void nextLevel() {
-		levelHandler.nextLevel();
-	}
-	public void clear() {
-		entitiesToAdd.clear();
-		entitiesToRemove.addAll(entities);
-	}
-
-	public void follow(Entity entity) {
-		followed = entity;
-	}
-	private void updateScrolling() {
-		if (followed != null) {
-//			float xCenter = followed.getXpos() + followed.getXsize() / 2;
-//			xScroll = (int)(xCenter - Settings.valueInt("windowWidth")/2);
-			float xPos = followed.getXpos();// + followed.getXsize() / 2;
-			if (!followed.isFacingRight()) {
-				xPos += followed.getXsize();
-			} else {
-				xPos += followed.getXsize();
-			}
-			xScrollTarget = (int)(xPos - Settings.valueInt("windowWidth")/2);
-			//float yCenter = followed.getYpos() + followed.getYsize() / 2;
-			//yScroll = (int)(yCenter - Settings.valueInt("windowHeight")/2);
-		}
-	}
-	public int getXscroll() { return xScroll; }
-	public int getYscroll() { return yScroll; }
 	// collision detection with platforms
 	public Platform collidesWithBottomOf(Entity mover) {
 		Entity collided;
@@ -248,6 +250,7 @@ public class Zone implements Drawable {
 		}
 		return null;
 	}
+	// Multimedia
 	public void setBackground(Image bg){
 		this.background = bg;
 	}
