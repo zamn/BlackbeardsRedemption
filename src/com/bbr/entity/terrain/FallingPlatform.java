@@ -31,8 +31,5 @@ public class FallingPlatform extends Platform {
 			fallingCount++;
 		if (fallingCount > Settings.valueInt("fps")/2)
 			this.terrainCollidable = true;
-		
-		
-	}
-	
+	}	
 }

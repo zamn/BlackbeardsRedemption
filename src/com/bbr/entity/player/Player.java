@@ -3,6 +3,7 @@ package com.bbr.entity.player;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
 import com.bbr.core.Zone;
@@ -29,9 +30,9 @@ public abstract class Player extends Unit {
 //	protected double slowFactor = 0;
 //	protected int slowDuration = 0;
 //	protected int snareDuration = 0;
-	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, TPHOME, NLEVEL, RESTART};
+	public enum Action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ACT_FIRE, TPHOME, NLEVEL, RESTART, PAUSE};
 	public static final int[] DEFAULT_KEYS = {Input.KEY_UP, Input.KEY_DOWN, Input.KEY_LEFT, Input.KEY_RIGHT,
-		Input.KEY_X, Input.KEY_K, Input.KEY_N, Input.KEY_R};
+		Input.KEY_X, Input.KEY_K, Input.KEY_N, Input.KEY_R, Input.KEY_P};
 	// Controls
 	private ArrayList<Action> controlAction = new ArrayList<Action>();
 	private ArrayList<Integer> controlKey = new ArrayList<Integer>();
@@ -92,6 +93,10 @@ public abstract class Player extends Unit {
 				state.resetLevel();
 			}
 
+			break;
+			
+		case PAUSE:
+			state.pause();
 			break;
 
 		}
@@ -243,5 +248,18 @@ public abstract class Player extends Unit {
 		health = 0;
 		deadLevel = state.getCurLevel();
 		state.gameOver();
+	}
+	
+	public void resetKeys() {
+		for (Action action: controlAction){
+			releaseKey(action);
+		}			
+		vx = 0;
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+		System.out.println("Player draw");
+		super.draw(g);
 	}
 }

@@ -28,8 +28,9 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	protected Zone zone;
 	protected Level curLevel;
 	protected Player p;
+	protected static Player player;
 	protected HealthController health;
-
+	protected StateBasedGame statebg;
 	protected Image backgroundTest;
 	protected long tickCount = 0; // used for animation
 
@@ -42,10 +43,12 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		//backgroundTest = new Image("res/levels/lvl1.png");
 		//gc.getGraphics().setBackground(new Color(128,128,128));
+		statebg = sbg;
 		zone = new Zone(this);
 		curLevel = Level.getFirstLevel();
 		curLevel.loadInto(zone);
 		p = zone.getPlayer();
+		player = p;
 		health = new HealthController("Heart", "BlackHeart", p);
 		p.setGameplayState(this);
 		
@@ -55,6 +58,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	public void testInit(Zone zone) {
 		// Player
 		p = new Pirate(zone, 300, 300);
+		player = p;
 		zone.addEntity(p);
 		zone.follow(p);
 		// Enemy test
@@ -80,6 +84,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 			zone.clear();
 			curLevel.loadInto(zone);
 			p = zone.getPlayer();
+			player = p;
 			health.changeUnit(p);
 			p.setGameplayState(this);
 		}
@@ -88,6 +93,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		zone.clear();
 		curLevel.loadInto(zone);
 		p=zone.getPlayer();
+		player = p;
 		if (health == null)
 			health = new HealthController("Heart", "BlackHeart", p);
 		health.changeUnit(p);
@@ -110,6 +116,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		//backgroundTest.draw(-zone.getXscroll()+25, -zone.getYscroll()+37);
 		//backgroundTest.draw();
 		//backgroundTest.draw(0, 0);
+		statebg = sbg;
 		zone.draw(g);
 		if(health != null)
 			health.draw();
@@ -118,6 +125,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	}
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		statebg = sbg;
 		zone.dt();
 		tickCount++;
 	}
@@ -133,5 +141,17 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	@Override
 	public void keyReleased(int key, char c) {
 		p.keyReleased(key);
+	}
+	
+	public void pause(){
+		statebg.enterState(BlackbeardsRedemption.States.PAUSE.ordinal());
+	}
+	
+	public Zone getZone(){
+		return zone;
+	}
+	
+	public static Player getPlayer(){
+		return player;
 	}
 }

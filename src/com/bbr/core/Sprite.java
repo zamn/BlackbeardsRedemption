@@ -46,6 +46,9 @@ public class Sprite {
 		Collection<Animation> anims = animations.values();
 		for (Animation anim : anims) {
 			if (anim != cur) {
+				if(anim == animations.get("move")) {
+					System.out.println("*****Resetting move*****");
+				}
 				anim.restart();
 			}
 		}
@@ -55,6 +58,7 @@ public class Sprite {
 		return getFrame(DEFAULT_FRAME);
 	}
 	public Image getFrame(String animationName) {
+		System.out.println(animationName);
 		restartOtherAnimations(animationName);
 		return animations.get(animationName).getCurrentFrame();
 	}

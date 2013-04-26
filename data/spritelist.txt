@@ -64,6 +64,9 @@ Ground res/levels/level1/ground/topright.png
 Spike
 res/terrain/spike.png
 
+FakeSpike
+res/terrain/spike.png
+
 // Enemies
 
 GhostPirate
@@ -74,8 +77,8 @@ res/ghost-rock.png
 
 Snake
 res/enemy/snake/idle.png
-move res/enemy/snake/idle.png
-move res/enemy/snake/move.png
+snakeMove res/enemy/snake/idle.png
+snakeMove res/enemy/snake/move.png
 
 Arboc
 res/Arboc.png

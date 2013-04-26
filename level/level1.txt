@@ -9,92 +9,107 @@
 //background
 Background Level1Background
 
-
-
 //player
 spawn at 0,50
 
 // starting point - introduce falling platforms
-platform at 0,350
-platform at 50,350
-fallingplatform at 100,350
-fallingplatform at 150,350
+fallingplatform at 0,268
+fallingplatform at 50,268
+fallingplatform at 100,268
+fallingplatform at 150,268
 
 //platforms and shit
-platform 550x50 at 50,600
-fallingplatform 50x50 at 600,600
-fallingplatform 50x50 at 650,600
-fallingplatform 50x50 at 700,600
-fallingplatform 50x50 at 750,600
-fallingplatform 50x50 at 800,600
-fallingplatform 50x50 at 850,600
-fallingplatform 50x50 at 900,600
-fallingplatform 50x50 at 950,600
-fallingplatform 50x50 at 1000,600
-fallingplatform 50x50 at 1050,600
-fallingplatform 50x50 at 1100,600
-fallingplatform 50x50 at 1150,600
-fallingplatform 50x50 at 1200,600
-fallingplatform 50x50 at 1250,600
-fallingplatform 50x50 at 1300,600
-fallingplatform 50x50 at 1350,600
-fallingplatform 50x50 at 1400,600
-fallingplatform 50x50 at 1450,600
-fallingplatform 50x50 at 1500,600
-fallingplatform 50x50 at 1550,600
-fallingplatform 50x50 at 1600,600
-fallingplatform 50x50 at 1650,600
-fallingplatform 50x50 at 1700,600
-fallingplatform 50x50 at 1750,600
-fallingplatform 50x50 at 1800,600
-fallingplatform 50x50 at 1850,600
-fallingplatform 50x50 at 1900,600
-fallingplatform 50x50 at 1950,600
-fallingplatform 50x50 at 2000,600
-fallingplatform 50x50 at 2050,600
-fallingplatform 50x50 at 2100,600
-fallingplatform 50x50 at 2150,600
-fallingplatform 50x50 at 2200,600
-fallingplatform 50x50 at 2250,600
-platform 1000x50 at 2300,550
-breakableplatform 50x50 at 3500,550
-breakableplatform 50x50 at 3500,500
-breakableplatform 50x50 at 3500,450
-breakableplatform 50x50 at 3500,400
-breakableplatform 50x50 at 3500,350
-platform 1500x50 at 3300,600
-spike at 4000,570
-platform 50x50 at 4850,570
-platform 200x50 at 5000,450
-platform 500x50 at 5400,550
-platform 50x50 at 5950,500
-platform 100x50 at 6050,450
-platform 100x50 at 6300,450
-platform 100x50 at 6700,450
-platform 200x50 at 6850,550
+platform 500x50 at 50,718
+fallingplatform at 550,718
+fallingplatform at 600,718
+fallingplatform at 650,718
+fallingplatform 150x50 at 700,668
+fallingplatform 150x50 at 850,618
+fallingplatform 150x50 at 1000,568
+fallingplatform 150x50 at 1150,518
+fallingplatform 150x50 at 1300,468
+fallingplatform 150x50 at 1450,418
+fallingplatform 150x50 at 1600,368
+platform 150x50 at 1450,818
+platform 50x50 at 1750,318
+platform 50x50 at 1800,318
+platform 50x50 at 1850,318
+platform 50x50 at 1750,268
+platform 50x50 at 1800,268
+platform 50x50 at 1850,268
+breakableplatform 50x50 at 1750,218
+breakableplatform 50x50 at 1800,218
+breakableplatform 50x50 at 1850,218
+breakableplatform 50x50 at 1750,168
+breakableplatform 50x50 at 1800,168
+breakableplatform 50x50 at 1850,168
+breakableplatform 50x50 at 1750,118
+breakableplatform 50x50 at 1800,118
+breakableplatform 50x50 at 1850,118
+breakableplatform 50x50 at 1750,68
+breakableplatform 50x50 at 1800,68
+breakableplatform 50x50 at 1850,68
+platform 400x50 at 1900,768
+breakableplatform 100x50 at 2400,668
+breakableplatform 100x50 at 2600,568
+breakableplatform 100x50 at 2800,468
+breakableplatform 100x50 at 3000,368
+breakableplatform 100x50 at 3200,268
+fallingplatform at 3350,168
+platform 100x50 at 2850,768
+platform 600x50 at 3150,768
+fallingplatform at 3750,668
+fallingplatform at 3750,618
+fallingplatform at 3750,568
+fallingplatform at 3750,518
+fallingplatform at 3750,468
+fallingplatform at 3750,418
+platform at 3750,918
+platform 250x50 at 3850,518
+platform 100x50 at 4150,568
+platform 200x50 at 4300,618
 
 
 //enemies
-//ghostpirate at 600,300
-snake at 550,300
-snake at 1500,200
-snake at 2700,250
-//senorrat at 500,275
-//arboc at 400,275
+snake at 1650,168
 
 //spikes
-spike at 4900,650
-spike at 5000,650
-spike at 5100,650
-spike at 5200,650
-spike at 5950,650
-spike at 6000,650
-spike at 6100,650
-spike at 6200,650
-spike at 6300,650
-spike at 6400,650
+spike at 700,718
+spike at 750,718
+spike at 800,718
+spike at 850,718
+spike at 900,718
+spike at 950,718
+spike at 1000,718
+spike at 1050,718
+spike at 1100,718
+spike at 1150,718
+spike at 1200,718
+spike at 1250,718
+spike at 1300,718
+spike at 1350,718
+fakespike at 1400,718
+fakespike at 1450,718
+fakespike at 1500,718
+fakespike at 1550,718
+fakespike at 1600,718
+spike at 1650,718
+spike at 1700,718
+fakespike at 1750,718
+fakespike at 1800,718
+fakespike at 1850,718
+spike at 3300,368
+spike at 3350,368
+spike at 3400,368
+spike at 3450,68
+spike at 3450,118
+spike at 3450,168
+spike at 3450,218
+spike at 3450,268
+spike at 3450,318
+spike at 3450,368
 
 //exit
-exit at 6900,450
+exit at 4436,518
 
 

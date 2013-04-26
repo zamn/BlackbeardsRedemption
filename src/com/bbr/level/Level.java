@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.player.Pirate;
 import com.bbr.resource.Art;
+import com.bbr.resource.Song;
 
 // TODO some way to finalize a level to prevent changes. Don't call it finalize()
 // TODO have level bounds?
@@ -29,6 +31,7 @@ public class Level {
 	protected int spawnX, spawnY;
 	protected List<EntityEvent> entityEvents = new ArrayList<EntityEvent>();
 	protected Image background;
+	protected Music music;
 	protected Level() { }
 
 	public static Level loadLevel(String levelPath) throws FileNotFoundException {
@@ -37,7 +40,6 @@ public class Level {
 		lfr.readFile();
 		levels.add(lfr.getLevel());
 		lfr.getLevel().setName(f.getName());
-		//System.out.println(f.getName());
 		return lfr.getLevel();
 	}
 	
@@ -85,11 +87,15 @@ public class Level {
 		zone.addEntity(p);
 		zone.follow(p);
 		zone.setBackground(background);
+		zone.setMusic(music);
 		for (EntityEvent ee : entityEvents) {
 			ee.trigger(zone);
 		}
 	}
 	public void setBackground(String bg){
 		this.background = Art.getImage(bg);
+	}
+	public void setMusic(String song){
+		this.music = Song.getMusic(song);
 	}
 }

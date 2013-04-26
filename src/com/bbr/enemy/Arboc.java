@@ -9,21 +9,26 @@ import com.bbr.entity.projectile.Projectile;
 
 public class Arboc extends Enemy {
 	@Override
-	public int getBaseHealth() { return 2000; }
+	public int getBaseHealth() { return 200; }
 
 	protected int level;
 	protected Random rand;
 	protected int counter;
 	protected float startX;
+	protected int hitDelay;
+	protected float startY;
 	
 	public Arboc(Zone zone, float x, float y) {
 		super(zone, x, y);
-		vx = 1;
+		vx = 10;
+		vy = 5;
 		terrainCollidable = false;
 		rand = new Random();
 		level = 1;
 		counter = 0;
 		startX = x;
+		startY = y;
+		hitDelay = 25;
 	}
 	
 	@Override
@@ -31,10 +36,22 @@ public class Arboc extends Enemy {
 		counter ++;
 		if(Math.abs(startX-px) > 200)
 			vx = -vx;
-		if(counter > 90){
+		if(counter > 40){
 			attack();
 			counter = 0;
 		}
+		
+		//move up and down
+		if (Math.abs(startY-py) > 200)
+			vy = -vy;
+		
+		//on collision, damage the player
+		if (container.getPlayer().collidesWith(this) && hitDelay <=0) {
+			container.getPlayer().hitBy(this, 100);
+			hitDelay = 25;
+		}
+		if (hitDelay > 0)
+			hitDelay--;
 	}
 	
 	public void setLevel(int level){

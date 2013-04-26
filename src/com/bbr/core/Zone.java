@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
 
 import com.bbr.entity.Enemy;
 import com.bbr.entity.Entity;
@@ -28,6 +29,7 @@ public class Zone implements Drawable {
 	protected int xScroll = 0, yScroll = 0;
 	protected int xScrollTarget = 0, yScrollTarget = 0; // further = faster scroll
 	protected Image background;
+	protected Music song;
 	public Zone(LevelHandler levelHandler) {
 		this.levelHandler = levelHandler;
 	}
@@ -132,6 +134,8 @@ public class Zone implements Drawable {
 		}
 	}
 	public void dt() {
+		if(song != null && !song.playing())
+			song.loop();
 		updateEntities();
 
 		Entity flyer;
@@ -175,8 +179,6 @@ public class Zone implements Drawable {
 				xPos += followed.getXsize();
 			} else {
 				xPos += followed.getXsize();
-//				System.out.println(followed.getXsize());
-//				System.out.println(xPos);
 			}
 			xScrollTarget = (int)(xPos - Settings.valueInt("windowWidth")/2);
 			//float yCenter = followed.getYpos() + followed.getYsize() / 2;
@@ -248,5 +250,8 @@ public class Zone implements Drawable {
 	}
 	public void setBackground(Image bg){
 		this.background = bg;
+	}
+	public void setMusic(Music song){
+		this.song = song;
 	}
 }
