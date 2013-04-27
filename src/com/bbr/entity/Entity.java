@@ -13,11 +13,12 @@ import com.bbr.core.Zone;
 import com.bbr.resource.Art;
 import com.bbr.resource.Settings;
 import com.bbr.resource.Tuple;
+import com.bbr.resource.Utility;
 
 // represents a game entity with position and image
 public abstract class Entity {
 	public static final int TERMINAL_VELOCITY = 10; // Max due to gravity
-
+		
 	protected static final Random rand = new Random(System.currentTimeMillis());
 	// Spatial
 	protected Zone container;
@@ -131,31 +132,30 @@ public abstract class Entity {
 			flipHorizontal = false;
 		}
 		setXpos(px + vx);
+		
+		if(this.toString().equals("Pirate")) {
+			System.out.println("Original x " + getXpos());
+		}
 
 		if(container.collidesWithRightOf(this) != null){
-			if(this.toString() == "Player");
-				//Utility.log("Collider: "+container.collidesWithRightOf(this).getXpos()+" Player: "+(this.getXpos()+this.getXsize()));
+			Utility.log("Collider Right: "+container.collidesWithRightOf(this).getXpos()+" Player: "+(this.getXpos()+this.getXsize()));
 			this.setXpos(container.collidesWithRightOf(this).getXpos() - this.getXsize());
 		}
 		if(container.collidesWithLeftOf(this) != null){
-			if(this.toString() == "Player");
-				//Utility.log("Collider: "+(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize())+" Player: "+this.getXpos());
+			Utility.log("Collider Left: "+(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize())+" Player: "+this.getXpos());
 			this.setXpos(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize());
 		}
 		setYpos(py + vy);
 		// prevent falling through platforms
 		onPlatform = (container.collidesWithBottomOf(this) != null);
-		if (onPlatform && vy != 0){
+		if (onPlatform){
 			vy = 0;
 			this.setYpos(container.collidesWithBottomOf(this).getYpos() - this.getYsize());
 		}
 		// acceleration due to gravity
-		if (terrainCollidable && !onPlatform && vy < TERMINAL_VELOCITY){
+		if (terrainCollidable && vy < TERMINAL_VELOCITY){
 			vy++;
 		}
-		
-			
-		
 		
 		postDt();
 	}

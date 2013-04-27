@@ -6,7 +6,6 @@ import java.util.HashMap;
 import org.newdawn.slick.Image;
 
 import com.bbr.resource.Tuple;
-import com.bbr.resource.Utility;
 
 public class Sprite {
 	public static final String DEFAULT_FRAME = "normal";
@@ -57,9 +56,6 @@ public class Sprite {
 		Collection<Animation> anims = animations.values();
 		for (Animation anim : anims) {
 			if (anim != cur) {
-				if(anim == animations.get("move")) {
-					Utility.log("*****Resetting move*****");
-				}
 				anim.restart();
 			}
 		}
@@ -69,7 +65,7 @@ public class Sprite {
 		return getFrame(DEFAULT_FRAME);
 	}
 	public Image getFrame(String animationName) {
-		Utility.log(animationName);
+//		Utility.log(animationName);
 		restartOtherAnimations(animationName);
 		return animations.get(animationName).getCurrentFrame();
 	}

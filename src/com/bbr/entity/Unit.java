@@ -3,7 +3,6 @@ package com.bbr.entity;
 import org.newdawn.slick.Graphics;
 
 import com.bbr.core.Zone;
-import com.bbr.resource.Utility;
 public abstract class Unit extends Entity {
 	public static final int BASE_COLLISION_DAMAGE = 25;
 	protected int health = 0; 
@@ -63,7 +62,7 @@ public abstract class Unit extends Entity {
 	
 	@Override
 	public void draw(Graphics g) {
-		Utility.log("Unit draw");
+//		Utility.log("Unit draw");
 		super.draw(g);
 	}
 }

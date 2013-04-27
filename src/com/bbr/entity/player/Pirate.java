@@ -6,7 +6,6 @@ import com.bbr.core.Zone;
 import com.bbr.entity.projectile.Projectile;
 import com.bbr.entity.projectile.SwordAttack;
 import com.bbr.resource.Settings;
-import com.bbr.resource.Utility;
 public class Pirate extends Player {
 	@Override
 	public int getBaseHealth() { return 1000; }
@@ -34,16 +33,16 @@ public class Pirate extends Player {
 	@Override
 	public Image getFrameToDraw() {
 		if (attackingFrames > 0) {
-			Utility.log("Pirate attack");
+//			Utility.log("Pirate attack");
 			return sprite.getFrame("attack");
 		} else if (vy < 0) {
-			Utility.log("Pirate jump");
+//			Utility.log("Pirate jump");
 			return sprite.getFrame("jump");
 		} else if (Math.abs(vx) > 0.01) {
-			Utility.log("Pirate move");
+//			Utility.log("Pirate move");
 			return sprite.getFrame("move");
 		}
-		Utility.log("Pirate normal");
+//		Utility.log("Pirate normal");
 		return super.getFrameToDraw();
 	}
 

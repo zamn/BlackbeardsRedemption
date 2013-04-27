@@ -210,7 +210,7 @@ public class Zone implements Drawable {
 			collided = entities.get(i);
 			if (collided != mover) {
 				if (collided instanceof Platform && collided.collidesWith(mover)) {
-						float moverXpos = mover.getXpos() + mover.getYpos();
+						float moverXpos = mover.getXpos() + mover.getXsize();
 						if(moverXpos >= collided.getXpos() && moverXpos <= (collided.getXpos() + collided.getXsize()))
 							return (Platform) collided;
 					
