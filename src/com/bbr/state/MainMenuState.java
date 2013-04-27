@@ -3,7 +3,6 @@ package com.bbr.state;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -39,7 +38,6 @@ public class MainMenuState extends BbrGameState {
 
 	private static final String MENU_MUSIC_NAME = "Menu";
 
-	private static Music menuMusic;
 	protected Image imageTitle;
 
 	protected Button startButton;
