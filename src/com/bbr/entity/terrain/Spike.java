@@ -4,7 +4,6 @@ import org.newdawn.slick.Graphics;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
-import com.bbr.resource.Utility;
 
 public class Spike extends Entity{
 	
@@ -31,7 +30,7 @@ public class Spike extends Entity{
 	
 	@Override
 	public void draw(Graphics g) {
-		Utility.log("Spike draw");
+//		Utility.log("Spike draw");
 		super.draw(g);
 	}
 

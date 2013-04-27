@@ -27,7 +27,6 @@ public class PauseState extends BbrGameState {
 	private static final int EXIT_X = BUTTON_X, EXIT_Y = BUTTON_Y
 			+ BUTTON_HEIGHT;
 
-	private static final String MENU_MUSIC_PATH = "res/audio/music/menu_music.aiff";
 	private static final int FADE_TIME = 5000; // Time(ms) to fade out menu
 												// music
 
@@ -63,8 +62,6 @@ public class PauseState extends BbrGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		menuMusic = new Music(MENU_MUSIC_PATH);
-		menuMusic.loop();
 	}
 
 	@Override
@@ -89,7 +86,6 @@ public class PauseState extends BbrGameState {
 			throws SlickException {
 		if (goingToStart) {
 			goingToStart = false;
-			menuMusic.fade(FADE_TIME, 0, true);
 			GameplayState.getPlayer().resetKeys();
 			sbg.enterState(BlackbeardsRedemption.States.GAME.ordinal());
 		}

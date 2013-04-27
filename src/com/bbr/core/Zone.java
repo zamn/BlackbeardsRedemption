@@ -15,6 +15,7 @@ import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.Drawable;
 import com.bbr.level.LevelHandler;
 import com.bbr.resource.Settings;
+import com.bbr.resource.Song;
 
 // TODO add zone boundaries where entities are destroyed/paused
 public class Zone implements Drawable {
@@ -29,8 +30,8 @@ public class Zone implements Drawable {
 	protected int xScroll = 0, yScroll = 0;
 	protected int xScrollTarget = 0, yScrollTarget = 0; // further = faster scroll
 	// Multimedia Experience
+	private String songName;
 	protected Image background;
-	protected Music song;
 
 	public Zone(LevelHandler levelHandler) {
 		this.levelHandler = levelHandler;
@@ -59,8 +60,8 @@ public class Zone implements Drawable {
 		}
 	}
 	public void dt() {
-		if(song != null && !song.playing())
-			song.loop();
+		if(!Song.isPlaying(songName))
+			Song.playMusic(songName);
 		updateEntities();
 
 		Entity flyer;
@@ -85,6 +86,7 @@ public class Zone implements Drawable {
 	}
 
 	public void clear() {
+		Song.stopMusic();
 		entitiesToAdd.clear();
 		entitiesToRemove.addAll(entities);
 	}
@@ -211,7 +213,7 @@ public class Zone implements Drawable {
 			collided = entities.get(i);
 			if (collided != mover) {
 				if (collided instanceof Platform && collided.collidesWith(mover)) {
-						float moverXpos = mover.getXpos() + mover.getYpos();
+						float moverXpos = mover.getXpos() + mover.getXsize();
 						if(moverXpos >= collided.getXpos() && moverXpos <= (collided.getXpos() + collided.getXsize()))
 							return (Platform) collided;
 					
@@ -254,7 +256,7 @@ public class Zone implements Drawable {
 	public void setBackground(Image bg){
 		this.background = bg;
 	}
-	public void setMusic(Music song){
-		this.song = song;
+	public void setMusic(String song){
+		songName = song;
 	}
 }

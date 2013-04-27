@@ -31,7 +31,7 @@ public class Level {
 	protected int spawnX, spawnY;
 	protected List<EntityEvent> entityEvents = new ArrayList<EntityEvent>();
 	protected Image background;
-	protected Music music;
+	protected String music;
 	protected Level() { }
 
 	public static Level loadLevel(String levelPath) throws FileNotFoundException {
@@ -96,6 +96,6 @@ public class Level {
 		this.background = Art.getImage(bg);
 	}
 	public void setMusic(String song){
-		this.music = Song.getMusic(song);
+		music = song;
 	}
 }

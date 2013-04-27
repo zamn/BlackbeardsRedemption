@@ -12,7 +12,8 @@ public final class Song {
 	protected static HashMap<String, Music> songs = new HashMap<String, Music>();
 
 	private static boolean loaded = false;
-
+	private static boolean isMuted = false;
+	private static Music currentSong;
 	private Song() { }
 	//
 	//	static {
@@ -31,6 +32,7 @@ public final class Song {
 		
 		loadSongs();
 		loaded = true;
+		isMuted = Settings.valueBoolean("muted");
 	}
 	private static void loadSongs() {
 		SongFileReader fileReader = new SongFileReader(SONG_LIST);
@@ -47,7 +49,30 @@ public final class Song {
 		
 		return new Music(songName);
 	}
-	public static Music getMusic(String songName) {
-		return songs.get(songName);
+	public static void playMusic(String songName){
+		System.out.println(songName);
+		if(isMuted){
+			System.out.println("Muted");
+			return;
+		}
+		stopMusic();
+		currentSong = songs.get(songName);
+		if(currentSong != null)
+			currentSong.loop();
+			return;
 	}
+	public static void stopMusic(){
+		if(currentSong != null)
+			currentSong.stop();
+	}
+	public static boolean isPlaying(String songName){
+		return currentSong == songs.get(songName);
+	}
+	
+	//deprecated
+	/*public static Music getMusic(String songName) {
+		Utility.printWarning("Warning! getMusic("+songName+") is deprecated");
+		System.out.println(songName);
+		return songs.get(songName);
+	}*/
 }

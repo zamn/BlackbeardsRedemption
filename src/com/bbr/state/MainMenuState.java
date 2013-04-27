@@ -97,8 +97,7 @@ public class MainMenuState extends BbrGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		menuMusic = Song.getMusic(MENU_MUSIC_NAME);
-		menuMusic.loop();
+		Song.playMusic(MENU_MUSIC_NAME);
 	}
 
 	@Override
@@ -132,7 +131,6 @@ public class MainMenuState extends BbrGameState {
 			throws SlickException {
 		if (goingToStart) {
 			goingToStart = false;
-			menuMusic.stop();
 			sbg.enterState(BlackbeardsRedemption.States.GAME.ordinal());
 		}
 		
