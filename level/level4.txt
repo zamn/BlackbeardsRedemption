@@ -10,6 +10,9 @@ point
 //background
 Background Level1Background
 
+//music
+Music Menu
+
 //player
 spawn at 2350,568
 
@@ -32,7 +35,7 @@ platform 250x50 at 900,418
 platform 250x50 at 650,468
 platform 250x50 at 400,418
 platform 150x50 at 150,318
-platform 250x50 at 400,218
+platform 200x50 at 450,218
 fallingplatform at 850,218
 fallingplatform at 900,218
 fallingplatform at 950,218
@@ -89,16 +92,16 @@ fallingplatform at 6050,518
 fallingplatform at 6100,518
 fallingplatform at 6150,518
 platform at 6200,518
-fallingplatform at 5950,418
-fallingplatform at 5900,418
-fallingplatform at 5850,418
-fallingplatform at 5800,418
-fallingplatform at 5750,418
-fallingplatform at 5700,418
+//fallingplatform at 5925,418
+fallingplatform at 5875,418
+fallingplatform at 5825,418
+fallingplatform at 5775,418
+fallingplatform at 5725,418
+//fallingplatform at 5700,418
 fallingplatform 150x50 at 5500,318
 platform at 5450,318
-fallingplatform at 5700,218
-fallingplatform at 5750,218
+//fallingplatform at 5700,218
+//fallingplatform at 5750,218
 fallingplatform at 5800,218
 fallingplatform at 5850,218
 fallingplatform at 5900,218

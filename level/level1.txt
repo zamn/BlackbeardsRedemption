@@ -12,6 +12,7 @@ Background Level1Background
 //player
 spawn at 0,50
 
+//music
 Music TestMusic
 
 // starting point - introduce falling platforms
@@ -20,7 +21,7 @@ fallingplatform at 50,268
 fallingplatform at 100,268
 fallingplatform at 150,268
 
-//platforms and shit
+//platforms
 ground topmid 500x50 at 50,718
 fallingplatform at 550,718
 fallingplatform at 600,718
@@ -33,24 +34,24 @@ fallingplatform 150x50 at 1300,468
 fallingplatform 150x50 at 1450,418
 fallingplatform 150x50 at 1600,368
 platform 150x50 at 1450,818
-platform 50x50 at 1750,318
-platform 50x50 at 1800,318
-platform 50x50 at 1850,318
-platform 50x50 at 1750,268
-platform 50x50 at 1800,268
-platform 50x50 at 1850,268
-breakableplatform 50x50 at 1750,218
-breakableplatform 50x50 at 1800,218
-breakableplatform 50x50 at 1850,218
-breakableplatform 50x50 at 1750,168
-breakableplatform 50x50 at 1800,168
-breakableplatform 50x50 at 1850,168
-breakableplatform 50x50 at 1750,118
-breakableplatform 50x50 at 1800,118
-breakableplatform 50x50 at 1850,118
-breakableplatform 50x50 at 1750,68
-breakableplatform 50x50 at 1800,68
-breakableplatform 50x50 at 1850,68
+platform at 1750,318
+platform at 1800,318
+platform at 1850,318
+breakableplatform at 1750,268
+breakableplatform at 1800,268
+breakableplatform at 1850,268
+breakableplatform at 1750,218
+breakableplatform at 1800,218
+breakableplatform at 1850,218
+breakableplatform at 1750,168
+breakableplatform at 1800,168
+breakableplatform at 1850,168
+breakableplatform at 1750,118
+breakableplatform at 1800,118
+breakableplatform at 1850,118
+breakableplatform at 1750,68
+breakableplatform at 1800,68
+breakableplatform at 1850,68
 platform 400x50 at 1900,768
 breakableplatform 100x50 at 2400,668
 breakableplatform 100x50 at 2600,568
@@ -64,8 +65,8 @@ fallingplatform at 3750,668
 fallingplatform at 3750,618
 fallingplatform at 3750,568
 fallingplatform at 3750,518
-fallingplatform at 3750,468
-platform at 3750,918
+//fallingplatform at 3750,468
+platform at 3750,868
 platform 250x50 at 3850,568
 platform 100x50 at 4150,618
 platform 200x50 at 4300,668

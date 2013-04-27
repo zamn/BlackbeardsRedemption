@@ -27,10 +27,10 @@ public class FallingPlatform extends Platform {
 	public void preDt() {
 		super.preDt();
 		Player p = container.getPlayer();
-		if(!(falling)  && this.futureCollidesWith(p, 0, p.getYvel()))
+		if(!(falling)  && this.futureCollidesWith(p, 0, (float)0.5))
 			falling = true;
 		Entity e = container.getCollided(this);
-		if(!(falling) && e instanceof Projectile) {
+		if(!(falling) && e instanceof Projectile || e instanceof Player) {
 			falling = true;
 		}
 		if (falling)

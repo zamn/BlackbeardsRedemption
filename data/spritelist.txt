@@ -51,7 +51,7 @@ BreakablePlatform
 res/levels/level1/platform/breakableplatform.png
 
 BreakablePlatformG
-res/levels/level1/platform/platform.png
+res/levels/level1/platform/breakableplatform.png
 
 Exit
 res/terrain/Exit.png
@@ -64,7 +64,7 @@ Platform
 res/levels/level1/platform/platform.png
 
 RisingPlatform
-res/levels/level1/platform/platform.png
+res/levels/level1/platform/risingplatform.png
 
 Ground
 Ground res/levels/level1/ground/botleft.png
@@ -81,7 +81,7 @@ Spike
 res/terrain/spike.png
 
 FakeSpike
-res/terrain/spike.png
+res/terrain/fakespike.png
 
 // Enemies
 
