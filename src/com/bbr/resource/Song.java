@@ -12,7 +12,8 @@ public final class Song {
 	protected static HashMap<String, Music> songs = new HashMap<String, Music>();
 
 	private static boolean loaded = false;
-
+	private static boolean isMuted = false;
+	private static Music currentSong;
 	private Song() { }
 	//
 	//	static {
@@ -47,7 +48,24 @@ public final class Song {
 		
 		return new Music(songName);
 	}
-	public static Music getMusic(String songName) {
-		return songs.get(songName);
+	public static void playMusic(String songName){
+		if(currentSong != null)
+			currentSong.stop();
+		currentSong = songs.get(songName);
+		Utility.log(songName);
+		if(currentSong != null)
+			currentSong.loop();
 	}
+	public static void stopMusic(){
+		if(currentSong != null)
+			currentSong.stop();
+	}
+	
+	
+	//deprecated
+	/*public static Music getMusic(String songName) {
+		Utility.printWarning("Warning! getMusic("+songName+") is deprecated");
+		System.out.println(songName);
+		return songs.get(songName);
+	}*/
 }

@@ -15,6 +15,7 @@ import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.Drawable;
 import com.bbr.level.LevelHandler;
 import com.bbr.resource.Settings;
+import com.bbr.resource.Song;
 
 // TODO add zone boundaries where entities are destroyed/paused
 public class Zone implements Drawable {
@@ -30,7 +31,6 @@ public class Zone implements Drawable {
 	protected int xScrollTarget = 0, yScrollTarget = 0; // further = faster scroll
 	// Multimedia Experience
 	protected Image background;
-	protected Music song;
 
 	public Zone(LevelHandler levelHandler) {
 		this.levelHandler = levelHandler;
@@ -59,8 +59,7 @@ public class Zone implements Drawable {
 		}
 	}
 	public void dt() {
-		if(song != null && !song.playing())
-			song.loop();
+
 		updateEntities();
 
 		Entity flyer;
@@ -254,7 +253,7 @@ public class Zone implements Drawable {
 	public void setBackground(Image bg){
 		this.background = bg;
 	}
-	public void setMusic(Music song){
-		this.song = song;
+	public void setMusic(String song){
+		Song.playMusic(song);
 	}
 }
