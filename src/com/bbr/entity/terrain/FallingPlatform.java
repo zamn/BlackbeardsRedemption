@@ -10,7 +10,7 @@ import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 import com.bbr.entity.player.Player;
 import com.bbr.entity.projectile.Projectile;
-import com.bbr.particle.Particle;
+import com.bbr.entity.particle.Particle;
 import com.bbr.resource.Settings;
 
 public class FallingPlatform extends Platform {
@@ -43,17 +43,10 @@ public class FallingPlatform extends Platform {
 	public void preDt() {
 		super.preDt();
 		Player p = container.getPlayer();
-<<<<<<< HEAD
 		if(!(falling)  && this.futureCollidesWith(p, 0, (float)0.5))
 			falling = true;
 		Entity e = container.getCollided(this);
 		if(!(falling) && e instanceof Projectile || e instanceof Player) {
-=======
-		Entity e = container.getCollided(this);
-
-				
-		if(!falling  && (this.futureCollidesWith(p, 0, p.getYvel()) || e instanceof Projectile)) {
->>>>>>> origin/master
 			falling = true;
 			for(Particle particle : particles) {
 				particle.activate();

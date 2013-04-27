@@ -13,7 +13,7 @@ import com.bbr.entity.player.Player;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.Drawable;
 import com.bbr.level.LevelHandler;
-import com.bbr.particle.Particle;
+import com.bbr.entity.particle.Particle;
 import com.bbr.resource.Settings;
 import com.bbr.resource.Song;
 

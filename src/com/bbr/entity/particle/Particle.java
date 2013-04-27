@@ -1,4 +1,4 @@
-package com.bbr.particle;
+package com.bbr.entity.particle;
 
 import java.awt.Dimension;
 
