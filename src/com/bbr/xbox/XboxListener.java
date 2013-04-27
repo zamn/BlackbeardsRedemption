@@ -14,10 +14,8 @@ public class XboxListener extends Thread {
 
 	private Controller joystick = null;
 	private Player p = null;
-	private static final int DELAY = 100;
-	private static final int JUMP_DELAY = 450;
-	private int xAxis, yAxis, aButton, xButton;
 	private Component[] comps;
+	private int xAxis, yAxis, aButton, xButton;
 
 	public static final int NUM_COMPASS_DIRS = 9;
 	public static final int NW = 0;
@@ -29,15 +27,13 @@ public class XboxListener extends Thread {
 	public static final int SW = 6;
 	public static final int SOUTH = 7;
 	public static final int SE = 8;
+	private static final int DELAY = 100;
+	private static final int JUMP_DELAY = 450;
 
 	public XboxListener(Controller joystick, Player p) {
 		this.joystick = joystick;
 		this.p = p;
 		comps = joystick.getComponents();
-		
-		for (int i = 0; i < comps.length; i++) {
-			System.out.println(comps[i].getName() + " - " + comps[i].getIdentifier());
-		}
 
 		xAxis = getIndex(comps, Component.Identifier.Axis.X, "X Axis");
 		yAxis = getIndex(comps, Component.Identifier.Axis.Y, "Y Axis");
@@ -137,7 +133,6 @@ public class XboxListener extends Thread {
 					}
 					if (xPress)
 						p.keyReleased(Input.KEY_X);
-					System.out.println("XPEKE?" + xPress);
 					p.keyReleased(Input.KEY_UP);
 					p.keyReleased(Input.KEY_RIGHT);
 					break;

@@ -50,7 +50,6 @@ public final class Song {
 		return new Music(songName);
 	}
 	public static void playMusic(String songName){
-		System.out.println(songName);
 		if(isMuted){
 			System.out.println("Muted");
 			return;

@@ -211,7 +211,6 @@ public class Zone implements Drawable {
 				if (collided instanceof Platform && collided.collidesWith(mover)) {
 					float moverYpos = mover.getYpos() + mover.getYsize();
 					if (moverYpos > collided.getYpos() && moverYpos < collided.getYpos() + collided.getYsize()) {
-						System.out.println("mover: "+ moverYpos+" Collided: "+collided.getYpos());
 						return (Platform)collided;
 					}
 				}
