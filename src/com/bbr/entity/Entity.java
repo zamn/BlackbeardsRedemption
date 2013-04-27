@@ -127,7 +127,7 @@ public abstract class Entity {
 	}
 	protected void preDt() { }
 	public void dt() {	
-		if (this.getClass().getPackage().toString().equals("package com.bbr.entity.terrain"))
+		if (this instanceof Ground || this instanceof Platform)
 			return;
 		preDt();
 		if (vx < 0) {
@@ -136,7 +136,6 @@ public abstract class Entity {
 			flipHorizontal = false;
 		}
 		setXpos(px + vx);
-		
 
 		if(container.collidesWithRightOf(this) != null){
 			Utility.log("Collider Right: "+container.collidesWithRightOf(this).getXpos()+" Player: "+(this.getXpos()+this.getXsize()));
