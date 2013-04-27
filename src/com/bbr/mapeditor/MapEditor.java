@@ -35,6 +35,7 @@ import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 
 import com.bbr.mapeditor.Toolbar.Tools;
+import com.bbr.resource.Tuple;
 import com.bbr.resource.Utility;
 
 public class MapEditor extends JPanel
@@ -56,11 +57,12 @@ public class MapEditor extends JPanel
 	private static Rectangle saveBounds = new Rectangle(800, 600, 100, 50);
 	private static Rectangle bgBounds = new Rectangle(695, 600, 105, 50);
 
-	private ArrayList<ArrayList<BufferedImage>> images = new ArrayList<ArrayList<BufferedImage>>();
+	private ArrayList<ArrayList<Tuple<BufferedImage, String>>> images = new ArrayList<ArrayList<Tuple<BufferedImage, String>>>();
 	private HashMap<Point, BufferedImage> levelPreview = new HashMap<Point, BufferedImage>();
 	
 	private boolean toggleShift = false;
 	private int YVal = 0;
+	private BufferedImage current = null;
 
 	private static Toolbar toolbar;
 	Tools currentTool = Tools.SPAWN;
@@ -135,24 +137,36 @@ public class MapEditor extends JPanel
 		//Setup images
 		//@TODO Temporarily hardcoded until there's time to fix it
 		try {
-			ArrayList<BufferedImage> temp = new ArrayList<BufferedImage>();
-			temp.add(ImageIO.read(new File("res/blackbeard/standing.png")));
+			ArrayList<Tuple<BufferedImage, String>> temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/blackbeard/standing.png")), "res/blackbeard/standing.png"));
 			images.add(temp);
 			
-			temp = new ArrayList<BufferedImage>();
-			temp.add(ImageIO.read(new File("res/levels/level1/spike.png")));
+			temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/spike.png")), "res/levels/level1/spike.png"));
 			images.add(temp);
 			
-			temp = new ArrayList<BufferedImage>();
-			temp.add(ImageIO.read(new File("res/levels/level1/platform/platform.png")));
+			temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/platform/platform.png")), "res/levels/level1/platform/platform.png"));
 			images.add(temp);
 			
-			temp = new ArrayList<BufferedImage>();
-			temp.add(ImageIO.read(new File("res/terrain/dirt-platform-red.png")));
+			temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/terrain/dirt-platform-red.png")), "res/terrain/dirt-platform-red.png"));
 			images.add(temp);
 			
-			temp = new ArrayList<BufferedImage>();
-			temp.add(ImageIO.read(new File("res/terrain/exit.png")));
+			temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/terrain/exit.png")), "res/terrain/exit.png"));
+			images.add(temp);
+			
+			temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/botleft.png")), "res/levels/level1/ground/botleft.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/botmid.png")), "res/levels/level1/ground/botmid.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/botright.png")), "res/levels/level1/ground/botright.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/topleft.png")), "res/levels/level1/ground/topleft.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/topmid.png")), "res/levels/level1/ground/topmid.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/topright.png")), "res/levels/level1/ground/topright.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/midleft.png")), "res/levels/level1/ground/midleft.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/midmid.png")), "res/levels/level1/ground/midmid.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/midright.png")), "res/levels/level1/ground/midright.png"));			
 			images.add(temp);
 		} catch(IOException e) {
 			Utility.printError("Failed to load image");
@@ -180,8 +194,9 @@ public class MapEditor extends JPanel
 
 		currentTool = toolbar.getCurrentTool();
 		int clicked = toolbar.clicked();
-		ArrayList<BufferedImage> temp = images.get(currentTool.ordinal());
-		g.drawImage(temp.get(clicked % temp.size()), mouseX, mouseY, null);
+		ArrayList<Tuple<BufferedImage, String>> temp = images.get(currentTool.ordinal());
+		current = temp.get(clicked % temp.size()).left;
+		g.drawImage(current, mouseX, mouseY, null);
 	}
 	
 	private boolean isInView(Point p) {
@@ -237,10 +252,10 @@ public class MapEditor extends JPanel
 		}
 		
 		if (toggleShift) {
-			levelPreview.put(new Point(newX, YVal), images.get(currentTool.ordinal()).get(0));
+			levelPreview.put(new Point(newX, YVal), current);
 		}
 		else
-			levelPreview.put(new Point(gameX, gameY), images.get(currentTool.ordinal()).get(0)); //add element to level
+			levelPreview.put(new Point(gameX, gameY), current); //add element to level
 
 		switch(currentTool) {
 		case SPAWN:
@@ -258,9 +273,14 @@ public class MapEditor extends JPanel
 		case EXIT:
 			level += "exit at " + gameX + "," + gameY + NEWLINE;
 			break;
+		case GROUND:
+			ArrayList<Tuple<BufferedImage, String>> temp = images.get(currentTool.ordinal());
+			String type = temp.get(toolbar.clicked() % temp.size()).right;
+			type = type.substring(type.lastIndexOf("/")+1, type.indexOf("."));
+			level += "ground " + type + " at " + gameX + "," + gameY + NEWLINE;
+			break;
 		default:
-			throw new RuntimeException("Switch in " +
-					"MapEditor.mouseClicked() is missing cases");
+			throw new RuntimeException("Switch in " + "MapEditor.mouseClicked() is missing cases");
 		}
 
 		repaint();
