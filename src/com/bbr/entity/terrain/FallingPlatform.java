@@ -3,7 +3,9 @@ package com.bbr.entity.terrain;
 import org.newdawn.slick.Image;
 
 import com.bbr.core.Zone;
+import com.bbr.entity.Entity;
 import com.bbr.entity.player.Player;
+import com.bbr.entity.projectile.Projectile;
 import com.bbr.resource.Settings;
 
 public class FallingPlatform extends Platform {
@@ -27,6 +29,10 @@ public class FallingPlatform extends Platform {
 		Player p = container.getPlayer();
 		if(!(falling)  && this.futureCollidesWith(p, 0, p.getYvel()))
 			falling = true;
+		Entity e = container.getCollided(this);
+		if(!(falling) && e instanceof Projectile) {
+			falling = true;
+		}
 		if (falling)
 			fallingCount++;
 		if (fallingCount > Settings.valueInt("fps")/2)

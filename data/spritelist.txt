@@ -50,6 +50,9 @@ res/Laser.png
 BreakablePlatform
 res/levels/level1/platform/platform.png
 
+BreakablePlatformG
+res/levels/level1/platform/platform.png
+
 Exit
 res/terrain/Exit.png
 
@@ -58,6 +61,9 @@ res/levels/level1/platform/platform.png
 danger res/levels/level1/platform/fallingplatform.png
 
 Platform
+res/levels/level1/platform/platform.png
+
+RisingPlatform
 res/levels/level1/platform/platform.png
 
 Ground
@@ -91,6 +97,9 @@ snakeMove res/enemy/snake/idle.png
 snakeMove res/enemy/snake/move.png
 
 SnakeSpawner
+res/enemy/snakespawn.png
+
+SnakeSpawnerR
 res/enemy/snakespawn.png
 
 Arboc
