@@ -71,7 +71,7 @@ platform 200x50 at 4300,618
 
 
 //enemies
-snake at 1650,168
+snakespawner at 1650,168
 
 //spikes
 spike at 700,718

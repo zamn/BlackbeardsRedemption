@@ -5,6 +5,7 @@ import com.bbr.enemy.Arboc;
 import com.bbr.enemy.GhostPirate;
 import com.bbr.enemy.SenorRat;
 import com.bbr.enemy.Snake;
+import com.bbr.enemy.SnakeSpawner;
 import com.bbr.entity.Entity;
 import com.bbr.entity.terrain.BreakablePlatform;
 import com.bbr.entity.terrain.Exit;
@@ -22,7 +23,7 @@ import com.bbr.entity.terrain.FallingPlatform;
  */
 public class EntityEvent {
 	public enum EntityType { BREAKABLEPLATFORM, FALLINGPLATFORM, PLATFORM, SPIKE, FAKESPIKE, EXIT,
-		GHOSTPIRATE, SNAKE,
+		GHOSTPIRATE, SNAKE, SNAKESPAWNER,
 		ARBOC, SENORRAT, BACKGROUND, GROUND }
 	protected EntityType entityType;
 	protected int sx, sy;
@@ -70,6 +71,10 @@ public class EntityEvent {
 			break;
 		case SNAKE:
 			e = new Snake(zone, px, py);
+			zone.addEntity(e);
+			break;
+		case SNAKESPAWNER:
+			e = new SnakeSpawner(zone, px, py);
 			zone.addEntity(e);
 			break;
 		case ARBOC:

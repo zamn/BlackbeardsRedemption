@@ -11,6 +11,7 @@ public class Snake extends Enemy {
 
 	protected float startX;
 	protected int hitDelay;
+	protected SnakeSpawner parent = null;
 	
 	public Snake(Zone zone, float x, float y) {
 		super(zone, x, y);
@@ -18,6 +19,15 @@ public class Snake extends Enemy {
 		vx = -1;
 		terrainCollidable = true;
 		startX = x;
+	}
+	
+	public Snake(Zone zone, float x, float y, SnakeSpawner spawner) {
+		super(zone, x, y);
+		flipHorizontal = true;
+		vx = -1;
+		terrainCollidable = true;
+		startX = x;
+		parent = spawner;
 	}
 	
 	@Override
@@ -30,8 +40,11 @@ public class Snake extends Enemy {
 
 	@Override
 	public void preDt() {
-		if(Math.abs(px - startX) > 300){
-			//vx = -vx;
+		if(vx < 0 && container.collidesWithLeftOf(this) != null){
+			vx = -vx;
+		}
+		else if(vx > 0 && container.collidesWithRightOf(this) != null) {
+			vx = -vx;
 		}
 		
 		if (container.getPlayer().collidesWith(this) && hitDelay <=0) {
@@ -41,5 +54,12 @@ public class Snake extends Enemy {
 		if (hitDelay > 0)
 			hitDelay--;
 		
+	}
+	
+	public void die() {
+		if(parent != null) {
+			parent.spawn.remove(this);
+		}
+		super.die();
 	}
 }
