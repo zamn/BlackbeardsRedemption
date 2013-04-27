@@ -12,13 +12,13 @@ Music Menu
 spawn at 500,300
 platform 300x50 at 450,500
 // jump jump jump!
-fallingplatform 300x50 at 950,450
-fallingplatform 300x50 at 1450,400
-fallingplatform 300x50 at 1950,350
-fallingplatform 300x50 at 2450,250
-fallingplatform 300x50 at 2950,200
-platform 100x50 at 3650,500
-exit at 3700,400
+fallingplatform 300x50 at 850,450
+fallingplatform 300x50 at 1250,400
+fallingplatform 300x50 at 1650,350
+fallingplatform 300x50 at 2050,250
+fallingplatform 300x50 at 2450,200
+platform 100x50 at 2850,500
+exit at 2900,400
 
 //Background Level1Background
 //Music Menu

@@ -20,4 +20,4 @@ ground topmid at 850,400
 ground topmid at 900,400
 ground topmid at 950,400
 ground topright at 1000,400
-spawn at 90,150
+spawn at 190,150
