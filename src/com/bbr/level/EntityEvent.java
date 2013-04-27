@@ -6,13 +6,16 @@ import com.bbr.enemy.GhostPirate;
 import com.bbr.enemy.SenorRat;
 import com.bbr.enemy.Snake;
 import com.bbr.enemy.SnakeSpawner;
+import com.bbr.enemy.SnakeSpawnerR;
 import com.bbr.entity.Entity;
 import com.bbr.entity.terrain.BreakablePlatform;
+import com.bbr.entity.terrain.BreakablePlatformG;
 import com.bbr.entity.terrain.Exit;
 import com.bbr.entity.terrain.FakeSpike;
 import com.bbr.entity.terrain.FallingPlatform;
 import com.bbr.entity.terrain.Ground;
 import com.bbr.entity.terrain.Platform;
+import com.bbr.entity.terrain.RisingPlatform;
 import com.bbr.entity.terrain.Spike;
 /*
  * This class spawns entities that you add. In order to add an entity you must:
@@ -22,8 +25,9 @@ import com.bbr.entity.terrain.Spike;
  * 	- Add a block in the case statement in trigger spawning it into zone.
  */
 public class EntityEvent {
-	public enum EntityType { BREAKABLEPLATFORM, FALLINGPLATFORM, PLATFORM, SPIKE, FAKESPIKE, EXIT,
-		GHOSTPIRATE, SNAKE, SNAKESPAWNER,
+	public enum EntityType { BREAKABLEPLATFORM, BREAKABLEPLATFORMG, FALLINGPLATFORM, PLATFORM, RISINGPLATFORM,
+		SPIKE, FAKESPIKE, EXIT,
+		GHOSTPIRATE, SNAKE, SNAKESPAWNER, SNAKESPAWNERR,
 		ARBOC, SENORRAT, BACKGROUND, GROUND }
 	protected EntityType entityType;
 	protected int sx, sy;
@@ -46,12 +50,20 @@ public class EntityEvent {
 			e = new BreakablePlatform(zone, type, px, py);
 			zone.addEntity(e);
 			break;
+		case BREAKABLEPLATFORMG:
+			e = new BreakablePlatformG(zone, type, px, py);
+			zone.addEntity(e);
+			break;
 		case FALLINGPLATFORM:
 			e = new FallingPlatform(zone, type, px, py);
 			zone.addEntity(e);
 			break;
 		case PLATFORM:
 			e = new Platform(zone, type, px, py);
+			zone.addEntity(e);
+			break;
+		case RISINGPLATFORM:
+			e = new RisingPlatform(zone, type, px, py);
 			zone.addEntity(e);
 			break;
 		case SPIKE:
@@ -77,6 +89,10 @@ public class EntityEvent {
 			break;
 		case SNAKESPAWNER:
 			e = new SnakeSpawner(zone, px, py);
+			zone.addEntity(e);
+			break;
+		case SNAKESPAWNERR:
+			e = new SnakeSpawnerR(zone, px, py);
 			zone.addEntity(e);
 			break;
 		case ARBOC:

@@ -50,7 +50,7 @@ public abstract class Unit extends Entity {
 		health = newHealth;
 	}
 	public boolean isDead(){
-		return health <= 0;
+		return health <= 0 || this.getYpos() > 768;
 	}
 
 	public int getCollisionDamage() {

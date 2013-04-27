@@ -10,8 +10,10 @@ import org.newdawn.slick.Image;
 
 import com.bbr.core.Sprite;
 import com.bbr.core.Zone;
+import com.bbr.entity.terrain.FallingPlatform;
 import com.bbr.entity.terrain.Ground;
 import com.bbr.entity.terrain.Platform;
+import com.bbr.entity.terrain.RisingPlatform;
 import com.bbr.resource.Art;
 import com.bbr.resource.Settings;
 import com.bbr.resource.Tuple;
@@ -127,8 +129,8 @@ public abstract class Entity {
 	}
 	protected void preDt() { }
 	public void dt() {	
-		if (this.getClass().getPackage().toString().equals("package com.bbr.entity.terrain"))
-			return;
+		/*if ((this instanceof Ground || this instanceof Platform) && !(this instanceof FallingPlatform))
+			return;*/
 		preDt();
 		if (vx < 0) {
 			flipHorizontal = true;
@@ -136,8 +138,6 @@ public abstract class Entity {
 			flipHorizontal = false;
 		}
 		setXpos(px + vx);
-		
-
 		if(container.collidesWithRightOf(this) != null){
 			Utility.log("Collider Right: "+container.collidesWithRightOf(this).getXpos()+" Player: "+(this.getXpos()+this.getXsize()));
 			this.setXpos(container.collidesWithRightOf(this).getXpos() - this.getXsize());
@@ -149,7 +149,7 @@ public abstract class Entity {
 		
 		
 		// acceleration due to gravity
-		if (terrainCollidable && vy < TERMINAL_VELOCITY){
+		else if (terrainCollidable && vy < TERMINAL_VELOCITY){
 			vy++;
 		}
 		setYpos(py + vy);

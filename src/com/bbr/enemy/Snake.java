@@ -1,9 +1,12 @@
 package com.bbr.enemy;
 
+import java.util.List;
+
 import org.newdawn.slick.Image;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Enemy;
+import com.bbr.entity.Entity;
 
 public class Snake extends Enemy {
 	@Override
@@ -44,7 +47,7 @@ public class Snake extends Enemy {
 
 	@Override
 	public void preDt() {
-		if(vx < 0 && container.collidesWithLeftOf(this) != null){
+		if(vx < 0 && container.collidesWithLeftOf(this) != null) {
 			vx = -vx;
 		}
 		else if(vx > 0 && container.collidesWithRightOf(this) != null) {

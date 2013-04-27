@@ -50,6 +50,9 @@ res/Laser.png
 BreakablePlatform
 res/levels/level1/platform/breakableplatform.png
 
+BreakablePlatformG
+res/levels/level1/platform/breakableplatform.png
+
 Exit
 res/terrain/Exit.png
 
@@ -59,6 +62,9 @@ danger res/levels/level1/platform/fallingplatform.png
 
 Platform
 res/levels/level1/platform/platform.png
+
+RisingPlatform
+res/levels/level1/platform/risingplatform.png
 
 Ground
 Ground res/levels/level1/ground/botleft.png
@@ -75,7 +81,7 @@ Spike
 res/terrain/spike.png
 
 FakeSpike
-res/terrain/spike.png
+res/terrain/fakespike.png
 
 // Enemies
 
@@ -93,8 +99,14 @@ snakeMove res/enemy/snake/move.png
 SnakeSpawner
 res/enemy/snakespawn.png
 
+SnakeSpawnerR
+res/enemy/snakespawn.png
+
 Arboc
 res/Arboc.png
 
 SenorRat
 res/SenorRat.png
+
+Particle
+res/particle/wisp.png

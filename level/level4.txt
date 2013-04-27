@@ -1,19 +1,271 @@
+// comments are ignored to end of line
+// lines are trimmed of leading and trailing spaces
+//
+// spawn at x,y						- sets player spawn 
+
+point
+// platform widthxheight at x,y		- creates platform
+// ghostpirate at x,y				- creates ghost pirate
+
+//background
 Background Level1Background
-Music TestMusic
 
+//music
+Music Menu
 
+//player
+spawn at 2350,568
 
-fallingplatform 1150x50 at 90,300
-ground topleft at 100,600
-ground topleft at 150,650
-ground topleft at 200,700
-ground topmid 800x50 at 250,750
-ground topright at 1050,700
-ground topright at 1100,650
-ground topright at 1150,600
-spawn at 190,150
+// starting point
+platform 600x50 at 2100,718
 
-snake at 310,650
-snake at 420,650
-snake at 530,650
-exit at 2300,600
+//platforms and shit
+platform 200x50 at 1850,618
+platform 200x50 at 1600,518
+platform 250x50 at 1350,768
+platform at 1250,818
+fallingplatform at 1250,668
+breakableplatformg at 1250,618
+breakableplatformg at 1250,568
+breakableplatformg at 1250,518
+breakableplatformg at 1250,468
+breakableplatformg at 1250,418
+risingplatform at 1250,368
+platform 250x50 at 900,418
+platform 250x50 at 650,468
+platform 250x50 at 400,418
+platform 150x50 at 150,318
+platform 200x50 at 450,218
+fallingplatform at 850,218
+fallingplatform at 900,218
+fallingplatform at 950,218
+fallingplatform at 1000,218
+fallingplatform at 1050,218
+fallingplatform at 1100,218
+platform 800x50 at 1350,218
+platform at 2300,218
+breakableplatform at 2350,68
+breakableplatform at 2350,118
+breakableplatform at 2350,168
+breakableplatform at 2350,218
+fallingplatform at 2350,268
+breakableplatform at 2400,68
+breakableplatform at 2400,118
+breakableplatform at 2400,168
+breakableplatform at 2400,218
+fallingplatform at 2400,268
+platform at 2450,218
+platform 800x50 at 2700,218
+platform 200x50 at 2750,618
+platform 200x50 at 3000,518
+platform 50x350 at 3450,318
+fallingplatform 200x50 at 3700,218
+fallingplatform 200x50 at 4050,218
+platform 200x50 at 4050,768
+platform 250x50 at 4050,618
+fallingplatform 200x50 at 4350,518
+fallingplatform 200x50 at 4600,418
+fallingplatform at 4850,318
+fallingplatform at 4900,318
+fallingplatform at 4950,318
+fallingplatform at 5000,318
+fallingplatform at 5050,318
+fallingplatform at 5100,318
+fallingplatform at 5150,318
+fallingplatform at 5200,318
+platform at 4850,568
+platform at 4900,568
+platform at 4950,568
+platform at 5000,568
+platform at 5050,568
+platform at 5100,568
+platform at 5150,568
+platform at 5200,568
+fallingplatform 250x50 at 5400,668
+fallingplatform at 5700,618
+fallingplatform at 5750,618
+fallingplatform at 5800,618
+fallingplatform at 5850,618
+fallingplatform at 5900,618
+fallingplatform at 5950,618
+fallingplatform at 6050,518
+fallingplatform at 6100,518
+fallingplatform at 6150,518
+platform at 6200,518
+//fallingplatform at 5925,418
+fallingplatform at 5875,418
+fallingplatform at 5825,418
+fallingplatform at 5775,418
+fallingplatform at 5725,418
+//fallingplatform at 5700,418
+fallingplatform 150x50 at 5500,318
+platform at 5450,318
+//fallingplatform at 5700,218
+//fallingplatform at 5750,218
+fallingplatform at 5800,218
+fallingplatform at 5850,218
+fallingplatform at 5900,218
+fallingplatform at 5950,218
+fallingplatform at 6000,218
+fallingplatform at 6050,218
+fallingplatform at 6100,218
+fallingplatform at 6150,218
+fallingplatform at 6200,218
+fallingplatform at 6250,218
+fallingplatform at 6300,218
+fallingplatform at 6350,218
+fallingplatform at 6400,218
+fallingplatform at 6450,218
+fallingplatform at 6500,218
+fallingplatform at 6550,218
+fallingplatform at 6600,218
+breakableplatformg at 6600,168
+breakableplatformg at 6600,118
+breakableplatformg at 6600,68
+breakableplatformg at 6600,18
+platform 300x50 at 6900,318
+platform 150x50 at 7250,118
+platform 150x50 at 7400,418
+fallingplatform 150x50 at 7550,418
+platform 100x50 at 7200,768
+platform 100x50 at 6900,718
+
+//enemies
+snakespawner at 3000,418
+snakespawnerr at 1700,418
+snakespawnerr at 6850,68
+snakespawner at 7300,68
+
+//spikes
+spike at 2000,718
+spike at 1950,718
+spike at 1900,718
+spike at 1850,718
+spike at 1800,718
+spike at 1750,718
+spike at 1700,718
+spike at 1650,718
+spike at 1600,718
+fakespike at 1550,718
+fakespike at 1500,718
+fakespike at 1450,718
+fakespike at 1400,718
+fakespike at 1350,718
+spike at 1100,718
+spike at 1050,718
+spike at 1000,718
+spike at 950,718
+spike at 900,718
+spike at 850,718
+spike at 800,718
+spike at 750,718
+spike at 700,718
+spike at 650,718
+spike at 600,718
+spike at 550,718
+spike at 500,718
+spike at 450,718
+spike at 400,718
+spike at 2750,718
+spike at 2800,718
+spike at 2850,718
+spike at 2900,718
+spike at 2950,718
+spike at 3000,718
+spike at 3050,718
+spike at 3100,718
+spike at 3150,718
+spike at 3200,718
+spike at 3250,718
+spike at 3300,718
+spike at 3350,718
+spike at 3400,718
+spike at 3650,718
+spike at 3700,718
+spike at 3750,718
+spike at 3800,718
+spike at 3850,718
+spike at 3900,718
+spike at 3950,718
+spike at 4000,718
+spike at 4050,718
+spike at 4100,718
+spike at 4150,718
+spike at 1550,268
+spike at 1600,268
+spike at 1650,268
+spike at 1700,268
+spike at 1750,268
+spike at 1800,268
+spike at 2950,268
+spike at 3000,268
+spike at 3050,268
+spike at 3100,268
+spike at 3150,268
+spike at 3200,268
+spike at 3400,268
+spike at 4250,68
+spike at 4250,118
+spike at 4250,168
+spike at 4250,218
+spike at 4800,518
+spike at 4800,568
+spike at 4800,618
+spike at 4850,368
+spike at 4900,368
+spike at 4950,368
+spike at 5000,368
+spike at 5050,368
+spike at 5100,368
+fakespike at 5150,368
+fakespike at 5200,368
+spike at 5300,318
+spike at 5300,268
+spike at 5300,218
+spike at 5300,218
+spike at 5250,718
+spike at 5300,718
+spike at 5350,718
+spike at 5300,718
+spike at 5350,718
+spike at 5400,718
+spike at 5450,718
+spike at 5500,718
+spike at 5550,718
+spike at 5600,718
+spike at 5650,718
+spike at 5700,718
+spike at 5750,718
+spike at 5800,718
+spike at 5850,718
+spike at 5900,718
+spike at 5950,718
+spike at 6000,718
+spike at 6050,718
+spike at 6100,718
+spike at 6150,718
+spike at 6200,718
+spike at 6250,718
+spike at 6300,718
+spike at 6350,718
+spike at 6400,718
+spike at 6450,718
+spike at 6500,718
+spike at 6550,718
+spike at 6600,718
+spike at 6650,718
+spike at 6700,718
+spike at 6750,718
+spike at 6800,718
+spike at 6800,668
+spike at 6800,618
+spike at 6800,568
+spike at 6800,518
+spike at 6800,468
+spike at 6800,418
+spike at 7350,418
+spike at 7350,468
+spike at 7350,518
+
+//exit
+exit at 6900,618

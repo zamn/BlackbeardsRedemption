@@ -1,9 +1,9 @@
 // List of levels
 
-level/level300.txt
+//level/level300.txt
 level/level1.txt
-level/level2.txt
-level/level3.txt
+//level/level2.txt
+//level/level3.txt
 level/level4.txt
 level/gameover.txt
 
