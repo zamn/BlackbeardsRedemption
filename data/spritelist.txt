@@ -107,3 +107,6 @@ res/Arboc.png
 
 SenorRat
 res/SenorRat.png
+
+Particle
+res/particle/wisp.png

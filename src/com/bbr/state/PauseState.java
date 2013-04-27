@@ -3,7 +3,6 @@ package com.bbr.state;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -26,11 +25,7 @@ public class PauseState extends BbrGameState {
 
 	private static final int EXIT_X = BUTTON_X, EXIT_Y = BUTTON_Y
 			+ BUTTON_HEIGHT;
-
-	private static final int FADE_TIME = 5000; // Time(ms) to fade out menu
-												// music
-
-	private static Music menuMusic;
+	
 	protected Image imageTitle;
 
 	protected Button resumeButton;

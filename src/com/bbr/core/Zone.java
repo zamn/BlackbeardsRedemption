@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Music;
 
 import com.bbr.entity.Enemy;
 import com.bbr.entity.Entity;
@@ -14,6 +13,7 @@ import com.bbr.entity.player.Player;
 import com.bbr.entity.terrain.Platform;
 import com.bbr.gui.Drawable;
 import com.bbr.level.LevelHandler;
+import com.bbr.particle.Particle;
 import com.bbr.resource.Settings;
 import com.bbr.resource.Song;
 
@@ -56,7 +56,7 @@ public class Zone implements Drawable {
 		updateScrolling();
 		if (background != null) background.draw(0, 0);
 		for (int i = 0; i < entities.size(); i++) {
-			entities.get(i).draw(g);
+			entities.get(i).draw(g);	
 		}
 	}
 	public void dt() {
@@ -70,12 +70,23 @@ public class Zone implements Drawable {
 			flyer.dt();
 		}
 
+		updateParticles();
 		updateEntities();
 		// scrolling velocity
 		float xScrollDelta = (xScrollTarget - xScroll) * .1f;
 		float yScrollDelta = (yScrollTarget - yScroll) * .1f;
 		xScroll += xScrollDelta;
 		yScroll += yScrollDelta;
+	}
+
+	private void updateParticles() {
+		for(Entity e : entities) {
+			if(e instanceof Particle) {
+				if(!((Particle)(e)).isActive()) {
+					removeEntity(e);
+				}
+			}
+		}
 	}
 
 	private void updateEntities() {
@@ -96,8 +107,8 @@ public class Zone implements Drawable {
 	}
 	private void updateScrolling() {
 		if (followed != null) {
-//			float xCenter = followed.getXpos() + followed.getXsize() / 2;
-//			xScroll = (int)(xCenter - Settings.valueInt("windowWidth")/2);
+			//			float xCenter = followed.getXpos() + followed.getXsize() / 2;
+			//			xScroll = (int)(xCenter - Settings.valueInt("windowWidth")/2);
 			float xPos = followed.getXpos();// + followed.getXsize() / 2;
 			if (!followed.isFacingRight()) {
 				xPos += followed.getXsize();
@@ -118,10 +129,10 @@ public class Zone implements Drawable {
 			collided = entities.get(i);
 			if (collided != mover) {
 				if (collided instanceof Platform && collided.collidesWith(mover)) {
-//					Utility.log(mover.getYpos() + mover.getYsize() - collided.getYpos());
-//					if (mover.getYpos() + mover.getYsize() - collided.getYpos() < 0.001) {
-						return (Platform)collided;
-//					}
+					//					Utility.log(mover.getYpos() + mover.getYsize() - collided.getYpos());
+					//					if (mover.getYpos() + mover.getYsize() - collided.getYpos() < 0.001) {
+					return (Platform)collided;
+					//					}
 				}
 			}
 		}
@@ -214,10 +225,10 @@ public class Zone implements Drawable {
 			collided = entities.get(i);
 			if (collided != mover) {
 				if (collided instanceof Platform && collided.collidesWith(mover)) {
-						float moverXpos = mover.getXpos() + mover.getXsize();
-						if(moverXpos >= collided.getXpos() && moverXpos <= (collided.getXpos() + collided.getXsize()))
-							return (Platform) collided;
-					
+					float moverXpos = mover.getXpos() + mover.getXsize();
+					if(moverXpos >= collided.getXpos() && moverXpos <= (collided.getXpos() + collided.getXsize()))
+						return (Platform) collided;
+
 				}
 			}
 		}
@@ -229,10 +240,10 @@ public class Zone implements Drawable {
 			collided = entities.get(i);
 			if (collided != mover) {
 				if (collided instanceof Platform && collided.collidesWith(mover)) {
-						float moverXpos = mover.getXpos();
-						if(moverXpos >= collided.getXpos() && moverXpos <= (collided.getXpos() + collided.getXsize()))
-							return (Platform) collided;
-					
+					float moverXpos = mover.getXpos();
+					if(moverXpos >= collided.getXpos() && moverXpos <= (collided.getXpos() + collided.getXsize()))
+						return (Platform) collided;
+
 				}
 			}
 		}

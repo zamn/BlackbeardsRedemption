@@ -23,8 +23,8 @@ public abstract class Player extends Unit {
 //	protected int specialDelay = 120;
 //	protected int specialCooldown = 0;
 	// Movement
-	protected float moveSpeed = 5;
-	protected float jumpSpeed = 15;
+	protected float moveSpeed = 8;
+	protected float jumpSpeed = 18;
 //	protected double hasteFactor = 0;
 //	protected int hasteDuration = 0;
 //	protected double slowFactor = 0;
