@@ -1,13 +1,15 @@
 package com.bbr.entity;
 
+import org.newdawn.slick.Graphics;
+
 import com.bbr.core.Zone;
 public abstract class Unit extends Entity {
 	public static final int BASE_COLLISION_DAMAGE = 25;
 	protected int health = 0; 
 	protected int collisionDamage = BASE_COLLISION_DAMAGE;
 	//private HealthController healthBar;
-	public Unit(Zone zone, float x, float y) {
-		super(zone, x, y);
+	public Unit(Zone zone, String type, float x, float y) {
+		super(zone, type, x, y);
 		health = getBaseHealth();
 	}
 	public abstract int getBaseHealth();
@@ -27,7 +29,7 @@ public abstract class Unit extends Entity {
 
 	@Override
 	public void hitBy(Entity attacker, int damage) {
-		//System.out.println(this + " was hit by: " + attacker + " for: " + damage);
+		//Utility.log(this + " was hit by: " + attacker + " for: " + damage);
 		if(damage > 0)
 			health -= damage;
 		//if the attacker is to the left, get knocked to the right
@@ -56,5 +58,11 @@ public abstract class Unit extends Entity {
 	}
 	public void setCollisionDamage(int newDamage) {
 		collisionDamage = newDamage;
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+//		Utility.log("Unit draw");
+		super.draw(g);
 	}
 }

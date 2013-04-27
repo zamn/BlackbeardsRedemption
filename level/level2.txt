@@ -5,13 +5,28 @@
 // spawn at x,y						- sets player spawn point
 // platform widthxheight at x,y		- creates platform
 // ghostpirate at x,y				- creates ghost pirate
+
 Background Level1Background
 Music Menu
+
 spawn at 500,300
-ground 10x10 at 500,300
-ground 10x10 at 500,201
-ground 10x10 at 500,202
-ground 10x10 at 500,100
-ground 10x10 at 500,150
-spike at 350,250
-ground 100x100 at 345,230
+platform 300x50 at 450,500
+// jump jump jump!
+fallingplatform 300x50 at 850,450
+fallingplatform 300x50 at 1250,400
+fallingplatform 300x50 at 1650,350
+fallingplatform 300x50 at 2050,250
+fallingplatform 300x50 at 2450,200
+platform 100x50 at 2850,500
+exit at 2900,400
+
+//Background Level1Background
+//Music Menu
+//spawn at 500,300
+//ground botright at 500,300
+//ground 10x10 at 500,201
+//ground 10x10 at 500,202
+//ground 10x10 at 500,100
+//ground 10x10 at 500,150
+//spike at 350,250
+//ground 100x100 at 345,230

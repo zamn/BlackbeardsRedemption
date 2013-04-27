@@ -12,6 +12,8 @@ Background Level1Background
 //player
 spawn at 0,50
 
+Music TestMusic
+
 // starting point - introduce falling platforms
 fallingplatform at 0,268
 fallingplatform at 50,268
@@ -19,7 +21,7 @@ fallingplatform at 100,268
 fallingplatform at 150,268
 
 //platforms and shit
-platform 500x50 at 50,718
+ground topmid 500x50 at 50,718
 fallingplatform at 550,718
 fallingplatform at 600,718
 fallingplatform at 650,718

@@ -40,7 +40,7 @@ public abstract class SequentialFileReader {
 			}
 		}
 		endOfFile();
-		//System.out.println();
+		//Utility.log();
 	}
 	protected abstract void processLine(String curLine, int lineNumber);
 	protected void endOfFile() { } // called when reached end of file

@@ -24,9 +24,11 @@ public class Animation {
 		if (delay < 0) delay = Settings.valueInt("animationDelay");
 		this.tickDelay = delay;
 	}
+
 	public void addFrame(Image frame) {
 		frames.add(frame);
 	}
+
 	public Image getCurrentFrame() {
 		if (frames.size() == 0) return null;
 		if (tickHandler != null) {

@@ -4,8 +4,8 @@ import java.util.Random;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Enemy;
-import com.bbr.entity.projectile.SwordAttack;
 import com.bbr.entity.projectile.Projectile;
+import com.bbr.entity.projectile.SwordAttack;
 
 public class Arboc extends Enemy {
 	@Override
@@ -130,7 +130,5 @@ public class Arboc extends Enemy {
 		Projectile stare = new SwordAttack(this, px+sx/2 - 5, py - 20);
 		container.addEntity(stare);
 	}
-	
-	
 	
 }

@@ -23,6 +23,7 @@ public final class Settings {
 		verify("windowHeight", VariableType.INTEGER, "768");
 		verify("fullScreen", VariableType.BOOLEAN, "false");
 		verify("showHitbox", VariableType.BOOLEAN, "false");
+		verify("debug", VariableType.BOOLEAN, "false");
 		verify("animationDelay", VariableType.LONG, "30");
 	}
 

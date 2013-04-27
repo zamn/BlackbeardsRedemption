@@ -3,13 +3,13 @@ package com.bbr.entity.player;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 import com.bbr.entity.Unit;
 import com.bbr.level.Level;
-import com.bbr.main.BlackbeardsRedemption;
 import com.bbr.resource.Settings;
 import com.bbr.resource.Utility;
 import com.bbr.state.GameplayState;
@@ -45,7 +45,7 @@ public abstract class Player extends Unit {
 
 
 	public Player(Zone container, float xpos, float ypos) {
-		super(container, xpos, ypos);
+		super(container, null, xpos, ypos);
 		for (int i = 0; i < Action.values().length; i++) {
 			controlAction.add(Action.values()[i]);
 			controlKey.add(DEFAULT_KEYS[i]);
@@ -244,7 +244,7 @@ public abstract class Player extends Unit {
 	}
 	@Override
 	public void die(){
-		System.out.println("GAME OVER");
+		Utility.log("GAME OVER");
 		health = 0;
 		deadLevel = state.getCurLevel();
 		state.gameOver();
@@ -255,5 +255,11 @@ public abstract class Player extends Unit {
 			releaseKey(action);
 		}			
 		vx = 0;
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+//		Utility.log("Player draw");
+		super.draw(g);
 	}
 }

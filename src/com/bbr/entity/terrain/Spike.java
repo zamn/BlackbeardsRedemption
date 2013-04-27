@@ -1,13 +1,16 @@
 package com.bbr.entity.terrain;
 
+import org.newdawn.slick.Graphics;
+
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 
 public class Spike extends Entity{
-	float StartX, StartY;
 	
-	public Spike(Zone container, float xpos, float ypos) {
-		super(container, xpos, ypos);
+	float StartX, StartY;
+
+	public Spike(Zone container, String type, float xpos, float ypos) {
+		super(container, type, xpos, ypos);
 		// TODO Auto-generated constructor stub
 		terrainCollidable = false;
 		tiledHorizontally = true;
@@ -23,6 +26,12 @@ public class Spike extends Entity{
 		if(this.StartY != this.py) this.py = this.StartY;
 		if (container.getPlayer().collidesWith(this)) 
 			container.getPlayer().hitBy(this, 100);
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+//		Utility.log("Spike draw");
+		super.draw(g);
 	}
 
 }

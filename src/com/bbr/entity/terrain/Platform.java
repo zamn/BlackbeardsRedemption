@@ -2,20 +2,22 @@ package com.bbr.entity.terrain;
 
 import java.util.List;
 
+import org.newdawn.slick.Graphics;
+
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
 
 // solid platform
 public class Platform extends Entity {
-	public Platform(Zone container, float xpos, float ypos) {
-		super(container, xpos, ypos);
+	public Platform(Zone container, String type, float xpos, float ypos) {
+		super(container, type, xpos, ypos);
 		terrainCollidable = false;
 		tiledHorizontally = true;
 	}
 	@Override
 	public void preDt() {
 		List<Entity> entities = container.getTerrainCollided(this);
-		//if (entities.size() > 0) System.out.println(entities.size());
+		//if (entities.size() > 0) Utility.log(entities.size());
 		for (Entity e : entities) {
 				// float startX = px, endX = px + sx;
 				// float startY = py, endY = py + sy;
@@ -31,7 +33,7 @@ public class Platform extends Entity {
 					newY = py + sy;
 					if (newY < eY) newY = eY;
 				}
-				if (newY != eY) changed = true;
+			 	if (newY != eY) changed = true;
 				e.setYpos(newY);
 				if (changed) return;
 				// }
@@ -52,5 +54,11 @@ public class Platform extends Entity {
 				// }
 			}
 		}
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+//		Utility.log("Platform draw");
+		super.draw(g);
 	}
 }

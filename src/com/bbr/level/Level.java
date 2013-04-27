@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Music;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.player.Pirate;
 import com.bbr.resource.Art;
 import com.bbr.resource.Song;
-
-import org.newdawn.slick.Music;
 
 // TODO some way to finalize a level to prevent changes. Don't call it finalize()
 // TODO have level bounds?
@@ -33,7 +31,7 @@ public class Level {
 	protected int spawnX, spawnY;
 	protected List<EntityEvent> entityEvents = new ArrayList<EntityEvent>();
 	protected Image background;
-	protected Music music;
+	protected String music;
 	protected Level() { }
 
 	public static Level loadLevel(String levelPath) throws FileNotFoundException {
@@ -77,11 +75,11 @@ public class Level {
 		this.spawnY = spawnY;
 	}
 
-	public void addEntityEvent(String entityName, int px, int py) {
-		addEntityEvent(entityName, -1,-1, px,py);
+	public void addEntityEvent(String entityName, String type, int px, int py) {
+		addEntityEvent(entityName, type, -1,-1, px,py);
 	}
-	public void addEntityEvent(String entityName, int sx, int sy, int px, int py) {
-		entityEvents.add(new EntityEvent(entityName,sx,sy,px,py));
+	public void addEntityEvent(String entityName, String type, int sx, int sy, int px, int py) {
+		entityEvents.add(new EntityEvent(entityName, type, sx, sy, px, py));
 	}
 
 	public void loadInto(Zone zone) {
@@ -98,6 +96,6 @@ public class Level {
 		this.background = Art.getImage(bg);
 	}
 	public void setMusic(String song){
-		this.music = Song.getMusic(song);
+		music = song;
 	}
 }

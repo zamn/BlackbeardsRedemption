@@ -11,6 +11,7 @@ import com.bbr.core.Sprite;
 // File reader for sprites file
 public class SpritesFileReader extends SequentialFileReader {
 	public static final Pattern REGEX_SPRITE_NAME = Pattern.compile("(\\w+)"); // name
+	public static final Pattern REGEX_FRAME_OFFSETS = Pattern.compile("([^\\.]+\\.[a-zA-Z]+)\\s+offsets:([-]?\\d+),([-]?\\d+)"); // filename hitbox
 	public static final Pattern REGEX_DEFAULT_FRAME = Pattern.compile("([^\\.]+\\.[a-zA-Z]+)"); // filename
 	public static final Pattern REGEX_SPECIFIC_FRAME = Pattern.compile("(\\w+)\\s+([^\\.]+\\.[a-zA-Z]+)"); // category filename
 	public static final Pattern REGEX_SPECIFIC_DELAY = Pattern.compile("(\\w+)\\s+(\\d*\\.?\\d*)"); // category delay
@@ -27,6 +28,7 @@ public class SpritesFileReader extends SequentialFileReader {
 	@Override
 	protected void processLine(String curLine, int lineNumber) {
 		Matcher spriteNameMatcher = REGEX_SPRITE_NAME.matcher(curLine);
+		Matcher frameOffsetsMatcher = REGEX_FRAME_OFFSETS.matcher(curLine);
 		Matcher defaultFrameMatcher = REGEX_DEFAULT_FRAME.matcher(curLine);
 		Matcher specificFrameMatcher = REGEX_SPECIFIC_FRAME.matcher(curLine);
 		Matcher specificDelayMatcher = REGEX_SPECIFIC_DELAY.matcher(curLine);
@@ -35,9 +37,24 @@ public class SpritesFileReader extends SequentialFileReader {
 			curSprite = new Sprite();
 		}
 
-		if (specificFrameMatcher.matches()) {
+		if (frameOffsetsMatcher.matches()) {
+			int offsetX = Utility.getInt(frameOffsetsMatcher.group(2), 0);
+			int offsetY = Utility.getInt(frameOffsetsMatcher.group(3), 0);
 			try {
-				curSprite.addFrame(specificFrameMatcher.group(1), Art.loadImage(specificFrameMatcher.group(2)));
+				curSprite.setOffsets(Art.loadImage(frameOffsetsMatcher.group(1)), offsetX, offsetY);
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+		} else if (specificFrameMatcher.matches()) {
+			try {
+				if (specificFrameMatcher.group(1).equals(curName)) {
+					curSprite = new Sprite();
+					curSprite.addFrame(Art.loadImage(specificFrameMatcher.group(2)));
+					Art.addSprite(curName, curSprite);
+				} 
+				else {
+					curSprite.addFrame(specificFrameMatcher.group(1), Art.loadImage(specificFrameMatcher.group(2)));
+				}
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}
@@ -52,16 +69,18 @@ public class SpritesFileReader extends SequentialFileReader {
 			}
 		} else if (spriteNameMatcher.matches()) {
 			if (curName != null) {
-				Art.sprites.put(curName, curSprite);
+				Art.addSprite(curName, curSprite);
+//				Utility.log("curName: " + curName + " - sprites: " + Art.getSprites(curName));
 				curSprite = new Sprite();
 			}
 			curName = spriteNameMatcher.group(1);
 		}
 	}
+
 	@Override
 	protected void endOfFile() {
 		if (curName != null) {
-			Art.sprites.put(curName, curSprite);
+			Art.addSprite(curName, curSprite);
 			curSprite = null;
 		}
 	}
