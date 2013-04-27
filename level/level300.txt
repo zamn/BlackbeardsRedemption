@@ -1,0 +1,12 @@
+breakableplatform at 203,401
+ground botmid at 245,417
+ground botmid at 288,419
+ground botmid at 339,417
+ground botmid at 402,421
+ground botmid at 448,424
+ground botmid at 508,428
+ground botmid at 557,426
+ground botmid at 609,421
+ground botmid at 658,422
+ground botright at 722,419
+spawn at 271,241
