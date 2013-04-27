@@ -1,9 +1,13 @@
 package com.bbr.mapeditor;
 
+import java.awt.AWTException;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -18,6 +22,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -29,6 +35,7 @@ import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 
 import com.bbr.mapeditor.Toolbar.Tools;
+import com.bbr.resource.Tuple;
 import com.bbr.resource.Utility;
 
 public class MapEditor extends JPanel
@@ -43,22 +50,25 @@ public class MapEditor extends JPanel
 	private static final int BUTTON_WIDTH = 50;
 	private static final int OFFSET_INCREMENT = 25; //Scroll speed
 
-	private static Rectangle toolbarBounds = new Rectangle(0, 0, 
-			BUTTON_WIDTH, HEIGHT);
-	private static Rectangle editorBounds = new Rectangle(50, 0, 
-			WIDTH - BUTTON_WIDTH, HEIGHT);
+	private static Rectangle toolbarBounds = new Rectangle(0, 0, BUTTON_WIDTH, HEIGHT);
+	private static Rectangle editorBounds = new Rectangle(50, 0, WIDTH - BUTTON_WIDTH, HEIGHT);
 	private static Rectangle textBounds = new Rectangle(800, 0, 100, 50);
+	private static Rectangle autoAlignBounds = new Rectangle(800, 15, 100, 50);
 	private static Rectangle saveBounds = new Rectangle(800, 600, 100, 50);
 	private static Rectangle bgBounds = new Rectangle(695, 600, 105, 50);
 
-	private ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-	private HashMap<Point, BufferedImage> levelPreview = 
-			new HashMap<Point, BufferedImage>();
+	private ArrayList<ArrayList<Tuple<BufferedImage, String>>> images = new ArrayList<ArrayList<Tuple<BufferedImage, String>>>();
+	private HashMap<Point, BufferedImage> levelPreview = new HashMap<Point, BufferedImage>();
+	
+	private boolean toggleShift = false;
+	private int YVal = 0;
+	private BufferedImage current = null;
 
 	private static Toolbar toolbar;
 	Tools currentTool = Tools.SPAWN;
 
 	private JLabel text;
+	private JLabel autoAlign;
 	private JButton save;
 	private JButton bg;
 	private BufferedImage background;
@@ -103,6 +113,13 @@ public class MapEditor extends JPanel
 		text.setBounds(textBounds);
 		add(text);
 		
+		autoAlign = new JLabel();
+		autoAlign.setBounds(autoAlignBounds);
+		add(autoAlign);
+		autoAlign.setText("Auto Align: OFF");
+		
+		
+		
 		//Setup save button
 		save = new JButton("Save Level");
 		save.setBounds(saveBounds);
@@ -120,13 +137,37 @@ public class MapEditor extends JPanel
 		//Setup images
 		//@TODO Temporarily hardcoded until there's time to fix it
 		try {
-			images.add(ImageIO.read(new File("res/blackbeard/standing.png")));
-			images.add(ImageIO.read(new File("res/levels/level1/spike.png")));
-			images.add(ImageIO.read(new File(
-					"res/levels/level1/platform/platform.png")));
-			images.add(ImageIO.read(new File(
-					"res/terrain/dirt-platform-red.png")));
-			images.add(ImageIO.read(new File("res/terrain/exit.png")));
+			ArrayList<Tuple<BufferedImage, String>> temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/blackbeard/standing.png")), "res/blackbeard/standing.png"));
+			images.add(temp);
+			
+			temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/spike.png")), "res/levels/level1/spike.png"));
+			images.add(temp);
+			
+			temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/platform/platform.png")), "res/levels/level1/platform/platform.png"));
+			images.add(temp);
+			
+			temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/terrain/dirt-platform-red.png")), "res/terrain/dirt-platform-red.png"));
+			images.add(temp);
+			
+			temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/terrain/exit.png")), "res/terrain/exit.png"));
+			images.add(temp);
+			
+			temp = new ArrayList<Tuple<BufferedImage, String>>();
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/botleft.png")), "res/levels/level1/ground/botleft.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/botmid.png")), "res/levels/level1/ground/botmid.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/botright.png")), "res/levels/level1/ground/botright.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/topleft.png")), "res/levels/level1/ground/topleft.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/topmid.png")), "res/levels/level1/ground/topmid.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/topright.png")), "res/levels/level1/ground/topright.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/midleft.png")), "res/levels/level1/ground/midleft.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/midmid.png")), "res/levels/level1/ground/midmid.png"));
+			temp.add(new Tuple<BufferedImage, String>(ImageIO.read(new File("res/levels/level1/ground/midright.png")), "res/levels/level1/ground/midright.png"));			
+			images.add(temp);
 		} catch(IOException e) {
 			Utility.printError("Failed to load image");
 		}
@@ -135,6 +176,10 @@ public class MapEditor extends JPanel
 	@Override
 	public void paintComponent(Graphics g) {
 		g.clearRect(0, 0, getBounds().width, getBounds().height);
+		
+		if (toggleShift)
+			g.drawLine(0, YVal, (int)Frame.getFrames()[0].getBounds().getWidth(), YVal);
+		// x, y, x, y
 		
 		if(background != null) {
 			g.drawImage(background, 0, 0, null);
@@ -148,7 +193,10 @@ public class MapEditor extends JPanel
 		}
 
 		currentTool = toolbar.getCurrentTool();
-		g.drawImage(images.get(currentTool.ordinal()), mouseX, mouseY, null);
+		int clicked = toolbar.clicked();
+		ArrayList<Tuple<BufferedImage, String>> temp = images.get(currentTool.ordinal());
+		current = temp.get(clicked % temp.size()).left;
+		g.drawImage(current, mouseX, mouseY, null);
 	}
 	
 	private boolean isInView(Point p) {
@@ -190,8 +238,24 @@ public class MapEditor extends JPanel
 		int gameY = e.getY();
 		requestFocusInWindow();
 		
-		levelPreview.put(new Point(gameX, gameY), 
-				images.get(currentTool.ordinal())); //add element to level
+		int newX = gameX;
+		
+		Iterator<Point> grid = levelPreview.keySet().iterator();
+		
+		while (grid.hasNext()) {
+			Point p = grid.next();
+			if (gameX >= p.getX() && gameX <= (p.getX() + levelPreview.get(p).getWidth())) {
+				newX = (int)(p.getX() + levelPreview.get(p).getWidth());
+			}
+			else if (gameX >= (p.getX() - levelPreview.get(p).getWidth()) && gameX <= p.getX())
+				newX = (int)(p.getX() - levelPreview.get(p).getWidth());
+		}
+		
+		if (toggleShift) {
+			levelPreview.put(new Point(newX, YVal), current);
+		}
+		else
+			levelPreview.put(new Point(gameX, gameY), current); //add element to level
 
 		switch(currentTool) {
 		case SPAWN:
@@ -209,9 +273,14 @@ public class MapEditor extends JPanel
 		case EXIT:
 			level += "exit at " + gameX + "," + gameY + NEWLINE;
 			break;
+		case GROUND:
+			ArrayList<Tuple<BufferedImage, String>> temp = images.get(currentTool.ordinal());
+			String type = temp.get(toolbar.clicked() % temp.size()).right;
+			type = type.substring(type.lastIndexOf("/")+1, type.indexOf("."));
+			level += "ground " + type + " at " + gameX + "," + gameY + NEWLINE;
+			break;
 		default:
-			throw new RuntimeException("Switch in " +
-					"MapEditor.mouseClicked() is missing cases");
+			throw new RuntimeException("Switch in " + "MapEditor.mouseClicked() is missing cases");
 		}
 
 		repaint();
@@ -227,6 +296,18 @@ public class MapEditor extends JPanel
 		
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			offset += OFFSET_INCREMENT;
+		}
+		
+		if (e.getKeyCode() == 16) {
+			if (!toggleShift) {
+				toggleShift = true;
+				YVal = (int) MouseInfo.getPointerInfo().getLocation().getY()-24;
+				autoAlign.setText("Auto Align: ON");
+			}
+			else {
+				toggleShift = false;
+				autoAlign.setText("Auto Align: OFF");
+			}
 		}
 		
 		updateText();
