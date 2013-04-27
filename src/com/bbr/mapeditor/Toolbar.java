@@ -17,17 +17,19 @@ import com.bbr.mapeditor.gui.SwingMenu;
 public class Toolbar extends JPanel implements MouseListener {
 	private static final long serialVersionUID = 1L; //Don't care about this
 
-	public enum Tools { SPAWN, SPIKE, PLATFORM, FALL_PLATFORM, EXIT };
+	public enum Tools { SPAWN, SPIKE, PLATFORM, FALL_PLATFORM, EXIT, GROUND };
 	private static final String[] imagePaths = {
 		"res/ui/editor/spawn.png", "res/ui/editor/spike.png", 
 		"res/levels/level1/platform/platform.png", 
-		"res/terrain/dirt-platform-red.png", "res/ui/editor/exitIcon.png" 
+		"res/terrain/dirt-platform-red.png", "res/ui/editor/exitIcon.png",
+		"res/levels/level1/ground/botleft.png"
 	};
 	private static final String GLOW_PATH = "res/ui/editor/yellow_glow.png";
 
 	private SwingMenu toolbar;
 	private Tools currentTool = Tools.SPAWN;
 	private BufferedImage selectedGlow;
+	private int clicked = 0;
 
 	public Toolbar() {
 		super();
@@ -67,9 +69,17 @@ public class Toolbar extends JPanel implements MouseListener {
 	public Tools getCurrentTool() {
 		return currentTool;
 	}
+	
+	public int clicked() {
+		return clicked;
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {	
+		if (e.getButton() == 3) {
+			clicked++;
+			return;
+		}
 		SwingButton clicked = toolbar.buttonClicked(e.getX(), e.getY());
 		if(clicked == null) {
 			return;

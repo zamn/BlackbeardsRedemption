@@ -15,6 +15,8 @@ public class Snake extends Enemy {
 	protected float startX;
 	protected int hitDelay;
 	protected SnakeSpawner parent = null;
+
+	protected float lastX, lastY;
 	
 	public Snake(Zone zone, float x, float y) {
 		super(zone, x, y);
@@ -49,6 +51,8 @@ public class Snake extends Enemy {
 			vx = -vx;
 		}
 		else if(vx > 0 && container.collidesWithRightOf(this) != null) {
+		//if(Math.abs(px - startX) > 300){
+		//if (Math.abs(lastX - px) < 0.1 && Math.abs(lastY - py) < 0.1) {
 			vx = -vx;
 		}
 		
@@ -59,6 +63,8 @@ public class Snake extends Enemy {
 		if (hitDelay > 0)
 			hitDelay--;
 		
+		lastX = px;
+		lastY = py;
 	}
 	
 	public void die() {

@@ -1,4 +1,3 @@
-
 // comments are ignored to end of line
 // lines are trimmed of leading and trailing spaces
 //
@@ -267,5 +266,3 @@ spike at 7350,518
 
 //exit
 exit at 6900,618
-
-

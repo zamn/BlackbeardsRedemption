@@ -32,6 +32,7 @@ public final class Song {
 		
 		loadSongs();
 		loaded = true;
+		isMuted = Settings.valueBoolean("muted");
 	}
 	private static void loadSongs() {
 		SongFileReader fileReader = new SongFileReader(SONG_LIST);
@@ -49,18 +50,24 @@ public final class Song {
 		return new Music(songName);
 	}
 	public static void playMusic(String songName){
-		if(currentSong != null)
-			currentSong.stop();
+		System.out.println(songName);
+		if(isMuted){
+			System.out.println("Muted");
+			return;
+		}
+		stopMusic();
 		currentSong = songs.get(songName);
-		Utility.log(songName);
 		if(currentSong != null)
 			currentSong.loop();
+			return;
 	}
 	public static void stopMusic(){
 		if(currentSong != null)
 			currentSong.stop();
 	}
-	
+	public static boolean isPlaying(String songName){
+		return currentSong == songs.get(songName);
+	}
 	
 	//deprecated
 	/*public static Music getMusic(String songName) {

@@ -48,7 +48,7 @@ res/Laser.png
 
 // Terrain
 BreakablePlatform
-res/levels/level1/platform/platform.png
+res/levels/level1/platform/breakableplatform.png
 
 BreakablePlatformG
 res/levels/level1/platform/platform.png

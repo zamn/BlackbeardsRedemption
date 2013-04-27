@@ -10,6 +10,9 @@ import org.newdawn.slick.Image;
 
 import com.bbr.core.Sprite;
 import com.bbr.core.Zone;
+import com.bbr.entity.terrain.FallingPlatform;
+import com.bbr.entity.terrain.Ground;
+import com.bbr.entity.terrain.Platform;
 import com.bbr.resource.Art;
 import com.bbr.resource.Settings;
 import com.bbr.resource.Tuple;
@@ -124,7 +127,9 @@ public abstract class Entity {
 		}
 	}
 	protected void preDt() { }
-	public void dt() {				
+	public void dt() {	
+		if ((this instanceof Ground || this instanceof Platform) && !(this instanceof FallingPlatform))
+			return;
 		preDt();
 		if (vx < 0) {
 			flipHorizontal = true;
@@ -132,11 +137,6 @@ public abstract class Entity {
 			flipHorizontal = false;
 		}
 		setXpos(px + vx);
-		
-		if(this.toString().equals("Pirate")) {
-			System.out.println("Original x " + getXpos());
-		}
-
 		if(container.collidesWithRightOf(this) != null){
 			Utility.log("Collider Right: "+container.collidesWithRightOf(this).getXpos()+" Player: "+(this.getXpos()+this.getXsize()));
 			this.setXpos(container.collidesWithRightOf(this).getXpos() - this.getXsize());
@@ -145,16 +145,28 @@ public abstract class Entity {
 			Utility.log("Collider Left: "+(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize())+" Player: "+this.getXpos());
 			this.setXpos(container.collidesWithLeftOf(this).getXpos() + container.collidesWithLeftOf(this).getXsize());
 		}
-		setYpos(py + vy);
-		// prevent falling through platforms
-		onPlatform = (container.collidesWithBottomOf(this) != null);
-		if (onPlatform){
-			vy = 0;
-			this.setYpos(container.collidesWithBottomOf(this).getYpos() - this.getYsize());
-		}
+		
+		
 		// acceleration due to gravity
 		if (terrainCollidable && vy < TERMINAL_VELOCITY){
 			vy++;
+		}
+		setYpos(py + vy);
+		// prevent falling through platforms
+		onPlatform = (container.collidesWithBottomOf(this) != null);
+		if (container.collidesWithBottomOf(this) != null){
+			vy = 0;
+			//Utility.log("Collider Bottom: "+container.collidesWithBottomOf(this).getYpos() +" Player: "+this.getYpos()+this.getYsize());
+			this.setYpos(container.collidesWithBottomOf(this).getYpos() - this.getYsize());
+		}
+		if (container.collidesWithTopOf(this) != null){
+			vy = 0;
+			Utility.log("Collider Top: "+container.collidesWithTopOf(this).getYpos() + container.collidesWithTopOf(this).getYsize()+" Player: "+this.getYpos());
+			this.setYpos(container.collidesWithTopOf(this).getYpos() + container.collidesWithTopOf(this).getYsize());
+		}
+		
+		if(this.toString().equals("Pirate")) {
+			//System.out.println("Original x " + getXpos());
 		}
 		
 		postDt();
