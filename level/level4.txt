@@ -12,10 +12,7 @@ ground topright at 1100,650
 ground topright at 1150,600
 spawn at 190,150
 
-snake at 500,650
-snake at 500,650
-snake at 500,650
-snake at 500,650
-snake at 500,650
-snake at 500,650
+snake at 310,650
+snake at 420,650
+snake at 530,650
 exit at 2300,600
