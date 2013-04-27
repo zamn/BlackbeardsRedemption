@@ -28,6 +28,7 @@ public class Toolbar extends JPanel implements MouseListener {
 	private SwingMenu toolbar;
 	private Tools currentTool = Tools.SPAWN;
 	private BufferedImage selectedGlow;
+	private int clicked = 0;
 
 	public Toolbar() {
 		super();
@@ -67,9 +68,17 @@ public class Toolbar extends JPanel implements MouseListener {
 	public Tools getCurrentTool() {
 		return currentTool;
 	}
+	
+	public int clicked() {
+		return clicked;
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {	
+		if (e.getButton() == 3) {
+			clicked++;
+			return;
+		}
 		SwingButton clicked = toolbar.buttonClicked(e.getX(), e.getY());
 		if(clicked == null) {
 			return;
