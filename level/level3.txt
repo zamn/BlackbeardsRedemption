@@ -21,3 +21,52 @@ ground topmid at 900,400
 ground topmid at 950,400
 ground topright at 1000,400
 spawn at 190,150
+
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+snake at 1600,0
+
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+snake at 2000,0
+ground topleft at 1200,400
+ground topmid at 1250,400
+ground topmid at 1300,400
+ground topmid at 1350,400
+ground topmid at 1400,400
+ground topmid at 1450,400
+ground topmid at 1500,400
+ground topmid at 1550,400
+ground topmid at 1600,400
+ground topmid at 1650,400
+ground topmid at 1700,400
+ground topmid at 1750,400
+ground topmid at 1800,400
+ground topmid at 1850,400
+ground topmid at 1900,400
+ground topmid at 1950,400
+ground topright at 2000,400
+exit at 2300,600
