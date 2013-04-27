@@ -90,6 +90,9 @@ res/enemy/snake/idle.png
 snakeMove res/enemy/snake/idle.png
 snakeMove res/enemy/snake/move.png
 
+SnakeSpawner
+res/enemy/snakespawn.png
+
 Arboc
 res/Arboc.png
 

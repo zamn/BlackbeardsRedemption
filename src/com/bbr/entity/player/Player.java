@@ -259,7 +259,7 @@ public abstract class Player extends Unit {
 	
 	@Override
 	public void draw(Graphics g) {
-		Utility.log("Player draw");
+//		Utility.log("Player draw");
 		super.draw(g);
 	}
 }

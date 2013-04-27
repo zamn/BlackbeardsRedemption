@@ -6,7 +6,6 @@ import org.newdawn.slick.Graphics;
 
 import com.bbr.core.Zone;
 import com.bbr.entity.Entity;
-import com.bbr.resource.Utility;
 
 // solid platform
 public class Platform extends Entity {
@@ -59,7 +58,7 @@ public class Platform extends Entity {
 	
 	@Override
 	public void draw(Graphics g) {
-		Utility.log("Platform draw");
+//		Utility.log("Platform draw");
 		super.draw(g);
 	}
 }
