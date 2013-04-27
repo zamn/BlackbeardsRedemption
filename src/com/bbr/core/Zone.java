@@ -30,6 +30,7 @@ public class Zone implements Drawable {
 	protected int xScroll = 0, yScroll = 0;
 	protected int xScrollTarget = 0, yScrollTarget = 0; // further = faster scroll
 	// Multimedia Experience
+	private String songName;
 	protected Image background;
 
 	public Zone(LevelHandler levelHandler) {
@@ -59,7 +60,8 @@ public class Zone implements Drawable {
 		}
 	}
 	public void dt() {
-
+		if(!Song.isPlaying(songName))
+			Song.playMusic(songName);
 		updateEntities();
 
 		Entity flyer;
@@ -84,6 +86,7 @@ public class Zone implements Drawable {
 	}
 
 	public void clear() {
+		Song.stopMusic();
 		entitiesToAdd.clear();
 		entitiesToRemove.addAll(entities);
 	}
@@ -254,6 +257,6 @@ public class Zone implements Drawable {
 		this.background = bg;
 	}
 	public void setMusic(String song){
-		Song.playMusic(song);
+		songName = song;
 	}
 }

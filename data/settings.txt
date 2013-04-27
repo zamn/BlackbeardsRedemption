@@ -12,6 +12,6 @@ fps=30
 windowWidth=1024
 windowHeight=768
 fullScreen=false
-
+muted=false
 showHitbox=true
 debug=true // shows Utility.log messages
