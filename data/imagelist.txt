@@ -49,6 +49,9 @@ res/levels/lvl1.png
 Level2Background
 res/levels/level2/background.png
 
+WinBackground
+res/levels/win.png
+
 GameOverBackground
 res/levels/gameover.png
 

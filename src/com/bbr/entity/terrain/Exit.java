@@ -21,6 +21,7 @@ public class Exit extends Entity {
 		List<Entity> entities = container.getTerrainCollided(this);
 		for(Entity e : entities){
 			if(e instanceof Pirate){
+				System.out.println("HERE?");
 				container.nextLevel();
 			}
 		}

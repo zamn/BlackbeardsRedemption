@@ -92,7 +92,10 @@ public abstract class Player extends Unit {
 			if (isDead()){
 				state.resetLevel();
 			}
-
+			else if (state.winScreen()) {
+				state.setCurLevel(Level.getFirstLevel());
+				state.resetLevel();
+			}
 			break;
 			
 		case PAUSE:

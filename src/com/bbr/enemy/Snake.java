@@ -10,7 +10,7 @@ import com.bbr.entity.Entity;
 
 public class Snake extends Enemy {
 	@Override
-	public int getBaseHealth() { return 200; }
+	public int getBaseHealth() { return 75; }
 
 	protected float startX;
 	protected int hitDelay;

@@ -40,6 +40,7 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	protected long tickCount = 0; // used for animation
 	protected Controller joystick = null;
 	protected XboxListener xl = null;
+	protected boolean won = false;
 
 	public GameplayState() throws SlickException {
 		super(BlackbeardsRedemption.States.GAME.ordinal());
@@ -96,18 +97,31 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		
 	}
 
+	public boolean winScreen() {
+		return won;
+	}
+	
 	@Override
 	public void nextLevel() {
 		Level nextLevel = Level.getNextLevel(curLevel);
 		if (nextLevel != null) {
-			curLevel = nextLevel;
-			zone.clear();
-			curLevel.loadInto(zone);
-			p = zone.getPlayer();
-			player = p;
-			health.changeUnit(p);
-			p.setGameplayState(this);
-			xl.updatePlayer(p);
+			if (nextLevel.getName().equals("win.txt")) {
+				won = true;
+				health = null;
+				curLevel = nextLevel;
+				curLevel.loadInto(zone);
+				zone.clear();
+			}
+			else {
+				curLevel = nextLevel;
+				zone.clear();
+				curLevel.loadInto(zone);
+				p = zone.getPlayer();
+				player = p;
+				health.changeUnit(p);
+				p.setGameplayState(this);
+				xl.updatePlayer(p);
+			}
 		}
 	}
 	
@@ -121,6 +135,10 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		health.changeUnit(p);
 		p.setGameplayState(this);
 		xl.updatePlayer(p);
+	}
+	
+	public void setCurLevel(Level l) {
+		curLevel = l;
 	}
 	
 	public void gameOver() {
