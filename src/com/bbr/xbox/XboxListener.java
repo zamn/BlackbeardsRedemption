@@ -27,8 +27,9 @@ public class XboxListener extends Thread {
 	public static final int SW = 6;
 	public static final int SOUTH = 7;
 	public static final int SE = 8;
-	private static final int DELAY = 100;
-	private static final int JUMP_DELAY = 450;
+	private static final int DELAY = 50;
+	private static final int JUMP_DELAY = 600;
+	private static final int ATTACK_DELAY = 10;
 
 	public XboxListener(Controller joystick, Player p) {
 		this.joystick = joystick;
@@ -186,7 +187,7 @@ public class XboxListener extends Thread {
 				if (buttonPressed(xButton)) {
 					p.keyPressed(Input.KEY_X);
 					try {
-						Thread.sleep(DELAY);
+						Thread.sleep(ATTACK_DELAY);
 					} catch (InterruptedException e) {
 						System.out.println("Oops: " + e);
 					}
@@ -197,11 +198,6 @@ public class XboxListener extends Thread {
 					p.keyReleased(Input.KEY_R);
 				}
 			}
-			
-			p.keyReleased(Input.KEY_X);
-			p.keyReleased(Input.KEY_RIGHT);
-			p.keyReleased(Input.KEY_LEFT);
-			p.keyReleased(Input.KEY_UP);
 			
 		}
 	}
