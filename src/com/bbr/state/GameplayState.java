@@ -1,5 +1,10 @@
 package com.bbr.state;
 
+import net.java.games.input.Component;
+
+import net.java.games.input.Controller;
+import net.java.games.input.ControllerEnvironment;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -19,6 +24,7 @@ import com.bbr.gui.HealthController;
 import com.bbr.level.Level;
 import com.bbr.level.LevelHandler;
 import com.bbr.main.BlackbeardsRedemption;
+import com.bbr.xbox.XboxListener;
 
 public class GameplayState extends BbrGameState implements LevelHandler, TickHandler {
 
@@ -32,6 +38,8 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 	protected StateBasedGame statebg;
 	protected Image backgroundTest;
 	protected long tickCount = 0; // used for animation
+	protected Controller joystick = null;
+	protected XboxListener xl = null;
 
 	public GameplayState() throws SlickException {
 		super(BlackbeardsRedemption.States.GAME.ordinal());
@@ -50,6 +58,19 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 		player = p;
 		health = new HealthController("Heart", "BlackHeart", p);
 		p.setGameplayState(this);
+		
+		// Initialize controller shit
+		ControllerEnvironment ce = ControllerEnvironment.getDefaultEnvironment(); 
+		Controller[] cs = ce.getControllers(); 
+		for (int i = 0; i < cs.length; i++) {
+			if (cs[i].getType() == Controller.Type.GAMEPAD) {
+				xl = new XboxListener(cs[i], player);
+				break;
+			}
+		}
+		
+		if (xl != null)
+			xl.start();
 		
 		// testInit(zone);
 	}
@@ -86,8 +107,10 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 			player = p;
 			health.changeUnit(p);
 			p.setGameplayState(this);
+			xl.updatePlayer(p);
 		}
 	}
+	
 	public void resetLevel(){
 		zone.clear();
 		curLevel.loadInto(zone);
@@ -97,13 +120,13 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 			health = new HealthController("Heart", "BlackHeart", p);
 		health.changeUnit(p);
 		p.setGameplayState(this);
+		xl.updatePlayer(p);
 	}
 	
 	public void gameOver() {
 		health = null;
 		Level.gameOver().loadInto(zone);
 		zone.clear();
-		
 	}
 	
 	public Level getCurLevel(){
