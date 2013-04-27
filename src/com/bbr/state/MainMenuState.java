@@ -131,7 +131,6 @@ public class MainMenuState extends BbrGameState {
 			throws SlickException {
 		if (goingToStart) {
 			goingToStart = false;
-			Song.stopMusic();
 			sbg.enterState(BlackbeardsRedemption.States.GAME.ordinal());
 		}
 		
