@@ -199,7 +199,8 @@ public class Zone implements Drawable {
 			if (collided != mover) {
 				if (collided instanceof Platform && collided.collidesWith(mover)) {
 					float moverYpos = mover.getYpos() + mover.getYsize();
-					if (moverYpos >= collided.getYpos()) {
+					if (moverYpos > collided.getYpos() && moverYpos < collided.getYpos() + collided.getYsize()) {
+						System.out.println("mover: "+ moverYpos+" Collided: "+collided.getYpos());
 						return (Platform)collided;
 					}
 				}
@@ -243,9 +244,10 @@ public class Zone implements Drawable {
 			collided = entities.get(i);
 			if (collided != mover) {
 				if (collided instanceof Platform && collided.collidesWith(mover)) {
-					float moverYpos = mover.getYpos() + mover.getYsize();
-					if (moverYpos >= collided.getYpos()) {
-						return (Platform)collided;
+					float moverYpos = mover.getYpos();
+					if (moverYpos <= collided.getYpos() + collided.getYsize() && moverYpos >= collided.getYpos()) {
+						//if(moverYpos >= collided.getYpos())
+								return (Platform)collided;
 					}
 				}
 			}
