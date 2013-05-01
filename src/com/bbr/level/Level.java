@@ -54,10 +54,14 @@ public class Level {
 	}
 	public static Level getNextLevel(Level curLevel) {
 		int index = levels.indexOf(curLevel);
-		if (index >= 0 && index < levels.size() - 1 && !levels.get(index+1).getName().equals("gameover.txt")) {
+		if (index >= 0 && index < levels.size() - 1 && !invalidLevel(levels.get(index+1))) {
 			return levels.get(index + 1);
 		}
 		return null;
+	}
+	
+	public static boolean invalidLevel(Level l) {
+		return l.getName().equals("gameover.txt") || l.getName().equals("credits.txt");
 	}
 	
 	public static Level gameOver() {

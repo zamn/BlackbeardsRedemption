@@ -53,6 +53,7 @@ public class MainMenuState extends BbrGameState {
 
 	protected boolean goingToStart = false;
 	protected boolean goingToExit = false;
+	protected boolean goingToCredits = false;
 	private int mouseX = Integer.MIN_VALUE, mouseY = Integer.MIN_VALUE;
 
 	public MainMenuState() throws SlickException {
@@ -132,6 +133,12 @@ public class MainMenuState extends BbrGameState {
 			sbg.enterState(BlackbeardsRedemption.States.GAME.ordinal());
 		}
 		
+		if (goingToCredits) {
+			goingToCredits = false;
+			creditScreen = true;
+			sbg.enterState(BlackbeardsRedemption.States.CREDITS.ordinal());
+		}
+		
 		if(goingToExit) {
 			gc.exit();
 		}
@@ -149,7 +156,7 @@ public class MainMenuState extends BbrGameState {
 			//@Todo implement settings screen
 		}
 		if (b == creditsButton) {
-			//@Todo imlement credits screen
+			goingToCredits = true;
 		}
 		if (b == exitButton) {
 			goingToExit = true;

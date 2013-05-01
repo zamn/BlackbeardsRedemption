@@ -120,7 +120,8 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 				player = p;
 				health.changeUnit(p);
 				p.setGameplayState(this);
-				xl.updatePlayer(p);
+				if (xl != null)
+					xl.updatePlayer(p);
 			}
 		}
 	}
@@ -134,7 +135,8 @@ public class GameplayState extends BbrGameState implements LevelHandler, TickHan
 			health = new HealthController("Heart", "BlackHeart", p);
 		health.changeUnit(p);
 		p.setGameplayState(this);
-		xl.updatePlayer(p);
+		if (xl != null)
+			xl.updatePlayer(p);
 	}
 	
 	public void setCurLevel(Level l) {

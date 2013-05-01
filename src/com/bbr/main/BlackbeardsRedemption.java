@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import com.bbr.resource.Art;
 import com.bbr.resource.Settings;
 import com.bbr.resource.Song;
+import com.bbr.state.CreditsState;
 import com.bbr.state.GameplayState;
 import com.bbr.state.MainMenuState;
 import com.bbr.state.PauseState;
@@ -42,6 +43,7 @@ public class BlackbeardsRedemption extends StateBasedGame {
 		this.addState(new MainMenuState());
 		this.addState(new GameplayState());
 		this.addState(new PauseState());
+		this.addState(new CreditsState());
 		this.enterState(States.MENU.ordinal());
 	}
 }

@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import com.bbr.resource.Art;
 
 // Provides helper methods
 // State Id should be the corresponding constant in BlackbeardsRedemption
@@ -26,6 +29,8 @@ public abstract class BbrGameState extends BasicGameState {
 	}
 
 	protected List<Button> buttons = new ArrayList<Button>();
+	protected Image credits = Art.getImage("Credits");
+	protected static boolean creditScreen = false;
 	
 	@Override
 	public void mousePressed(int button, int mouseX, int mouseY) {
@@ -53,6 +58,8 @@ public abstract class BbrGameState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) 
 			throws SlickException {
+		if (creditScreen)
+			credits.draw(0, 0);
 		drawButtons(g);
 	}
 }

@@ -52,6 +52,9 @@ res/levels/level2/background.png
 WinBackground
 res/levels/win.png
 
+Credits
+res/levels/credits.png
+
 GameOverBackground
 res/levels/gameover.png
 
